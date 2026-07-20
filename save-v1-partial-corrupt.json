@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "currentSceneKey": "missing_scene_key",
+  "screen": "story",
+  "player": {
+    "hp": "not-a-number",
+    "maxHp": -5,
+    "debt": 999,
+    "unlocked": {
+      "scarMend": true
+    }
+  },
+  "worldFlags": "invalid",
+  "settings": {
+    "bgmVolume": 4,
+    "sfxVolume": "invalid",
+    "muted": true,
+    "reducedMotion": 1
+  }
+}

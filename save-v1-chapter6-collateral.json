@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "currentSceneKey": "act6_collateral_record",
+  "screen": "story",
+  "player": {
+    "hp": 64,
+    "maxHp": 100,
+    "debt": 35,
+    "poise": 5,
+    "armorShell": 1,
+    "unlocked": {
+      "refuse": true,
+      "battleContinuation": true,
+      "trace": true,
+      "dismantle": true,
+      "dismantleNamed": true,
+      "cleave": true,
+      "hellstep": true,
+      "stin": true,
+      "severTrue": false,
+      "patchJob": true,
+      "blackFlash": true,
+      "web": true,
+      "furnace": true,
+      "graveframe": true
+    },
+    "coffinPilot": false
+  },
+  "worldFlags": {
+    "act5Coffin": {
+      "collateral": 4,
+      "control": 1,
+      "anchorUses": 0,
+      "steerUses": 1,
+      "letHimUses": 3
+    }
+  },
+  "settings": {
+    "muted": false,
+    "reducedMotion": false
+  },
+  "veilHudLevel": 2,
+  "veilLearnedCensor": true,
+  "somnusNamed": true
+}

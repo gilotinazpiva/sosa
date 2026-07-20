@@ -1,0 +1,942 @@
+/* =========================================================
+   SOSA: THE GRAVE THAT WOULDN'T TAKE ME
+   battle.css — Complete Battle Screen v3
+   FIXES 07-18: Sosa left / Somnus right barrier, progressive AR, less cramped, no square targeting
+   ========================================================= */
+
+.battle-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #06040c;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-sans);
+}
+
+.battle-encounter-banner {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    padding: 3px 12px;
+    background: rgba(10, 8, 18, 0.92);
+    border: 1px solid rgba(176, 96, 255, 0.35);
+    border-radius: 16px;
+    color: #E4B8FF;
+    font-size: 9px;
+    letter-spacing: 2px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.boss-banner {
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    background: rgba(18, 12, 28, 0.92);
+    border: 1px solid rgba(176, 96, 255, 0.35);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.boss-world-law { font-size: 9px; letter-spacing: 1.1px; color: #fca5a5; font-family: var(--font-mono); font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+.boss-world-law .law-text { color: #fecdd3; font-weight: 400; font-style: italic; }
+.boss-field-status { font-size: 9px; letter-spacing: 1.2px; font-family: var(--font-mono); font-weight: 700; padding: 2px 6px; border-radius: 12px; text-transform: uppercase; display: inline-block; }
+.boss-field-status.field-active { background: rgba(225, 29, 72, 0.18); border: 1px solid rgba(225, 29, 72, 0.5); color: #fda4af; }
+.boss-field-status.field-broken { background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.5); color: #86efac; }
+
+.field {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 10px 8px;
+    overflow: hidden;
+    gap: 8px;
+}
+
+.field-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.52) contrast(1.08); z-index: 1; }
+.battle-danger { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.battle-danger.warning { box-shadow: inset 0 0 24px rgba(239, 68, 68, 0.18); }
+.battle-danger.threshold { box-shadow: inset 0 0 44px rgba(239, 68, 68, 0.38); animation: danger-pulse 1s ease-in-out infinite alternate; }
+@keyframes danger-pulse { from { opacity: 0.6; } to { opacity: 1; } }
+
+/* === PARTY SIDE — Sosa left, Somnus right barrier === */
+.party-side {
+    position: relative;
+    z-index: 5;
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.party-char-row {
+    position: relative;
+    width: 100%;
+    height: 148px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+/* SCALE FIX: Sosa was humongous vs transit_security — shrink Sosa, enlarge enemies */
+.sosa-wrap { width: 78px; height: 116px; position: relative; z-index: 2; flex-shrink: 0; margin-left: 2px; transition: transform 0.2s ease; }
+.sosa-wrap.hurt-flash { animation: hurt-shake 0.2s ease-out; filter: brightness(1.6) sepia(0.6) hue-rotate(-30deg); }
+@keyframes hurt-shake { 0%{transform:translate(0,0)}25%{transform:translate(-5px,3px)}50%{transform:translate(5px,-3px)}75%{transform:translate(-2px,-1px)}100%{transform:translate(0,0)} }
+.sosa-img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 0 10px rgba(0,0,0,0.9)); }
+
+.somnus-wrap {
+    position: absolute;
+    left: 52px;
+    bottom: -2px;
+    width: 108px;
+    height: 148px;
+    pointer-events: none;
+    z-index: 3;
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+.somnus-wrap.hellstep .somnus-img { filter: drop-shadow(0 0 18px #e0e7ff) brightness(1.25); transform: scale(1.04); }
+.somnus-wrap.coffin-pilot { left: 36px; width: 138px; height: 178px; filter: drop-shadow(0 0 22px rgba(176,96,255,0.8)); }
+.somnus-img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; filter: drop-shadow(0 0 14px rgba(176,96,255,0.6)); }
+.somnus-wrap.appear .somnus-img { animation: somnus-manifest 0.7s cubic-bezier(0.16,1,0.3,1); }
+@keyframes somnus-manifest { 0%{transform:scale(0.4) translateY(18px); opacity:0; filter:brightness(2) blur(3px)} 60%{transform:scale(1.08) translateY(-4px); opacity:1} 100%{transform:scale(1) translateY(0); opacity:1} }
+
+/* Party HUD — progressive */
+.party-bars {
+    background: rgba(12, 10, 22, 0.88);
+    border: 1px solid rgba(176,96,255,0.28);
+    border-radius: 10px;
+    padding: 7px 9px;
+    width: 100%;
+    max-width: 214px;
+    backdrop-filter: blur(8px);
+}
+
+.party-statline { display: flex; justify-content: space-between; font-size: 9px; font-weight: 600; margin-bottom: 2px; color: #cbd5e1; font-family: var(--font-sans); }
+.pbar, .debt-bar { width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; margin-bottom: 5px; }
+.pbar-fill.hp { height: 100%; background: linear-gradient(90deg, #10b981, #6ee7b7); transition: width 0.3s ease; }
+.debt-fill { height: 100%; background: linear-gradient(90deg, #a855f7, #ef4444); transition: width 0.3s ease; }
+.debt-fill.threshold { background: linear-gradient(90deg, #f43f5e, #dc2626); box-shadow: 0 0 6px #f43f5e; }
+
+.party-poise-row { display: flex; justify-content: space-between; align-items: center; font-size: 8.5px; font-weight: 700; color: #a78bfa; font-family: var(--font-mono); letter-spacing: 0.5px; }
+.party-poise-pips { display: flex; gap: 2px; }
+.guard-pip { width: 7px; height: 7px; border-radius: 50%; border: 1px solid rgba(167,139,250,0.35); background: rgba(10,8,18,0.4); transition: all 0.2s ease; }
+.guard-pip.on { background: #B060FF; border-color: #e9d5ff; box-shadow: 0 0 5px rgba(176,96,255,0.7); }
+
+.battle-status, .armor-shell-row, .furnace-sat-row, .drift-tag, .somnus-lock-tag, .signal-tag,
+.grave-status-row, .coffin-status-row { font-size: 8px; font-weight: 700; letter-spacing: 0.6px; padding: 2px 5px; border-radius: 10px; margin-top: 3px; font-family: var(--font-mono); text-transform: uppercase; }
+.battle-status.cold { background: rgba(56,189,248,0.15); color: #7dd3fc; border: 1px solid rgba(56,189,248,0.35); }
+.battle-status.static { background: rgba(251,191,36,0.14); color: #fde047; border: 1px solid rgba(251,191,36,0.35); }
+.armor-shell-row { color: #d8b4fe; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.22); }
+.furnace-sat-row { color: #f0abfc; background: rgba(244,114,182,0.12); border: 1px solid rgba(244,114,182,0.28); }
+.drift-tag { color: #fda4af; background: rgba(225,29,72,0.14); border: 1px solid rgba(225,29,72,0.35); }
+.somnus-lock-tag { color: #f3e8ff; background: rgba(126,34,206,0.22); border: 1px solid rgba(168,85,247,0.55); }
+.signal-tag.open { color: #86efac; background: rgba(34,197,94,0.14); }
+.signal-tag.jammed { color: #fca5a5; background: rgba(239,68,68,0.14); }
+.grave-status-row { background: rgba(88,28,135,0.32); color: #e9d5ff; border: 1px solid #a855f7; }
+.coffin-status-row { background: rgba(0,0,0,0.5); color: #e9d5ff; border: 1px solid #7c3aed; }
+
+/* ENEMY SIDE — less cramped */
+.enemy-side {
+    position: relative;
+    z-index: 5;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding-right: 2px;
+}
+
+ .enemy-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: rgba(14, 12, 24, 0.72);
+    border: 1px solid rgba(176,96,255,0.18);
+    border-radius: 10px;
+    padding: 6px 6px 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.18s ease;
+    overflow: hidden;
+}
+
+/* New targeting — not just a square, violet fault line that traces around card */
+.enemy-slot.selected {
+    border-color: rgba(176,96,255,0.85);
+    background: rgba(26, 16, 42, 0.94);
+    box-shadow: 0 0 0 1px rgba(176,96,255,0.35), 0 0 16px rgba(176,96,255,0.35), inset 0 0 0 1px rgba(228,184,255,0.15);
+    transform: translateY(-1px) scale(1.01);
+}
+
+.enemy-slot.selected::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 10px;
+    background: linear-gradient(100deg, transparent 20%, rgba(176,96,255,0.5) 50%, transparent 80%);
+    background-size: 200% 100%;
+    animation: seam-sweep 1.6s linear infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+@keyframes seam-sweep {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.enemy-slot.dead { opacity: 0.28; pointer-events: none; filter: grayscale(0.6); }
+
+.enemy-name {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: #f1f5f9;
+    text-align: center;
+    margin-bottom: 3px;
+    line-height: 1.1;
+}
+
+/* Intent — smaller, Inter, not shouting */
+.battle-intent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(225, 29, 72, 0.10);
+    border: 1px solid rgba(225, 29, 72, 0.28);
+    border-radius: 14px;
+    padding: 2px 7px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.intent-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #fca5a5;
+    text-transform: uppercase;
+}
+
+.intent-impact {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    color: #fbbf24;
+    letter-spacing: 0.3px;
+    background: rgba(251,191,36,0.12);
+    padding: 1px 5px;
+    border-radius: 10px;
+}
+
+/* ENEMY bigger, Sosa smaller — size scale fix per user */
+.enemy-visual {
+    width: 100%;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.enemy-img { max-width: 96%; max-height: 84px; object-fit: contain; filter: drop-shadow(0 3px 8px rgba(0,0,0,0.6)); }
+.enemy-fallback { width: 52px; height: 52px; border-radius: 8px; background: #1e1b4b; color: #e0e7ff; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+
+/* Intentional asset-free Hound silhouette until final character art exists. */
+.enemy-fallback.hound {
+    width: 68px;
+    height: 78px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px 34px 12px 12px;
+    border: 1px solid rgba(245, 158, 11, 0.55);
+    color: #fcd34d;
+    background:
+        repeating-linear-gradient(112deg, transparent 0 8px, rgba(245,158,11,0.16) 9px 10px),
+        radial-gradient(circle at 50% 28%, #25202c 0 20px, transparent 21px),
+        linear-gradient(145deg, #18151d, #050507 70%);
+    box-shadow: inset 0 0 18px #000, 0 0 12px rgba(245,158,11,0.18);
+    font-family: var(--font-mono);
+    align-items: flex-end;
+    padding-bottom: 7px;
+    letter-spacing: 1px;
+}
+.enemy-fallback.hound::before,
+.enemy-fallback.hound::after {
+    content: '';
+    position: absolute;
+    top: 23px;
+    width: 7px;
+    height: 3px;
+    border-radius: 50%;
+    background: #fbbf24;
+    box-shadow: 0 0 7px #f59e0b;
+}
+.enemy-fallback.hound::before { left: 23px; }
+.enemy-fallback.hound::after { right: 23px; }
+.enemy-fallback.hound span { position: relative; z-index: 2; }
+
+/* Old square reticle replaced by seam glow — hide old */
+.enemy-reticle { display: none; }
+
+/* Trace seam glow */
+.enemy-seam {
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: radial-gradient(ellipse at 40% 50%, rgba(176,96,255,0.18) 0%, transparent 60%);
+    pointer-events: none;
+    animation: seam-pulse 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes seam-pulse {
+    from { opacity: 0.3; }
+    to { opacity: 0.7; }
+}
+
+.enemy-trace-lock {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #B060FF;
+    box-shadow: 0 0 6px #B060FF, 0 0 12px rgba(176,96,255,0.5);
+    animation: trace-blink 0.9s ease-in-out infinite alternate;
+    z-index: 2;
+}
+
+@keyframes trace-blink {
+    from { transform: scale(0.8); opacity: 0.6; }
+    to { transform: scale(1.2); opacity: 1; }
+}
+
+/* Tokens — smaller pills, Inter */
+.token-row { display: flex; gap: 3px; justify-content: center; margin-top: 4px; flex-wrap: wrap; }
+.token { font-family: var(--font-sans); font-size: 8px; font-weight: 700; padding: 2px 6px; border-radius: 10px; background: #1e293b; color: #cbd5e1; letter-spacing: 0.3px; }
+.token-trace { background: rgba(176,96,255,0.22); color: #e9d5ff; border: 1px solid rgba(176,96,255,0.4); }
+.token-web { background: rgba(56,189,248,0.18); color: #bae6fd; border: 1px solid rgba(56,189,248,0.35); }
+.token-anchor { background: rgba(168,85,247,0.28); color: #f3e8ff; }
+.token-hellstep { background: rgba(244,63,94,0.22); color: #ffe4e6; }
+
+.enemy-hp-bar { width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; margin-top: 4px; }
+.enemy-hp-fill { height: 100%; background: linear-gradient(90deg, #ef4444, #f87171); transition: width 0.25s ease; }
+.enemy-hp-num { font-family: var(--font-mono); font-size: 8px; color: #cbd5e1; text-align: right; margin-top: 2px; }
+
+/* Enemy AR chips */
+.enemy-ar { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; margin-top: 3px; }
+.enemy-ar .ar-tag, .ar-stat, .ar-lock, .ar-hint, .ar-conf {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    padding: 1px 5px;
+    border-radius: 10px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+}
+.ar-tag { background: rgba(255,255,255,0.08); color: #e2e8f0; }
+.ar-stat { background: rgba(56,189,248,0.12); color: #7dd3fc; }
+.ar-lock { background: rgba(168,85,247,0.28); color: #e9d5ff; border: 1px solid rgba(168,85,247,0.4); animation: trace-blink 0.9s infinite alternate; }
+.ar-hint { background: rgba(255,255,255,0.06); color: #94a3b8; }
+.ar-conf { background: rgba(0,0,0,0.3); color: #64748b; }
+
+.panel {
+    background: rgba(8, 6, 14, 0.98);
+    border-top: 1px solid rgba(176,96,255,0.22);
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    z-index: 10;
+}
+
+.turn-pill {
+    align-self: center;
+    padding: 3px 12px;
+    border-radius: 16px;
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.turn-pill.player { background: rgba(168,85,247,0.16); border: 1px solid rgba(168,85,247,0.45); color: #e9d5ff; }
+.turn-pill.enemy { background: rgba(239,68,68,0.14); border: 1px solid rgba(239,68,68,0.45); color: #fca5a5; }
+
+.battle-hint { text-align: center; font-family: var(--font-serif); font-size: 11px; color: #a89ec8; letter-spacing: 0.2px; margin-bottom: 2px; font-style: italic; }
+
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.actions button {
+    min-height: 44px;
+    background: rgba(18, 12, 32, 0.92);
+    border: 1px solid rgba(176,96,255,0.28);
+    border-radius: 10px;
+    color: #e2e8f0;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    transition: all 0.14s ease;
+    text-transform: uppercase;
+}
+.actions button:hover:not(:disabled) { background: rgba(176,96,255,0.20); border-color: #c4b5fd; color: #fff; transform: translateY(-1px); }
+.actions button:disabled { opacity: 0.38; cursor: not-allowed; }
+
+.btn-dismantle { border-color: rgba(168,85,247,0.38) !important; }
+.btn-cleave { border-color: rgba(244,63,94,0.42) !important; color: #ffe4e6 !important; }
+.btn-web { border-color: rgba(56,189,248,0.38) !important; }
+.btn-true { background: linear-gradient(135deg, rgba(147,51,234,0.85), rgba(88,28,135,0.92)) !important; border-color: #e9d5ff !important; color: #fff !important; }
+.btn-hellstep { border-color: rgba(244,63,94,0.55) !important; color: #ffe4e6 !important; }
+.btn-stin { border-color: rgba(34,197,94,0.45) !important; color: #bbf7d0 !important; }
+
+.log {
+    height: 72px;
+    overflow-y: auto;
+    background: rgba(5,3,10,0.82);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.log-entry { font-family: var(--font-mono); font-size: 9px; line-height: 1.35; color: #9ca3af; }
+.log-entry.somnus { color: #c4b5fd; }
+.log-entry.critical { color: #f472b6; font-weight: 700; }
+
+/* Coffin / Grave extras */
+.btn-coffin-anchor { border-color: rgba(168,85,247,0.45) !important; }
+.btn-coffin-steer { border-color: rgba(56,189,248,0.45) !important; }
+.btn-coffin-lethim { border-color: rgba(239,68,68,0.6) !important; background: rgba(239,68,68,0.12) !important; color: #fca5a5 !important; }
+.btn-grave-sever { border-color: #a855f7 !important; background: rgba(168,85,247,0.20) !important; }
+
+/* === MOBILE BATTLE DIALOGUE CUT-INS === */
+.battle-cutin {
+    position: absolute;
+    top: calc(36px + env(safe-area-inset-top));
+    left: 10px;
+    right: 10px;
+    z-index: 42;
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 11px;
+    border: 1px solid rgba(176, 96, 255, 0.6);
+    border-radius: 10px;
+    background: linear-gradient(100deg, rgba(5, 3, 10, 0.97), rgba(25, 13, 38, 0.94));
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 18px rgba(176,96,255,0.2);
+    pointer-events: none;
+    animation: battle-cutin-in 0.18s ease-out;
+}
+.battle-cutin.enemy { border-color: rgba(248, 113, 113, 0.55); }
+.battle-cutin.sosa { flex-direction: row-reverse; text-align: right; border-color: rgba(176,96,255,0.72); }
+.battle-cutin.ally { border-color: rgba(244,63,94,.72); background:linear-gradient(100deg,rgba(12,3,10,.98),rgba(52,8,28,.94));box-shadow:0 8px 24px rgba(0,0,0,.72),0 0 22px rgba(244,63,94,.22); }
+.battle-cutin-portrait {
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.55);
+}
+.battle-cutin-img { width: 100%; height: 100%; object-fit: contain; }
+.battle-cutin-sigil {
+    width: 40px;
+    height: 44px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4px;
+    border-radius: 18px 18px 6px 6px;
+    border: 1px solid #f59e0b;
+    color: #fcd34d;
+    font: 700 7px var(--font-mono);
+    letter-spacing: 1px;
+    background: repeating-linear-gradient(110deg,#111 0 7px,#3a2810 8px 9px);
+}
+.battle-cutin-sigil.ally{align-items:center;padding-bottom:0;border-color:#f43f5e;color:#fff1f2;background:radial-gradient(circle at 50% 35%,#9f1239,#280812 70%);box-shadow:inset 0 0 12px rgba(255,255,255,.08),0 0 10px rgba(244,63,94,.38);font-size:10px;}
+.battle-cutin-copy { flex: 1; min-width: 0; }
+.battle-cutin-speaker {
+    margin-bottom: 3px;
+    color: #e9d5ff;
+    font: 700 9px var(--font-mono);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.battle-cutin.enemy .battle-cutin-speaker { color: #fca5a5; }
+.battle-cutin-text {
+    color: #f8fafc;
+    font: 500 12px/1.35 var(--font-sans);
+}
+@keyframes battle-cutin-in {
+    from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 360px) {
+    .battle-cutin { left: 7px; right: 7px; min-height: 60px; padding: 7px 9px; }
+    .battle-cutin-portrait { flex-basis: 42px; width: 42px; height: 42px; }
+    .battle-cutin-text { font-size: 11px; }
+}
+.reduced-motion .battle-cutin { animation: none; }
+
+/* === ORIGINAL PSYCHEDELIC COMBAT FIELDS ===
+   Inspired by 16-bit psychic battle abstraction, but built from project-specific ecology palettes. */
+.battle-psy {
+    --p1:#29114a; --p2:#0b5368; --p3:#c33cff; --p4:#04030a;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 18% 22%, var(--p3) 0 2%, transparent 18%),
+      repeating-conic-gradient(from 12deg at 64% 45%, var(--p1) 0 8deg, var(--p2) 9deg 17deg, var(--p4) 18deg 25deg);
+    filter:brightness(.48) saturate(1.28) contrast(1.12);
+    animation:psy-drift 14s linear infinite;
+}
+.battle-psy::before,.battle-psy::after,.psy-layer{content:'';position:absolute;inset:-35%;pointer-events:none;}
+.battle-psy::before {
+    background:repeating-radial-gradient(ellipse at 42% 58%,transparent 0 18px,color-mix(in srgb,var(--p3) 26%,transparent) 20px 23px,transparent 25px 44px);
+    animation:psy-breathe 7s ease-in-out infinite alternate;
+    mix-blend-mode:screen;opacity:.62;
+}
+.battle-psy::after {
+    inset:0;background:radial-gradient(ellipse at center,transparent 28%,rgba(2,2,8,.35) 68%,rgba(0,0,0,.78) 100%);z-index:3;
+}
+.psy-layer.one { background:repeating-linear-gradient(17deg,transparent 0 26px,color-mix(in srgb,var(--p2) 35%,transparent) 28px 31px,transparent 33px 57px);animation:psy-slide 9s linear infinite;opacity:.7; }
+.psy-layer.two { background:conic-gradient(from 90deg,transparent,var(--p3),transparent,var(--p1),transparent);animation:psy-turn 19s linear infinite;mix-blend-mode:overlay;opacity:.35; }
+.psy-layer.three { inset:0;background:repeating-radial-gradient(circle at 72% 36%,rgba(255,255,255,.1) 0 1px,transparent 2px 17px);animation:psy-pulse 3.8s ease-in-out infinite;opacity:.42; }
+.psy-rime-awakening{--p1:#071c39;--p2:#0e7490;--p3:#d9f8ff;--p4:#02050d}
+.psy-rime{--p1:#082f49;--p2:#155e75;--p3:#67e8f9;--p4:#020617}
+.psy-rime-deep{--p1:#172554;--p2:#0e7490;--p3:#a5f3fc;--p4:#030712}
+.psy-rime-veil{--p1:#164e63;--p2:#312e81;--p3:#c4b5fd;--p4:#020617}
+.psy-human-security{--p1:#451a03;--p2:#7f1d1d;--p3:#fbbf24;--p4:#080402}
+.psy-chime{--p1:#4a044e;--p2:#0f766e;--p3:#fb7185;--p4:#090212}
+.psy-spall{--p1:#292524;--p2:#78350f;--p3:#f59e0b;--p4:#050403}
+.psy-predator{--p1:#450a0a;--p2:#172554;--p3:#ef4444;--p4:#02030a}
+.psy-grief{--p1:#1e1b4b;--p2:#312e81;--p3:#818cf8;--p4:#03020a}
+.psy-slag{--p1:#431407;--p2:#3f3f46;--p3:#fb923c;--p4:#050403}
+.psy-pressure{--p1:#312e81;--p2:#7f1d1d;--p3:#c084fc;--p4:#05020a}
+.psy-witness{--p1:#292524;--p2:#713f12;--p3:#fbbf24;--p4:#030303}
+.psy-censor{--p1:#082f49;--p2:#1e3a8a;--p3:#38bdf8;--p4:#020617}
+.psy-hound{--p1:#09090b;--p2:#7f1d1d;--p3:#f59e0b;--p4:#000000}
+.psy-default{--p1:#2e1065;--p2:#164e63;--p3:#d8b4fe;--p4:#03020a}
+@keyframes psy-drift{to{background-position:160px -80px,-240px 120px}}
+@keyframes psy-breathe{from{transform:scale(.86) rotate(-3deg)}to{transform:scale(1.16) rotate(5deg)}}
+@keyframes psy-slide{to{transform:translate(120px,-80px)}}
+@keyframes psy-turn{to{transform:rotate(360deg)}}
+@keyframes psy-pulse{50%{opacity:.16;transform:scale(1.12)}}
+.reduced-motion .battle-psy,.reduced-motion .battle-psy::before,.reduced-motion .psy-layer{animation:none!important}
+.battle-cutin.somnus { border-color:rgba(168,85,247,.78); background:linear-gradient(100deg,rgba(0,0,0,.98),rgba(35,13,52,.95)); }
+.battle-cutin.somnus .battle-cutin-speaker { color:#d8b4fe; letter-spacing:2px; }
+.battle-cutin.somnus .battle-cutin-img { transform:scale(1.35); filter:drop-shadow(0 0 8px rgba(168,85,247,.7)); }
+.battle-cutin.dross .battle-cutin-text {
+    font-family:var(--font-serif);
+    font-style:italic;
+    letter-spacing:.35px;
+    color:#f5f3ff;
+    text-shadow:0 0 8px rgba(192,132,252,.48),1px 0 rgba(34,211,238,.2),-1px 0 rgba(244,63,94,.18);
+}
+.battle-cutin.dross .battle-cutin-speaker { color:#f0abfc; }
+.battle-action-callout { position:absolute;z-index:44;left:50%;top:43%;transform:translate(-50%,-50%);width:min(88%,380px);text-align:center;pointer-events:none;animation:action-callout 1.25s cubic-bezier(.16,1,.3,1) forwards; }
+.action-callout-name { display:inline-block;padding:9px 18px;border-top:1px solid #f3e8ff;border-bottom:1px solid #f3e8ff;color:#fff;background:linear-gradient(90deg,transparent,rgba(88,28,135,.88),transparent);font:800 clamp(18px,5vw,26px) var(--font-sans);letter-spacing:1.5px;text-shadow:0 0 14px #a855f7,0 2px 2px #000; }
+.action-callout-sub { margin-top:5px;color:#e9d5ff;font:700 9px var(--font-mono);letter-spacing:2.2px;text-shadow:0 1px 3px #000; }
+@keyframes action-callout { 0%{opacity:0;transform:translate(-50%,-42%) scale(.86)} 14%,68%{opacity:1;transform:translate(-50%,-50%) scale(1)} 100%{opacity:0;transform:translate(-50%,-56%) scale(1.04)} }
+.reduced-motion .battle-action-callout{animation:none!important;opacity:1}
+
+/* Battle dialogue language system */
+.battle-cutin.persistent { pointer-events:auto; top:calc(54px + env(safe-area-inset-top)); min-height:104px; border-width:2px; box-shadow:0 16px 42px rgba(0,0,0,.82),0 0 24px rgba(176,96,255,.3); }
+.battle-cutin.sosa .battle-cutin-text { font-family:'Trebuchet MS',var(--font-sans);color:#f3e8ff;font-style:normal; }
+.battle-cutin.sosa .battle-cutin-speaker { color:#c084fc; }
+.battle-cutin.enemy:not(.dross) .battle-cutin-text { font-family:var(--font-sans);color:#fee2e2;font-style:normal; }
+.battle-cutin.somnus .battle-cutin-text { font-family:var(--font-mono);font-size:10.5px;line-height:1.45;color:#ddd6fe;letter-spacing:.25px;font-style:normal; }
+.battle-cutin-speaker.movement { color:#a78bfa!important;font-size:8px;letter-spacing:2.4px; }
+.battle-cutin-continue { margin-top:9px;min-width:112px;min-height:36px;padding:7px 14px;border:1px solid rgba(216,180,254,.65);border-radius:8px;background:rgba(88,28,135,.58);color:#fff;font:700 9px var(--font-mono);letter-spacing:1.6px;text-transform:uppercase; }
+.veil-log-label { color:#a5f3fc;font:700 7px var(--font-mono);letter-spacing:1.5px;margin:0 4px -3px;opacity:.78; }
+
+/* Align the protector and target line through the center of the field. */
+.party-side { align-self:stretch;justify-content:center;transform:translateY(7%); }
+.enemy-side { align-self:stretch;justify-content:center; }
+
+/* === DISTINCT PSYCHEDELIC PATTERN FAMILIES === */
+.psy-rime-awakening {
+  background:repeating-conic-gradient(from 0deg at 48% 62%,#020617 0 7deg,#0e7490 8deg 12deg,#082f49 13deg 20deg,#020617 21deg 28deg);
+  animation:psy-radial-turn 22s linear infinite;
+}
+.psy-rime-awakening::before { background:repeating-radial-gradient(ellipse at 48% 62%,transparent 0 22px,rgba(103,232,249,.22) 24px 27px,transparent 29px 50px);animation:psy-compress 5s ease-in-out infinite alternate; }
+.psy-rime {
+  background:repeating-linear-gradient(0deg,#020617 0 16px,#083344 17px 31px,#155e75 32px 35px,#020617 36px 54px);
+  animation:psy-horizontal-wave 5.6s ease-in-out infinite alternate;
+}
+.psy-rime::before { background:repeating-linear-gradient(92deg,transparent 0 34px,rgba(165,243,252,.18) 36px 39px,transparent 41px 74px);animation:psy-interlace 3.8s ease-in-out infinite alternate; }
+.psy-rime-deep {
+  background:repeating-linear-gradient(90deg,#020617 0 22px,#172554 23px 40px,#0e7490 41px 44px,#020617 45px 70px);
+  animation:psy-compress 6.4s ease-in-out infinite alternate;
+}
+.psy-rime-deep::before { background:repeating-radial-gradient(ellipse at 50% 55%,transparent 0 30px,rgba(103,232,249,.18) 32px 36px,transparent 38px 66px);animation:psy-counterwave 5s ease-in-out infinite alternate; }
+.psy-rime-hallway {
+  background:repeating-linear-gradient(90deg,#020617 0 42px,#0c4a6e 43px 46px,#06111f 47px 88px),repeating-linear-gradient(0deg,transparent 0 54px,rgba(165,243,252,.18) 55px 58px,transparent 59px 110px);
+  animation:psy-door-breathe 4.8s ease-in-out infinite alternate;
+}
+.psy-rime-veil {
+  background:repeating-radial-gradient(circle at 64% 42%,#020617 0 18px,#164e63 20px 28px,#312e81 30px 38px,#020617 40px 58px);
+  animation:psy-ring-zoom 7s ease-in-out infinite alternate;
+}
+.psy-human-security {
+  background:repeating-linear-gradient(45deg,#160703 0 24px,#7f1d1d 25px 40px,#451a03 41px 54px,#f59e0b 55px 58px);
+  animation:psy-checker-drift 6s linear infinite;
+}
+.psy-chime {
+  background:repeating-radial-gradient(circle at 50% 50%,#090212 0 14px,#4a044e 15px 24px,#0f766e 25px 28px,#090212 30px 46px);
+  animation:psy-ring-zoom 4.2s ease-in-out infinite alternate;
+}
+.psy-chime::before { background:repeating-linear-gradient(90deg,transparent 0 18px,rgba(251,113,133,.24) 19px 21px,transparent 22px 43px);animation:psy-interlace 1.8s steps(6) infinite alternate; }
+.psy-spall {
+  background:repeating-conic-gradient(from 17deg at 58% 46%,#0c0a09 0 13deg,#78350f 14deg 20deg,#292524 21deg 31deg,#f59e0b 32deg 34deg);
+  animation:psy-shard-turn 13s steps(20) infinite;
+}
+.psy-spall::before { clip-path:polygon(0 12%,28% 0,45% 23%,77% 3%,100% 31%,82% 55%,100% 84%,55% 100%,34% 77%,0 94%,18% 48%);background:rgba(251,146,60,.16);animation:psy-fracture 3s ease-in-out infinite alternate; }
+.psy-predator {
+  background:repeating-linear-gradient(135deg,#02030a 0 30px,#450a0a 31px 49px,#172554 50px 71px,#ef4444 72px 74px);
+  animation:psy-checker-drift 4.8s linear infinite reverse;
+}
+.psy-grief {
+  background:radial-gradient(ellipse at 20% 25%,#312e81 0 12%,transparent 34%),radial-gradient(ellipse at 82% 70%,#1e1b4b 0 18%,transparent 42%),repeating-radial-gradient(circle at 50% 50%,#03020a 0 24px,#312e81 25px 42px,#11103b 43px 62px);
+  animation:psy-organic 8s ease-in-out infinite alternate;
+}
+.psy-slag {
+  background:repeating-linear-gradient(0deg,#050403 0 20px,#27272a 21px 34px,#431407 35px 49px,#fb923c 50px 52px);
+  animation:psy-conveyor 5.5s linear infinite;
+}
+.psy-slag::before { background:repeating-linear-gradient(90deg,transparent 0 54px,rgba(251,146,60,.16) 55px 61px,transparent 62px 112px);animation:psy-interlace 4s ease-in-out infinite alternate; }
+.psy-pressure {
+  background:repeating-conic-gradient(from 45deg at 50% 50%,#05020a 0 11deg,#312e81 12deg 18deg,#7f1d1d 19deg 26deg,#c084fc 27deg 29deg);
+  animation:psy-counterwave 6s ease-in-out infinite alternate;
+}
+.psy-witness {
+  background:repeating-linear-gradient(0deg,#030303 0 31px,#292524 32px 58px,#713f12 59px 62px),repeating-linear-gradient(90deg,transparent 0 52px,rgba(251,191,36,.2) 53px 57px,transparent 58px 104px);
+  animation:psy-brick-shift 7s steps(14) infinite;
+}
+.psy-witness::before { background:repeating-radial-gradient(ellipse at 50% 50%,transparent 0 25px,rgba(251,191,36,.24) 27px 31px,transparent 33px 70px);animation:psy-eye-blink 4.6s ease-in-out infinite; }
+.psy-censor {
+  background:repeating-linear-gradient(90deg,#020617 0 38px,#0c4a6e 39px 41px,#1e3a8a 42px 76px),repeating-linear-gradient(0deg,transparent 0 38px,rgba(56,189,248,.24) 39px 41px,transparent 42px 76px);
+  animation:psy-scan-grid 5s linear infinite;
+}
+.psy-censor::before { background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0 21deg,rgba(56,189,248,.18) 22deg 23deg,transparent 24deg 45deg);animation:psy-radial-turn 18s linear infinite; }
+.psy-hound {
+  background:repeating-linear-gradient(120deg,#000 0 28px,#450a0a 29px 45px,#09090b 46px 66px,#f59e0b 67px 70px);
+  animation:psy-hound-lunge 3.8s cubic-bezier(.5,0,.5,1) infinite alternate;
+}
+@keyframes psy-radial-turn{to{background-position:120px -60px;filter:brightness(.5) hue-rotate(16deg)}}
+@keyframes psy-horizontal-wave{from{background-position:-34px 0}to{background-position:42px 18px}}
+@keyframes psy-interlace{from{transform:translateX(-7%) skewX(-2deg)}to{transform:translateX(7%) skewX(2deg)}}
+@keyframes psy-compress{from{transform:scaleY(.82) scaleX(1.06)}to{transform:scaleY(1.18) scaleX(.96)}}
+@keyframes psy-counterwave{from{transform:translateX(-5%) scaleY(.9)}to{transform:translateX(5%) scaleY(1.1)}}
+@keyframes psy-door-breathe{from{background-size:88px 100%,100% 110px}to{background-size:102px 100%,100% 96px}}
+@keyframes psy-ring-zoom{from{background-size:92% 92%}to{background-size:126% 126%}}
+@keyframes psy-checker-drift{to{background-position:120px -120px}}
+@keyframes psy-shard-turn{to{background-position:96px 48px;filter:brightness(.52) hue-rotate(12deg)}}
+@keyframes psy-fracture{to{transform:scale(1.14) rotate(3deg);opacity:.36}}
+@keyframes psy-organic{from{background-position:-30px 0,30px 20px,0 0}to{background-position:40px 30px,-25px -20px,80px 45px}}
+@keyframes psy-conveyor{to{background-position:0 104px}}
+@keyframes psy-brick-shift{50%{background-position:52px 0,-26px 31px}}
+@keyframes psy-eye-blink{0%,44%,56%,100%{transform:scaleY(1)}50%{transform:scaleY(.08)}}
+@keyframes psy-scan-grid{to{background-position:76px 0,0 76px}}
+@keyframes psy-hound-lunge{from{background-position:-80px 40px;transform:scale(1)}to{background-position:80px -40px;transform:scale(1.12)}}
+.veil-intercept-wave{display:flex;align-items:flex-end;gap:2px;height:9px}.veil-intercept-wave i{display:block;width:3px;background:#a78bfa;border-radius:2px;animation:veil-wave .8s ease-in-out infinite alternate}.veil-intercept-wave i:nth-child(1){height:4px}.veil-intercept-wave i:nth-child(2){height:9px;animation-delay:.15s}.veil-intercept-wave i:nth-child(3){height:6px;animation-delay:.3s}@keyframes veil-wave{to{height:2px;opacity:.45}}
+
+/* Main Sever grid + separate utility rail */
+.actions button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.action-name{font:700 10.5px var(--font-sans);letter-spacing:.45px}.action-sub{font:700 7px var(--font-mono);letter-spacing:.65px;color:#94a3b8}
+.utility-actions{display:flex;gap:5px;overflow-x:auto;padding:2px 1px 4px;scrollbar-width:none}.utility-actions::-webkit-scrollbar{display:none}
+.utility-btn{flex:1 0 auto;min-width:78px;min-height:38px;padding:5px 8px;border:1px solid rgba(148,163,184,.25);border-radius:18px;background:rgba(15,12,25,.88);color:#e2e8f0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.utility-btn .action-name{font-size:8.5px}.utility-btn .action-sub{font-size:6.5px}.utility-hellstep{border-color:rgba(244,63,94,.5);color:#fecdd3}.utility-stin{border-color:rgba(34,197,94,.45);color:#bbf7d0}.utility-true{border-color:#e9d5ff;background:linear-gradient(90deg,rgba(88,28,135,.9),rgba(126,34,206,.9));color:#fff;box-shadow:0 0 14px rgba(168,85,247,.35)}
+
+/* Black Flash / first Resonance timing UI */
+.black-flash-window{position:fixed;inset:0;z-index:90;pointer-events:none;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.18)}
+.bf-vignette{position:absolute;inset:0;background:radial-gradient(circle at center,transparent 0 12%,rgba(40,0,64,.28) 32%,rgba(0,0,0,.88) 100%);animation:bf-vignette var(--bf-duration,2800ms) linear forwards}
+.bf-ring{position:absolute;border-radius:50%;border:3px solid #f5d0fe;box-shadow:0 0 18px #d946ef,0 0 42px #7e22ce,inset 0 0 26px rgba(217,70,239,.35)}
+.bf-ring.outer{width:78vw;height:78vw;max-width:380px;max-height:380px;animation:bf-contract var(--bf-duration,2800ms) linear forwards}.bf-ring.inner{width:112px;height:112px;border-color:#fff;animation:bf-pulse .42s ease-in-out infinite alternate}
+.bf-core{position:relative;color:#fff;font-size:42px;text-shadow:0 0 12px #fff,0 0 28px #d946ef,0 0 55px #7e22ce;animation:bf-core .3s ease-in-out infinite alternate}
+.bf-copy{position:absolute;top:68%;display:flex;flex-direction:column;align-items:center;gap:5px;color:#fff;text-shadow:0 2px 8px #000}.bf-copy b{font:900 19px var(--font-sans);letter-spacing:2px}.bf-copy span{font:700 9px var(--font-mono);letter-spacing:2.5px;color:#f5d0fe}
+.black-flash-window.forced .bf-ring.outer{animation:bf-forced 1.3s ease-in-out infinite alternate}.black-flash-window.forced .bf-copy b{color:#f0abfc}
+@keyframes bf-contract{from{transform:scale(1.5);opacity:.25}15%{opacity:1}to{transform:scale(.28);opacity:.95}}
+@keyframes bf-pulse{to{transform:scale(1.12);filter:brightness(1.5)}}@keyframes bf-core{to{transform:scale(1.22) rotate(8deg)}}@keyframes bf-forced{to{transform:scale(.72);opacity:.55}}@keyframes bf-vignette{to{background-color:rgba(0,0,0,.42)}}
+.fx-black-flash{position:fixed;inset:0;background:radial-gradient(circle at center,#fff 0 3%,#f0abfc 4% 8%,#581c87 15%,#000 44%);mix-blend-mode:screen;animation:black-flash-hit 1.2s cubic-bezier(.16,1,.3,1) forwards}
+.fx-resonance-rings{position:fixed;left:50%;top:50%;width:80px;height:80px;border:5px solid #fff;border-radius:50%;box-shadow:0 0 24px #fff,0 0 65px #d946ef;animation:resonance-rings 1.45s ease-out forwards}
+@keyframes black-flash-hit{0%{opacity:0;transform:scale(.2)}8%{opacity:1}42%{opacity:.9;transform:scale(1.4)}100%{opacity:0;transform:scale(3)}}@keyframes resonance-rings{from{opacity:1;transform:translate(-50%,-50%) scale(.2)}to{opacity:0;transform:translate(-50%,-50%) scale(8)}}
+.reduced-motion .bf-ring,.reduced-motion .bf-core,.reduced-motion .bf-vignette{animation:none!important}.reduced-motion .fx-black-flash,.reduced-motion .fx-resonance-rings{display:none}
+
+/* === GRAVEFRAME: DISTINCT THRESHOLD INTERFACE === */
+.graveframe-mode{background:#000;color:#fff;--accent-purple:#f5f3ff}
+.graveframe-mode::before{content:'';position:absolute;inset:0;z-index:35;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.025) 4px 5px);mix-blend-mode:screen}
+.graveframe-mode .battle-psy{filter:grayscale(.88) brightness(.24) contrast(1.65);animation-duration:4s}
+.graveframe-mode .battle-encounter-banner{top:52px;border-radius:0;border-color:#fff;color:#fff;background:#000;letter-spacing:3px}
+.graveframe-header{position:absolute;z-index:48;top:8px;left:10px;right:10px;height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 11px;border:1px solid #fff;clip-path:polygon(0 0,96% 0,100% 35%,100% 100%,4% 100%,0 65%);background:linear-gradient(90deg,#000,#2e1065 55%,#000)}
+.graveframe-header b{font:900 14px var(--font-mono);letter-spacing:3px}.graveframe-header span{font:700 7px var(--font-mono);letter-spacing:1.3px;color:#d8b4fe}
+.graveframe-mode .field{padding-top:76px;align-items:center}.graveframe-mode .party-side{width:58%;height:100%;transform:none;justify-content:center}.graveframe-mode .enemy-side{width:42%;height:100%;justify-content:center}
+.graveframe-stage{position:relative;width:210px;height:285px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 26px rgba(168,85,247,.72))}
+.graveframe-body{width:240px;height:300px;object-fit:contain;transform:rotate(-90deg) scale(1.12);filter:contrast(1.35) brightness(.72)}
+.graveframe-mask{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:54px;height:68px;border-radius:48% 48% 44% 44%;background:#e5e7eb;box-shadow:0 0 0 7px #030303,0 0 28px #a855f7}
+.graveframe-mask i{position:absolute;top:19px;width:11px;height:18px;border-radius:50%;background:#000}.graveframe-mask i:first-child{left:10px}.graveframe-mask i:nth-child(2){right:10px}.graveframe-mask span{position:absolute;left:11px;right:11px;bottom:13px;height:9px;background:#000;clip-path:polygon(0 0,18% 55%,34% 0,50% 55%,66% 0,82% 55%,100% 0,100% 100%,0 100%)}
+.graveframe-hud{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5px}.graveframe-hud>div{padding:7px;border:1px solid rgba(255,255,255,.42);background:#030303;clip-path:polygon(0 0,94% 0,100% 28%,100% 100%,6% 100%,0 72%)}.graveframe-hud span{display:block;font:700 7px var(--font-mono);letter-spacing:1.5px;color:#a78bfa}.graveframe-hud b{display:block;margin-top:3px;font:800 11px var(--font-mono);color:#fff}
+.graveframe-mode .enemy-slot{border-radius:0;border-color:rgba(255,255,255,.34);background:rgba(0,0,0,.82);clip-path:polygon(0 0,92% 0,100% 12%,100% 100%,8% 100%,0 88%)}.graveframe-mode .enemy-slot.selected{border-color:#fff;box-shadow:0 0 22px rgba(168,85,247,.6)}
+.graveframe-mode .panel{border-top:2px solid #fff;background:linear-gradient(180deg,#050505,#000);padding-top:9px}.graveframe-mode .turn-pill{border-radius:0;background:#fff;color:#000;border:0}.graveframe-mode .actions{grid-template-columns:repeat(3,1fr)}
+.graveframe-mode .actions button{min-height:62px;border-radius:0;clip-path:polygon(0 0,92% 0,100% 18%,100% 100%,8% 100%,0 82%);background:#080808!important;border-color:#a855f7!important}.graveframe-mode .actions .action-name{font-size:11px;color:#fff}.graveframe-mode .actions .action-sub{font-size:6.5px;color:#c4b5fd}
+@media(max-width:390px){.graveframe-stage{width:175px;height:240px}.graveframe-body{width:200px;height:250px}.graveframe-mask{width:46px;height:59px}.graveframe-header span{display:none}}
+
+.ally-support-tag{color:#bae6fd;background:linear-gradient(90deg,rgba(14,116,144,.2),rgba(30,64,175,.14));border:1px solid rgba(56,189,248,.45);font:700 8px var(--font-mono);letter-spacing:.7px;padding:3px 6px;border-radius:3px;box-shadow:inset 0 0 9px rgba(56,189,248,.08)}
+
+/* Ecology-specific treatment for provisional pixel sprites. Final replacement art remains last-priority. */
+.enemy-kind-rime_nifl .enemy-visual::before{content:'';position:absolute;inset:-8px;border-radius:50%;background:repeating-conic-gradient(from 15deg,transparent 0 18deg,rgba(165,243,252,.18) 19deg 21deg,transparent 22deg 38deg);filter:blur(.4px);animation:nifl-network-turn 9s linear infinite;pointer-events:none}
+.enemy-kind-rime_nifl .enemy-visual::after{content:'';position:absolute;left:-12%;right:-12%;top:48%;height:1px;background:#cffafe;box-shadow:0 -18px 0 rgba(165,243,252,.45),0 18px 0 rgba(165,243,252,.35),0 0 12px #67e8f9;animation:nifl-route-scan 2.2s ease-in-out infinite;pointer-events:none}
+.enemy-kind-chime .enemy-visual::after,.enemy-kind-chime_relay .enemy-visual::after{content:'';position:absolute;inset:8px;border:1px solid rgba(52,211,153,.5);border-radius:50%;box-shadow:0 0 10px rgba(16,185,129,.42),inset 0 0 13px rgba(16,185,129,.2);background:repeating-radial-gradient(circle,transparent 0 8px,rgba(52,211,153,.12) 9px 10px);animation:signal-reticle 1.8s steps(6) infinite;pointer-events:none}
+.enemy-kind-spall .enemy-visual::after{content:'';position:absolute;inset:3px;background:repeating-linear-gradient(112deg,transparent 0 18px,rgba(251,191,36,.22) 19px 20px,transparent 21px 34px);clip-path:polygon(0 18%,42% 18%,48% 0,54% 42%,100% 34%,100% 66%,57% 62%,48% 100%,39% 58%,0 72%);opacity:.55;pointer-events:none}
+.enemy-kind-slag .enemy-visual::after{content:'04:07';position:absolute;right:8px;bottom:6px;color:#fb923c;background:rgba(20,8,2,.82);border:1px solid rgba(251,146,60,.45);padding:2px 4px;font:700 7px var(--font-mono);letter-spacing:1px;box-shadow:0 0 8px rgba(249,115,22,.34);animation:slag-clock 1.2s steps(2) infinite;pointer-events:none}
+@keyframes nifl-network-turn{to{transform:rotate(360deg)}}
+@keyframes nifl-route-scan{50%{transform:scaleX(.75);opacity:.45}}
+@keyframes signal-reticle{50%{transform:scale(.9);opacity:.55}}
+@keyframes slag-clock{50%{color:#fff7ed;box-shadow:0 0 14px #f97316}}
+.reduced-motion .enemy-kind-rime_nifl .enemy-visual::before,.reduced-motion .enemy-kind-rime_nifl .enemy-visual::after,.reduced-motion .enemy-kind-chime .enemy-visual::after,.reduced-motion .enemy-kind-chime_relay .enemy-visual::after,.reduced-motion .enemy-kind-slag .enemy-visual::after{animation:none!important}
+.enemy-kind-spall_atlas .enemy-visual::before{content:'';position:absolute;inset:-6px;background:repeating-linear-gradient(128deg,transparent 0 23px,rgba(251,191,36,.2) 24px 26px,transparent 27px 48px);clip-path:polygon(0 47%,24% 47%,31% 8%,42% 69%,57% 28%,68% 84%,100% 59%,100% 67%,66% 93%,56% 42%,41% 82%,32% 23%,26% 56%,0 56%);animation:atlas-load-route 2s ease-in-out infinite;pointer-events:none}
+.enemy-kind-spall_atlas .enemy-visual::after{content:'LOAD →';position:absolute;left:5px;top:8px;color:#fde68a;background:rgba(28,25,23,.86);border:1px solid rgba(251,191,36,.45);padding:2px 4px;font:700 7px var(--font-mono);letter-spacing:1px;box-shadow:0 0 9px rgba(251,191,36,.35);animation:atlas-label-transfer 1.2s steps(2) infinite;pointer-events:none}
+@keyframes atlas-load-route{50%{transform:translate(8px,-4px);filter:brightness(1.8);opacity:.5}}
+@keyframes atlas-label-transfer{50%{left:62%;content:'→ BEARER'}}
+.reduced-motion .enemy-kind-spall_atlas .enemy-visual::before,.reduced-motion .enemy-kind-spall_atlas .enemy-visual::after{animation:none!important}
+.overtime-clock-tag{color:#fed7aa;background:linear-gradient(90deg,rgba(124,45,18,.35),rgba(67,20,7,.18));border:1px solid rgba(251,146,60,.5);font:700 8px var(--font-mono);letter-spacing:.65px;padding:3px 6px;border-radius:3px;box-shadow:inset 0 0 9px rgba(249,115,22,.1)}
+.enemy-kind-slag_overtime .enemy-visual::before{content:'';position:absolute;inset:-8px;background:repeating-conic-gradient(from 0deg,transparent 0 28deg,rgba(249,115,22,.18) 29deg 31deg,transparent 32deg 58deg);border-radius:50%;animation:overtime-shift-wheel 6s linear infinite;pointer-events:none}
+.enemy-kind-slag_overtime .enemy-visual::after{content:'04:07 // CLOCK IN';position:absolute;left:4px;right:4px;bottom:3px;color:#fff7ed;background:rgba(67,20,7,.88);border:1px solid rgba(251,146,60,.6);padding:2px 3px;text-align:center;font:700 7px var(--font-mono);letter-spacing:.8px;box-shadow:0 0 12px rgba(249,115,22,.4);animation:overtime-timecard .9s steps(2) infinite;pointer-events:none}
+@keyframes overtime-shift-wheel{to{transform:rotate(360deg)}}
+@keyframes overtime-timecard{50%{content:'04:07 // COVER LINE';filter:brightness(1.7)}}
+.reduced-motion .enemy-kind-slag_overtime .enemy-visual::before,.reduced-motion .enemy-kind-slag_overtime .enemy-visual::after{animation:none!important}
+.enemy-slot.fixation-building{box-shadow:0 0 0 1px rgba(244,63,94,.4),0 0 16px rgba(244,63,94,.24),inset 0 0 14px rgba(127,29,29,.15)}
+.enemy-slot.fixation-locked{border-color:#f43f5e!important;box-shadow:0 0 0 2px rgba(244,63,94,.6),0 0 26px rgba(225,29,72,.45),inset 0 0 22px rgba(127,29,29,.25)!important}
+.fixation-eye-icon{position:absolute;right:5px;top:5px;z-index:9;display:flex;align-items:center;gap:4px;padding:2px;pointer-events:none;filter:drop-shadow(0 0 7px rgba(225,29,72,.8));animation:fixation-eye-pulse 1.1s ease-in-out infinite}
+.fixation-eye-icon.locked{padding:2px 4px;background:rgba(76,5,25,.92);border:1px solid #f43f5e;box-shadow:0 0 11px rgba(244,63,94,.5)}
+.fixation-eye-label{color:#fff1f2;font:700 7px var(--font-mono);letter-spacing:.7px}
+.fixation-eye-shape{position:relative;display:block;width:22px;height:13px;background:linear-gradient(90deg,#881337,#fb7185 48%,#881337);clip-path:polygon(0 50%,18% 16%,50% 0,82% 16%,100% 50%,82% 84%,50% 100%,18% 84%);box-shadow:0 0 9px rgba(251,113,133,.75)}
+.fixation-eye-shape::before{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:#fdf2f8;box-shadow:0 0 4px #fff}
+.fixation-eye-shape i{position:absolute;z-index:1;left:50%;top:50%;width:4px;height:7px;transform:translate(-50%,-50%);border-radius:50%;background:#19020a;box-shadow:0 0 0 1px rgba(76,5,25,.8)}
+@keyframes fixation-eye-pulse{50%{transform:scale(1.15);filter:drop-shadow(0 0 11px #e11d48) brightness(1.25)}}
+.reduced-motion .fixation-eye-icon{animation:none!important}
+.actions{position:relative;padding-top:11px}
+.actions::before{content:'PRESS AND LINGER · READ THE SEAM';position:absolute;left:2px;top:0;color:rgba(148,163,184,.58);font:700 6px var(--font-mono);letter-spacing:1px;pointer-events:none}
+.actions button[aria-disabled="true"],.utility-actions button[aria-disabled="true"]{opacity:.45;filter:saturate(.55);cursor:not-allowed}
+.action-help-overlay{position:fixed;inset:0;z-index:120;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);padding:12px calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));animation:action-help-fade .16s ease-out}
+.action-help-sheet{width:min(100%,460px);position:relative;overflow:hidden;padding:15px 15px 13px;border:1px solid rgba(168,85,247,.72);border-top:2px solid #d8b4fe;border-radius:14px 14px 7px 7px;background:linear-gradient(155deg,rgba(12,8,22,.99),rgba(4,6,12,.99));box-shadow:0 -14px 45px rgba(0,0,0,.75),0 0 24px rgba(126,34,206,.24)}
+.action-help-sheet::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(115deg,transparent 0 31px,rgba(168,85,247,.045) 32px 33px,transparent 34px 67px)}
+.action-help-kicker{position:relative;color:#94a3b8;font:700 7px var(--font-mono);letter-spacing:1.5px;margin-bottom:6px}
+.action-help-title{position:relative;color:#fff;font:900 16px var(--font-sans);letter-spacing:.5px;text-transform:uppercase;text-shadow:0 0 12px rgba(216,180,254,.42)}
+.action-help-meta{position:relative;color:#f0abfc;font:700 8px var(--font-mono);letter-spacing:.7px;margin-top:4px;padding-bottom:8px;border-bottom:1px solid rgba(168,85,247,.24)}
+.action-help-body{position:relative;color:#e2e8f0;font:400 13.5px/1.5 var(--font-sans);margin:10px 0 12px}
+.action-help-close{position:relative;width:100%;min-height:44px;border:1px solid rgba(148,163,184,.32);border-radius:8px;background:rgba(30,41,59,.72);color:#f8fafc;font:800 9px var(--font-mono);letter-spacing:1.5px}
+@keyframes action-help-fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.reduced-motion .action-help-overlay{animation:none!important}
+.actions button[aria-disabled="true"]:hover,.utility-actions button[aria-disabled="true"]:hover{transform:none!important;background:rgba(15,12,25,.88)!important;border-color:rgba(148,163,184,.25)!important}
+.black-flash-zone-tag{color:#fff;background:linear-gradient(90deg,rgba(88,28,135,.72),rgba(190,24,93,.52),rgba(88,28,135,.72));border:1px solid rgba(240,171,252,.72);font:800 7.5px var(--font-mono);letter-spacing:.65px;padding:3px 6px;border-radius:3px;text-shadow:0 0 7px #f0abfc;box-shadow:inset 0 0 12px rgba(217,70,239,.18),0 0 9px rgba(168,85,247,.25);animation:black-zone-breathe 1.15s ease-in-out infinite alternate}
+@keyframes black-zone-breathe{to{filter:brightness(1.28);box-shadow:inset 0 0 16px rgba(217,70,239,.28),0 0 14px rgba(236,72,153,.34)}}
+.reduced-motion .black-flash-zone-tag{animation:none!important}
+.black-flash-zone-tag{font-size:8.5px;line-height:1.3;white-space:normal}
+@media(max-width:360px){.black-flash-zone-tag{font-size:8px;letter-spacing:.35px;padding:3px 4px}.bf-copy b{font-size:15px}.bf-copy span{font-size:8px}}
+
+/* 2026-07-19 cinematic cut-in pass. Entrance motion runs once per line; damage rerenders stay settled. */
+.battle-cutin{animation:none;top:calc(42px + env(safe-area-inset-top));left:8px;right:8px;min-height:94px;padding:10px 14px 10px 10px;border-radius:3px 14px 3px 14px;border-width:1px 3px;background:linear-gradient(105deg,rgba(2,3,8,.99) 0%,rgba(24,10,38,.97) 58%,rgba(4,6,12,.99) 100%);box-shadow:0 16px 34px rgba(0,0,0,.84),0 0 0 1px rgba(255,255,255,.05),0 0 28px rgba(168,85,247,.25);clip-path:polygon(0 0,96% 0,100% 22%,100% 100%,4% 100%,0 78%)}
+.battle-cutin.is-new{animation:battle-cutin-cinematic .42s cubic-bezier(.12,.8,.18,1)}
+.battle-cutin::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,currentColor 32%,#fff 50%,currentColor 68%,transparent);opacity:.72;box-shadow:0 0 12px currentColor;pointer-events:none}
+.battle-cutin::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(112deg,transparent 0 31px,rgba(255,255,255,.025) 32px 33px,transparent 34px 67px);pointer-events:none}
+.battle-cutin-portrait{position:relative;z-index:2;flex:0 0 68px;width:68px;height:72px;border-radius:2px 12px 2px 12px;border:1px solid rgba(216,180,254,.46);background:radial-gradient(circle at 50% 45%,rgba(126,34,206,.3),#020205 72%);box-shadow:inset 0 0 20px #000,0 0 16px rgba(168,85,247,.3)}
+.battle-cutin-portrait::after{content:'';position:absolute;inset:0;border-right:1px solid rgba(255,255,255,.22);background:linear-gradient(125deg,transparent 52%,rgba(255,255,255,.08) 53%,transparent 56%);pointer-events:none}
+.battle-cutin-img{position:relative;z-index:1;filter:drop-shadow(0 0 9px rgba(168,85,247,.58));transform:scale(1.16);object-position:center}
+.battle-cutin-copy{position:relative;z-index:2;padding:2px 2px}
+.battle-cutin-speaker{font-size:10px;letter-spacing:2.4px;margin-bottom:5px}
+.battle-cutin-text{font-size:13px;line-height:1.42;text-shadow:0 2px 5px #000}
+.battle-cutin.sosa{background:linear-gradient(255deg,rgba(2,3,8,.99),rgba(47,15,68,.97) 60%,rgba(5,4,12,.99));border-color:#c084fc}
+.battle-cutin.sosa .battle-cutin-portrait{border-color:#d8b4fe;background:radial-gradient(circle at 50% 38%,rgba(192,132,252,.28),#05030a 74%)}
+.battle-cutin.sosa .battle-cutin-img{transform:scale(1.3) translateY(5%);filter:drop-shadow(0 0 11px rgba(216,180,254,.64))}
+.battle-cutin.enemy{background:linear-gradient(105deg,rgba(5,2,3,.99),rgba(62,13,22,.94),rgba(5,4,10,.99));color:#fb7185}
+.battle-cutin.dross{background:linear-gradient(105deg,rgba(1,5,8,.99),rgba(37,9,48,.96),rgba(2,13,18,.98));color:#f0abfc}
+.battle-cutin.somnus{min-height:110px;border-color:#d8b4fe;color:#d8b4fe;background:radial-gradient(circle at 20% 50%,rgba(109,40,217,.38),transparent 34%),linear-gradient(105deg,#000,rgba(24,5,38,.99),#02030a)}
+.battle-cutin.somnus .battle-cutin-portrait{flex-basis:86px;width:86px;height:88px;border-color:#a855f7;overflow:visible;background:radial-gradient(circle,rgba(168,85,247,.36),#000 68%);box-shadow:0 0 24px rgba(168,85,247,.48),inset 0 0 24px #000}
+.battle-cutin.somnus .battle-cutin-img{transform:scale(1.72);filter:drop-shadow(0 0 13px #7e22ce) brightness(1.08)}
+.battle-cutin.persistent{top:calc(54px + env(safe-area-inset-top));min-height:124px}
+.battle-cutin-continue{min-height:44px}
+@keyframes battle-cutin-cinematic{0%{opacity:0;transform:translateX(-12%) skewX(-7deg);filter:brightness(2)}55%{opacity:1;transform:translateX(1.5%) skewX(1deg);filter:brightness(1.25)}100%{transform:none;filter:none}}
+.somnus-wrap{left:48px;bottom:-5px;width:126px;height:172px;filter:drop-shadow(0 0 16px rgba(126,34,206,.72))}
+.somnus-wrap::before{content:'';position:absolute;z-index:-2;left:4%;right:4%;top:9%;bottom:2%;border-radius:50%;background:radial-gradient(ellipse,rgba(168,85,247,.34),rgba(88,28,135,.12) 46%,transparent 72%);filter:blur(8px);animation:somnus-aura-breathe 2.8s ease-in-out infinite alternate}
+.somnus-wrap::after{content:'';position:absolute;z-index:-1;left:14%;right:8%;bottom:2%;height:74%;background:repeating-conic-gradient(from 8deg at 50% 88%,transparent 0 15deg,rgba(192,132,252,.18) 16deg 18deg,transparent 19deg 34deg);filter:blur(1px);animation:somnus-shadow-turn 12s linear infinite}
+.sosa-wrap:not(.alone) .sosa-img{filter:drop-shadow(-7px 0 10px rgba(126,34,206,.58)) drop-shadow(0 5px 9px #000);transform:translateX(-2px)}
+@keyframes somnus-aura-breathe{to{transform:scale(1.12);opacity:.62;filter:blur(12px)}}
+@keyframes somnus-shadow-turn{to{transform:rotate(360deg)}}
+@media(max-width:390px){.battle-cutin{min-height:88px;padding:9px 11px 9px 8px}.battle-cutin-portrait{flex-basis:58px;width:58px;height:64px}.battle-cutin-text{font-size:12px}.battle-cutin.somnus .battle-cutin-portrait{flex-basis:70px;width:70px;height:76px}.somnus-wrap{width:116px;height:160px;left:47px}}
+.reduced-motion .battle-cutin.is-new,.reduced-motion .somnus-wrap::before,.reduced-motion .somnus-wrap::after{animation:none!important}
+
+/* Black Flash impact language: black-violet time stop, spatial cut, then Zone ignition. */
+.fx-black-flash-freeze{position:fixed;inset:0;z-index:128;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.98),rgba(10,2,18,.94),rgba(0,0,0,.98));backdrop-filter:grayscale(1) contrast(1.7);animation:black-freeze 1.7s steps(2,end) forwards}
+.fx-black-flash-freeze::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 7px,rgba(216,180,254,.06) 8px 9px);mix-blend-mode:screen}
+.fx-black-flash{z-index:130;background:radial-gradient(circle at 68% 43%,#fff 0 1.5%,#e9d5ff 2% 4%,#7e22ce 8%,#12021d 19%,#000 47%);mix-blend-mode:screen;animation:black-flash-hit-new 1.82s cubic-bezier(.16,1,.3,1) forwards}
+.fx-black-flash-cut{position:fixed;z-index:132;left:18%;right:-8%;top:44%;height:7px;pointer-events:none;background:linear-gradient(90deg,transparent,#4c1d95 10%,#fff 52%,#a855f7 76%,transparent);box-shadow:0 0 12px #fff,0 0 32px #a855f7,0 0 70px #000;transform-origin:68% center;animation:black-flash-cut 1.9s cubic-bezier(.12,.8,.18,1) forwards}
+.fx-black-flash-cut::after{content:'';position:absolute;inset:0;background:#fff;transform:rotate(88deg);box-shadow:0 0 18px #fff,0 0 42px #7e22ce}
+.fx-resonance-rings{z-index:133;border-color:#e9d5ff;box-shadow:0 0 24px #fff,0 0 70px #7e22ce,0 0 110px #000;animation:resonance-rings-new 2.05s ease-out forwards}
+.fx-zone-ignition{position:fixed;inset:0;z-index:129;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 0 15%,rgba(88,28,135,.22) 31%,rgba(0,0,0,.7) 72%),repeating-conic-gradient(from 0deg at 50% 50%,transparent 0 14deg,rgba(168,85,247,.12) 15deg 17deg,transparent 18deg 34deg);animation:zone-ignition 2.2s ease-out forwards}
+@keyframes black-freeze{0%{opacity:0}9%,42%{opacity:.92}48%{opacity:.12}55%,68%{opacity:.78}100%{opacity:0}}
+@keyframes black-flash-hit-new{0%,18%{opacity:0;transform:scale(.15)}26%{opacity:1;transform:scale(.42)}48%{opacity:.95;transform:scale(1.3)}100%{opacity:0;transform:scale(3.2)}}
+@keyframes black-flash-cut{0%,20%{opacity:0;transform:rotate(-13deg) scaleX(0)}32%,65%{opacity:1;transform:rotate(-13deg) scaleX(1)}100%{opacity:0;transform:rotate(-13deg) scaleX(1.18) scaleY(5)}}
+@keyframes resonance-rings-new{0%,28%{opacity:0;transform:translate(-50%,-50%) scale(.12)}38%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(9)}}
+@keyframes zone-ignition{0%,35%{opacity:0;transform:scale(.7) rotate(-8deg)}58%{opacity:1}100%{opacity:0;transform:scale(1.35) rotate(7deg)}}
+.reduced-motion .fx-black-flash-freeze,.reduced-motion .fx-black-flash-cut,.reduced-motion .fx-zone-ignition{display:none}
+
+/* Provisional same-family variants: silhouette/temperature differences without pretending final sprites are done. */
+.enemy-variant-0 .enemy-img{filter:drop-shadow(0 3px 8px rgba(0,0,0,.7)) saturate(.88) brightness(.92);transform:scale(.94) rotate(-1deg)!important}
+.enemy-variant-1 .enemy-img{filter:drop-shadow(0 4px 10px rgba(0,0,0,.72)) saturate(1.16) brightness(1.07);transform:scale(1.04) translateY(-2px)!important}
+.enemy-variant-2 .enemy-img{filter:drop-shadow(0 3px 9px rgba(0,0,0,.68)) hue-rotate(9deg) contrast(1.13);transform:scale(.98) rotate(1.5deg)!important}
+.enemy-kind-rime_nifl .enemy-img,.enemy-kind-chime_relay .enemy-img,.enemy-kind-spall_atlas .enemy-img,.enemy-kind-slag_overtime .enemy-img{transform:scale(1.08)!important;filter:drop-shadow(0 0 14px currentColor) contrast(1.18) saturate(1.2)}
+.mixed-crossfeed-tag{color:#f5d0fe;background:linear-gradient(90deg,rgba(14,116,144,.24),rgba(120,53,15,.25),rgba(88,28,135,.28));border:1px solid rgba(216,180,254,.5);font:700 8px var(--font-mono);letter-spacing:.6px;padding:3px 6px;border-radius:3px;box-shadow:inset 0 0 10px rgba(192,132,252,.1)}
+.guard-pip.partial{border-radius:2px;opacity:.78;filter:blur(.15px);box-shadow:0 0 4px rgba(176,96,255,.46)}
+.guard-pip.partial.on{background:linear-gradient(135deg,#7c3aed,#d8b4fe)}
+.token-read{color:#f5d0fe;background:rgba(126,34,206,.22);border:1px solid rgba(192,132,252,.42);box-shadow:0 0 6px rgba(168,85,247,.18)}
+
+/* Persistent allied combatant: Kessler stands on Sosa's side and faces the enemy lane. */
+.kessler-party-wrap{position:absolute;left:108px;bottom:-2px;width:88px;height:140px;z-index:2;pointer-events:none;filter:drop-shadow(0 0 10px rgba(56,189,248,.48))}
+.kessler-party-img{width:100%;height:100%;object-fit:contain;object-position:bottom center;transform:scaleX(-1);transform-origin:center;filter:drop-shadow(0 0 7px rgba(125,211,252,.48))}
+.kessler-party-wrap span{position:absolute;left:50%;bottom:2px;transform:translateX(-50%);padding:2px 5px;color:#bae6fd;background:rgba(2,6,23,.82);border:1px solid rgba(56,189,248,.42);font:700 6px var(--font-mono);letter-spacing:.8px}
+.party-char-row.has-kessler .sosa-wrap{transform:translateX(-4px)}
+@media(max-width:390px){.kessler-party-wrap{left:96px;width:82px;height:132px}.kessler-party-wrap span{font-size:5.5px}}
+@media(max-width:360px){.kessler-party-wrap{left:88px;width:78px;height:126px}}
+.persistent-blue-bracket{position:absolute;inset:-3px;z-index:8;pointer-events:none;opacity:.72;filter:drop-shadow(0 0 5px rgba(56,189,248,.6))}
+.persistent-blue-bracket i{position:absolute;width:15px;height:15px;border-color:#7dd3fc;border-style:solid}
+.persistent-blue-bracket i:nth-child(1){left:0;top:0;border-width:2px 0 0 2px}.persistent-blue-bracket i:nth-child(2){right:0;top:0;border-width:2px 2px 0 0}.persistent-blue-bracket i:nth-child(3){left:0;bottom:0;border-width:0 0 2px 2px}.persistent-blue-bracket i:nth-child(4){right:0;bottom:0;border-width:0 2px 2px 0}
+.enemy-slot.ally-bracketed{box-shadow:inset 0 0 13px rgba(14,165,233,.07),0 0 8px rgba(14,165,233,.08)}
+.reduced-motion .persistent-blue-bracket{filter:none;opacity:.8}
+
+/* Bespoke CSS placeholders for plural/role-bearing structures. No Molt or anchor reuses base raster art. */
+.enemy-visual.structural::before,.enemy-visual.structural::after{display:none!important}
+.css-entity{position:relative;width:82px;height:78px;margin:auto;isolation:isolate;filter:drop-shadow(0 0 9px rgba(192,132,252,.3))}
+.css-entity.compact{width:58px;height:56px;transform:scale(.9)}
+.css-entity i,.css-entity b,.css-entity span,.css-entity em{position:absolute;display:block;box-sizing:border-box}
+/* Nifl: three cold accounts sharing one routed core. */
+.entity-nifl .ce-core{left:31px;top:28px;width:20px;height:20px;border:2px solid #cffafe;transform:rotate(45deg);background:radial-gradient(circle,#ecfeff,#0891b2 38%,#082f49 70%);box-shadow:0 0 14px #67e8f9,inset 0 0 7px #fff;animation:nifl-core 2.2s ease-in-out infinite}
+.entity-nifl .ce-node{width:17px;height:25px;background:linear-gradient(160deg,#ecfeff,#67e8f9 36%,#164e63 38% 100%);clip-path:polygon(50% 0,82% 18%,100% 66%,70% 100%,28% 100%,0 65%,18% 18%);box-shadow:0 0 8px #67e8f9}
+.entity-nifl .n1{left:3px;top:7px}.entity-nifl .n2{right:3px;top:6px;transform:scale(.86)}.entity-nifl .n3{left:33px;bottom:0;transform:scale(.78)}
+.entity-nifl .ce-route{height:2px;background:linear-gradient(90deg,transparent,#cffafe,#22d3ee,transparent);transform-origin:left;box-shadow:0 0 6px #67e8f9;animation:nifl-route 1.4s ease-in-out infinite alternate}
+.entity-nifl .r1{left:17px;top:24px;width:28px;transform:rotate(19deg)}.entity-nifl .r2{left:43px;top:35px;width:27px;transform:rotate(-28deg)}.entity-nifl .r3{left:40px;top:44px;width:24px;transform:rotate(88deg)}
+/* Relay: speaker core, separate devices, and live routing wire. */
+.entity-relay{background:radial-gradient(circle at center,rgba(16,185,129,.16),transparent 57%)}
+.entity-relay .ce-speaker{left:26px;top:20px;width:31px;height:31px;border:2px solid #6ee7b7;border-radius:50%;background:repeating-radial-gradient(circle,#020617 0 4px,#34d399 5px 7px,#031711 8px 11px);box-shadow:0 0 13px #10b981;animation:relay-speaker 1.1s steps(3) infinite}
+.entity-relay .ce-speaker i{inset:8px;border:1px solid #d1fae5;border-radius:50%}
+.entity-relay .ce-phone{width:14px;height:23px;border:1px solid #5eead4;border-radius:2px;background:linear-gradient(#052e2b,#020617);box-shadow:inset 0 0 5px #0f766e,0 0 6px rgba(45,212,191,.45)}
+.entity-relay .p1{left:2px;top:5px;transform:rotate(-16deg)}.entity-relay .p2{right:1px;top:7px;transform:rotate(13deg)}.entity-relay .p3{left:7px;bottom:1px;transform:rotate(8deg) scale(.85)}
+.entity-relay .ce-wire{height:2px;background:#34d399;box-shadow:0 0 7px #10b981;transform-origin:left;animation:relay-wire 1.5s steps(5) infinite}
+.entity-relay .w1{left:13px;top:24px;width:24px;transform:rotate(13deg)}.entity-relay .w2{left:48px;top:35px;width:27px;transform:rotate(-18deg)}
+/* Atlas: occupied building frame with visible load routes. */
+.entity-atlas{background:linear-gradient(180deg,transparent 0 12%,rgba(245,158,11,.08) 13% 87%,transparent 88%)}
+.entity-atlas .ce-building{left:18px;top:7px;width:47px;height:64px;border:2px solid #fbbf24;clip-path:polygon(8% 0,92% 0,100% 9%,100% 100%,0 100%,0 9%);background:repeating-linear-gradient(0deg,rgba(28,25,23,.95) 0 14px,rgba(120,53,15,.35) 15px 16px),repeating-linear-gradient(90deg,transparent 0 13px,rgba(251,191,36,.18) 14px 15px);box-shadow:0 0 12px rgba(245,158,11,.55),inset 0 0 12px #000}
+.entity-atlas .ce-building i{width:8px;height:8px;border:1px solid #fde68a;background:#451a03}.entity-atlas .ce-building i:nth-child(1){left:7px;top:9px}.entity-atlas .ce-building i:nth-child(2){right:7px;top:27px}.entity-atlas .ce-building i:nth-child(3){left:19px;bottom:7px}
+.entity-atlas .ce-load{z-index:2;padding:1px 3px;color:#fff7ed;background:#78350f;border:1px solid #f59e0b;font:700 5px var(--font-mono);letter-spacing:.4px;animation:atlas-load-blink 1.3s steps(2) infinite}.entity-atlas .l1{left:0;top:17px}.entity-atlas .l2{right:-1px;bottom:10px;animation-delay:-.6s}
+.entity-atlas .ce-beam{z-index:3;height:3px;background:#fff7ed;box-shadow:0 0 8px #f59e0b;transform-origin:left}.entity-atlas .b1{left:11px;top:28px;width:62px;transform:rotate(21deg)}.entity-atlas .b2{left:20px;top:54px;width:55px;transform:rotate(-31deg)}
+/* Overtime: clocks, belt, and worker silhouettes acting as one body. */
+.entity-overtime .ce-clock{left:24px;top:3px;width:36px;height:36px;border:3px solid #fb923c;border-radius:50%;background:radial-gradient(circle,#431407,#09090b 67%);box-shadow:0 0 13px #f97316;animation:overtime-clock 2.2s linear infinite}
+.entity-overtime .ce-clock::before,.entity-overtime .ce-clock::after{content:'';position:absolute;left:50%;top:50%;width:2px;height:11px;background:#fff7ed;transform-origin:bottom}.entity-overtime .ce-clock::before{transform:translate(-50%,-100%) rotate(35deg)}.entity-overtime .ce-clock::after{height:8px;transform:translate(-50%,-100%) rotate(132deg)}
+.entity-overtime .ce-clock b{left:50%;top:24px;transform:translateX(-50%);color:#fed7aa;font:700 5px var(--font-mono)}
+.entity-overtime .ce-belt{left:4px;right:4px;bottom:5px;height:15px;border:2px solid #c2410c;background:repeating-linear-gradient(90deg,#1c1917 0 8px,#7c2d12 9px 11px);box-shadow:0 0 8px rgba(249,115,22,.6);animation:overtime-belt .8s linear infinite}
+.entity-overtime .ce-worker{bottom:18px;width:14px;height:28px;background:linear-gradient(#fb923c 0 23%,#292524 24% 100%);clip-path:polygon(35% 0,65% 0,80% 22%,100% 100%,58% 100%,50% 55%,42% 100%,0 100%,20% 22%)}
+.entity-overtime .w1{left:5px}.entity-overtime .w2{left:34px;transform:scale(.82)}.entity-overtime .w3{right:4px;transform:scale(.92)}
+/* Red-Tag Core: document anchor, not a monster body. */
+.entity-anchor{filter:drop-shadow(0 0 12px rgba(239,68,68,.6))}
+.entity-anchor .ce-tag{left:18px;top:4px;width:47px;height:67px;background:linear-gradient(160deg,#f5f5f4,#d6d3d1);border:2px solid #ef4444;transform:rotate(-4deg);box-shadow:4px 5px 0 #450a0a,0 0 12px rgba(239,68,68,.55)}
+.entity-anchor .ce-tag b{left:4px;right:4px;top:5px;padding:2px;color:#fff;background:#b91c1c;font:800 7px var(--font-mono);letter-spacing:2px;text-align:center}.entity-anchor .ce-tag i{left:7px;right:7px;top:29px;height:2px;background:#78716c;box-shadow:0 7px 0 #a8a29e,0 14px 0 #a8a29e}.entity-anchor .ce-tag em{left:5px;right:5px;bottom:4px;color:#7f1d1d;font:800 5px/1 var(--font-mono);font-style:normal;text-align:center}
+.entity-anchor .ce-corebox{left:30px;top:29px;width:24px;height:24px;border:2px solid #fca5a5;transform:rotate(45deg);background:radial-gradient(circle,#fff,#dc2626 38%,#450a0a 70%);mix-blend-mode:multiply;box-shadow:0 0 10px #ef4444}
+.entity-anchor .ce-staple{width:18px;height:5px;border:2px solid #a8a29e;border-bottom:0}.entity-anchor .s1{left:8px;top:13px;transform:rotate(-18deg)}.entity-anchor .s2{right:3px;bottom:12px;transform:rotate(22deg)}
+/* Atlas load-bearer: role-specific carrier, distinct from base Spall art. */
+.entity-loadbearer .ce-carrier{left:19px;top:8px;width:45px;height:63px;background:linear-gradient(145deg,#57534e,#1c1917 58%,#0c0a09);clip-path:polygon(20% 0,80% 0,100% 20%,87% 100%,56% 78%,45% 100%,12% 92%,0 23%);border:2px solid #f59e0b;box-shadow:inset 0 0 15px #000,0 0 10px rgba(245,158,11,.45)}
+.entity-loadbearer .ce-carrier i{left:16px;top:8px;width:14px;height:10px;background:#0c0a09;clip-path:polygon(0 0,100% 15%,74% 100%,19% 82%)}.entity-loadbearer .ce-carrier b{left:7px;right:7px;bottom:8px;padding:2px;color:#fde68a;border:1px solid #b45309;background:#1c1917;font:800 5px var(--font-mono);text-align:center;letter-spacing:1px}
+.entity-loadbearer .ce-crack{z-index:2;width:3px;height:48px;background:linear-gradient(#fff7ed,#f59e0b,transparent);box-shadow:0 0 6px #f59e0b}.entity-loadbearer .c1{left:34px;top:13px;transform:rotate(16deg)}.entity-loadbearer .c2{right:26px;top:20px;transform:rotate(-24deg)}.entity-loadbearer .ce-weight{left:5px;right:5px;top:2px;height:8px;background:repeating-linear-gradient(90deg,#292524 0 8px,#f59e0b 9px 10px);box-shadow:0 0 7px rgba(245,158,11,.45)}
+@keyframes nifl-core{50%{transform:rotate(45deg) scale(1.18);filter:brightness(1.5)}}@keyframes nifl-route{to{opacity:.35;filter:brightness(1.8)}}
+@keyframes relay-speaker{50%{transform:scale(1.08);filter:brightness(1.6)}}@keyframes relay-wire{50%{opacity:.3}}
+@keyframes atlas-load-blink{50%{filter:brightness(1.8);transform:translateX(2px)}}@keyframes overtime-clock{to{transform:rotate(360deg)}}@keyframes overtime-belt{to{background-position:22px 0}}
+.reduced-motion .css-entity *{animation:none!important}
+.victory-sigil .css-entity{transform:scale(.7);margin:0}.battle-cutin-portrait .css-entity{transform:scale(.75);margin:auto}
+
+/* Furnace uses dedicated aperture pips; no generic diamond notation. */
+.furnace-sat-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px;border-radius:4px!important;padding:4px 6px!important}
+.furnace-sat-label,.furnace-sat-state{position:relative;z-index:1;white-space:nowrap}.furnace-sat-state{font-size:6.5px;color:#f5d0fe;text-align:right}
+.furnace-sat-row.ready{border-color:rgba(251,146,60,.72);background:linear-gradient(90deg,rgba(88,28,135,.24),rgba(124,45,18,.24));box-shadow:inset 0 0 12px rgba(249,115,22,.12),0 0 8px rgba(168,85,247,.18)}
+.furnace-pips{position:relative;display:flex;align-items:center;justify-content:center;gap:4px;min-width:54px;height:13px}
+.furnace-pip{position:relative;display:block;width:15px;height:10px;clip-path:polygon(0 50%,18% 10%,82% 10%,100% 50%,82% 90%,18% 90%);background:#17111f;box-shadow:inset 0 0 0 1px rgba(216,180,254,.34);filter:drop-shadow(0 0 2px rgba(168,85,247,.25))}
+.furnace-pip span{position:absolute;left:4px;right:4px;top:4px;height:2px;background:#4c1d95;box-shadow:0 0 3px rgba(168,85,247,.5)}
+.furnace-pip.on{background:linear-gradient(135deg,#581c87 0 30%,#f97316 52%,#f5d0fe 70%,#7e22ce 100%);box-shadow:0 0 7px rgba(249,115,22,.75),inset 0 0 4px #fff}
+.furnace-pip.on span{background:#fff7ed;box-shadow:0 0 5px #fff,0 0 9px #f97316}
+.furnace-pips.ready::before{content:'';position:absolute;left:4px;right:4px;top:50%;height:1px;background:linear-gradient(90deg,transparent,#f5d0fe,#f97316,#f5d0fe,transparent);box-shadow:0 0 8px #f97316;animation:furnace-pip-link 1s ease-in-out infinite alternate}
+.furnace-pips.compact{height:11px;min-width:49px;gap:3px}.furnace-pips.compact .furnace-pip{width:13px;height:9px}.furnace-pips.compact .furnace-pip span{top:4px;left:3px;right:3px;height:1px}
+.actions .action-sub:has(.furnace-pips){display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:3px 6px;width:100%}
+.furnace-sealed-note,.furnace-open-kicker,.furnace-open-note{font:700 6.5px var(--font-mono);letter-spacing:.7px}.furnace-sealed-note{color:#a78bfa}.furnace-open-kicker{color:#fff7ed;text-shadow:0 0 7px #f97316}.furnace-open-note{color:#f5d0fe}
+.actions .btn-furnace-open{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 120%,rgba(249,115,22,.62),transparent 55%),linear-gradient(135deg,#2e1065,#7e22ce 48%,#9a3412)!important;border:2px solid #fed7aa!important;color:#fff!important;box-shadow:0 0 14px rgba(249,115,22,.72),0 0 26px rgba(168,85,247,.48),inset 0 0 16px rgba(255,255,255,.12)!important;animation:furnace-open-button 1.05s ease-in-out infinite alternate}
+.actions .btn-furnace-open::before{content:'';position:absolute;inset:-35%;background:repeating-conic-gradient(from 0deg,transparent 0 18deg,rgba(255,247,237,.12) 19deg 21deg,transparent 22deg 42deg);animation:furnace-open-turn 8s linear infinite;pointer-events:none}
+.actions .btn-furnace-open .action-name{position:relative;z-index:1;font-size:16px;letter-spacing:3px;color:#fff7ed;text-shadow:0 0 8px #fff,0 0 16px #f97316}.actions .btn-furnace-open .action-sub{position:relative;z-index:1}
+@keyframes furnace-pip-link{to{opacity:.35;transform:scaleX(.78)}}@keyframes furnace-open-button{to{filter:brightness(1.18);box-shadow:0 0 22px rgba(249,115,22,.9),0 0 34px rgba(168,85,247,.65),inset 0 0 22px rgba(255,255,255,.2)}}@keyframes furnace-open-turn{to{transform:rotate(360deg)}}
+.reduced-motion .furnace-pips.ready::before,.reduced-motion .btn-furnace-open,.reduced-motion .btn-furnace-open::before{animation:none!important}
+/* Physical-device party composition and persistent applied brackets. */
+.party-char-row.has-kessler .somnus-wrap{left:38px;width:112px;height:158px}
+.kessler-party-wrap{left:102px;bottom:-2px;width:112px;height:168px;z-index:4;filter:drop-shadow(0 0 13px rgba(56,189,248,.72))}
+.kessler-party-img{filter:drop-shadow(0 0 8px rgba(125,211,252,.68)) brightness(1.08)}
+.persistent-blue-bracket{inset:3px;z-index:18;opacity:1;filter:drop-shadow(0 0 7px #38bdf8)}
+.persistent-blue-bracket i{width:21px;height:21px;border-color:#bae6fd!important;filter:drop-shadow(0 0 3px #38bdf8)}
+.enemy-slot.ally-bracketed{border-color:rgba(125,211,252,.76)!important;box-shadow:inset 0 0 18px rgba(14,165,233,.12),0 0 13px rgba(56,189,248,.28)!important}
+.enemy-slot.dead{display:none!important}
+@media(max-width:390px){.party-char-row.has-kessler .somnus-wrap{left:34px;width:104px;height:150px}.kessler-party-wrap{left:91px;width:104px;height:158px}}
+@media(max-width:360px){.kessler-party-wrap{left:84px;width:98px;height:150px}}
+
+/* Physical-device typography: readable system stacks, less tracking, stronger contrast. */
+.battle-encounter-banner{font-family:var(--font-sans);font-size:10px;letter-spacing:1.25px;font-weight:800}
+.party-statline{font-family:var(--font-sans);font-size:10px;letter-spacing:0}.party-poise-row{font-family:var(--font-sans);font-size:9px;letter-spacing:.2px}
+.enemy-ar .ar-tag,.enemy-ar .ar-stat,.enemy-ar .ar-lock,.enemy-ar .ar-hint,.enemy-ar .ar-conf{font-family:var(--font-sans);font-size:9px;letter-spacing:.1px;font-weight:700;padding:2px 6px}
+.ar-hint{color:#cbd5e1}.ar-conf{color:#94a3b8}.enemy-hp-num{font-family:var(--font-sans);font-size:9px}
+.action-name{font-family:var(--font-sans);font-size:11px;letter-spacing:.2px;font-weight:800}.action-sub{font-family:var(--font-sans);font-size:8px;letter-spacing:.15px;color:#b8b7c9;line-height:1.25}
+.actions::before{font-family:var(--font-sans);font-size:7.5px;letter-spacing:.7px;color:rgba(203,213,225,.72)}
+.battle-cutin-speaker{font-family:var(--font-sans);font-size:9.5px;letter-spacing:1.25px}.battle-cutin-text{font-family:var(--font-sans);font-size:13px;letter-spacing:0;line-height:1.42}
+.battle-cutin.somnus .battle-cutin-text{font-family:var(--font-serif);font-size:12.5px;line-height:1.45;color:#ede9fe;letter-spacing:.05px;font-style:italic}
+.battle-cutin-speaker.movement{font-family:var(--font-sans);font-size:8.5px;letter-spacing:1.4px}
+.log-entry{font-family:var(--font-sans);font-size:10px;line-height:1.4}.veil-log-label{font-family:var(--font-sans);font-size:8px;letter-spacing:1px}
+.turn-pill{font-family:var(--font-sans);font-size:9px;letter-spacing:1px}
+@media(max-width:360px){.battle-encounter-banner{font-size:9px}.enemy-ar .ar-tag,.enemy-ar .ar-stat,.enemy-ar .ar-lock,.enemy-ar .ar-hint,.enemy-ar .ar-conf{font-size:8.5px}.action-sub{font-size:7.5px}.battle-cutin-text{font-size:12px}}
+
+/* Higher-fidelity inline SVG language for structural enemies. */
+.ce-svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 5px rgba(0,0,0,.75))}.ce-svg *{vector-effect:non-scaling-stroke}.ce-svg text{font-family:var(--font-sans);text-anchor:middle;font-weight:900;letter-spacing:.6px}
+.entity-nifl .svg-routes path{fill:none;stroke:#a5f3fc;stroke-width:2;stroke-dasharray:4 4;filter:drop-shadow(0 0 3px #22d3ee);animation:svg-route-flow 1.8s linear infinite}.entity-nifl .svg-cold-node path{fill:#155e75;stroke:#cffafe;stroke-width:1.5;filter:drop-shadow(0 0 4px #67e8f9)}.entity-nifl .svg-core-outer{fill:#164e63;stroke:#e0f2fe;stroke-width:2;filter:drop-shadow(0 0 5px #22d3ee)}.entity-nifl .svg-core-inner{fill:#22d3ee;stroke:#fff;stroke-width:1}.entity-nifl .svg-pulse{fill:#fff;filter:drop-shadow(0 0 5px #fff);animation:svg-core-pulse 1.2s ease-in-out infinite alternate}
+.entity-relay .svg-wire path{fill:none;stroke:#34d399;stroke-width:2.2;stroke-dasharray:5 3;filter:drop-shadow(0 0 3px #10b981);animation:svg-route-flow 1.4s linear infinite}.entity-relay .svg-device rect{fill:#031b1a;stroke:#5eead4;stroke-width:1.5}.entity-relay .svg-device line{stroke:#a7f3d0;stroke-width:1}.entity-relay .svg-speaker-a{fill:#020617;stroke:#2dd4bf;stroke-width:3;filter:drop-shadow(0 0 5px #14b8a6)}.entity-relay .svg-speaker-b{fill:none;stroke:#6ee7b7;stroke-width:3}.entity-relay .svg-speaker-c{fill:#d1fae5;stroke:#059669;stroke-width:2}.entity-relay .svg-wave{fill:none;stroke:#fff;stroke-width:1.5;animation:svg-wave-pulse .8s ease-in-out infinite alternate}
+.entity-atlas .svg-building path:first-child{fill:#1c1917;stroke:#fbbf24;stroke-width:2}.entity-atlas .svg-building path:not(:first-child){fill:none;stroke:#92400e;stroke-width:1}.entity-atlas .svg-building rect{fill:#451a03;stroke:#fde68a;stroke-width:1}.entity-atlas .svg-load-beams path{fill:none;stroke:#fff7ed;stroke-width:2.4;filter:drop-shadow(0 0 4px #f59e0b);animation:svg-load-pulse 1.25s steps(2) infinite}.entity-atlas .svg-arrow path{fill:none;stroke:#fb923c;stroke-width:2}.entity-atlas .svg-label{fill:#fde68a;font-size:6px}
+.entity-overtime .svg-clock-face{fill:#431407;stroke:#fb923c;stroke-width:3;filter:drop-shadow(0 0 5px #f97316)}.entity-overtime .svg-clock-hand{fill:none;stroke:#fff7ed;stroke-width:2;stroke-linecap:round;transform-origin:50px 28px}.entity-overtime .h1{animation:svg-clock-turn 4s linear infinite}.entity-overtime .h2{animation:svg-clock-turn 12s linear infinite}.entity-overtime .svg-time{fill:#fed7aa;font-size:7px}.entity-overtime .svg-workers path{fill:#292524;stroke:#fb923c;stroke-width:1.4}.entity-overtime .svg-belt rect{fill:#7c2d12;stroke:#fdba74;stroke-width:1}.entity-overtime .svg-belt circle{fill:#1c1917;stroke:#fb923c;stroke-width:1;animation:svg-belt-roll .8s linear infinite}
+.entity-anchor .svg-paper-back path{fill:#d6d3d1;stroke:#78716c;stroke-width:1.5}.entity-anchor .svg-red-tag{fill:#991b1b;stroke:#fecaca;stroke-width:2;filter:drop-shadow(0 0 5px #ef4444)}.entity-anchor .svg-red-word{fill:#fff;font-size:8px}.entity-anchor .svg-report-lines path{stroke:#78716c;stroke-width:2}.entity-anchor .svg-case-core{fill:#7f1d1d;stroke:#fff;stroke-width:2;filter:drop-shadow(0 0 6px #ef4444);animation:svg-core-pulse 1s ease-in-out infinite alternate}.entity-anchor .svg-case-dot{fill:#fecaca}.entity-anchor .svg-closed{fill:#7f1d1d;font-size:6px}
+.entity-loadbearer .svg-carrier-body{fill:#1c1917;stroke:#f59e0b;stroke-width:2}.entity-loadbearer .svg-carrier-head{fill:#0c0a09;stroke:#fde68a;stroke-width:1.5}.entity-loadbearer .svg-carrier-cracks path{fill:none;stroke:#fff7ed;stroke-width:2.3;filter:drop-shadow(0 0 4px #f59e0b);animation:svg-load-pulse 1s steps(2) infinite}.entity-loadbearer .svg-weight-bar{fill:#292524;stroke:#fb923c;stroke-width:2}.entity-loadbearer .svg-load-word{fill:#fde68a;font-size:7px}
+@keyframes svg-route-flow{to{stroke-dashoffset:-16}}@keyframes svg-core-pulse{to{transform:scale(1.28);transform-origin:center;opacity:.72}}@keyframes svg-wave-pulse{to{stroke-width:3;opacity:.45}}@keyframes svg-load-pulse{50%{opacity:.35}}@keyframes svg-clock-turn{to{transform:rotate(360deg)}}@keyframes svg-belt-roll{to{stroke-dashoffset:-8}}
+.reduced-motion .ce-svg *{animation:none!important}
+
+/* Encounter-specific environmental silhouettes over psychedelic fields. */
+.battle-context{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.46;overflow:hidden}.battle-context i{position:absolute;display:block}
+.context-tutorial_1::before,.context-act1_battle1::before,.context-act1_battle2::before{content:'';position:absolute;left:3%;right:3%;bottom:9%;height:38%;background:repeating-linear-gradient(90deg,rgba(2,6,23,.88) 0 28px,rgba(186,230,253,.12) 29px 31px),linear-gradient(180deg,transparent,#020617);border-top:2px solid rgba(165,243,252,.28);clip-path:polygon(0 20%,100% 0,100% 100%,0 100%)}
+.context-tutorial_1 i:nth-child(1),.context-act1_battle1 i:nth-child(1),.context-act1_battle2 i:nth-child(1){left:0;right:0;bottom:5%;height:35%;background:repeating-linear-gradient(90deg,transparent 0 37px,rgba(148,163,184,.13) 38px 40px);transform:skewY(-5deg)}
+.context-act2_alone_dross::before{content:'';position:absolute;left:46%;top:8%;width:42%;height:68%;border:3px solid rgba(216,180,254,.2);background:linear-gradient(90deg,#030407,#17101d 50%,#030407);box-shadow:0 0 0 8px rgba(0,0,0,.34),inset 0 0 30px #000}.context-act2_alone_dross::after{content:'';position:absolute;left:68%;top:39%;width:7px;height:7px;border-radius:50%;background:#b68b3d;box-shadow:0 0 5px #fbbf24}
+.context-dross_spall::before,.context-kessler_joint_hunt::before{content:'';position:absolute;inset:8%;background:repeating-linear-gradient(126deg,transparent 0 58px,rgba(251,191,36,.15) 59px 62px,transparent 63px 118px);clip-path:polygon(0 46%,25% 46%,34% 8%,45% 68%,58% 31%,69% 81%,100% 59%,100% 67%,66% 91%,57% 42%,43% 81%,33% 22%,27% 55%,0 55%)}
+.context-dross_chime_base::before,.context-dross_chime::before{content:'';position:absolute;inset:5%;border:1px solid rgba(52,211,153,.18);background:repeating-radial-gradient(circle at 72% 38%,transparent 0 33px,rgba(52,211,153,.12) 34px 36px,transparent 37px 70px),repeating-linear-gradient(90deg,transparent 0 62px,rgba(45,212,191,.08) 63px 65px)}
+.context-dross_slag::before,.context-dross_overtime::before{content:'';position:absolute;left:2%;right:2%;bottom:7%;height:43%;background:repeating-linear-gradient(90deg,rgba(28,25,23,.88) 0 30px,rgba(249,115,22,.16) 31px 33px),linear-gradient(180deg,transparent,#090503);border-top:3px solid rgba(251,146,60,.24);transform:perspective(350px) rotateX(48deg);transform-origin:bottom}
+.context-dross_nifl::before{content:'';position:absolute;inset:5%;background:linear-gradient(90deg,rgba(3,7,18,.82) 0 15%,transparent 15% 30%,rgba(3,7,18,.82) 30% 45%,transparent 45% 60%,rgba(3,7,18,.82) 60% 75%,transparent 75%),repeating-linear-gradient(0deg,transparent 0 42px,rgba(165,243,252,.11) 43px 45px)}
+.context-archon_fight::before{content:'';position:absolute;inset:4%;background:repeating-linear-gradient(90deg,rgba(0,0,0,.72) 0 42px,rgba(251,191,36,.11) 43px 48px),repeating-linear-gradient(0deg,transparent 0 55px,rgba(245,158,11,.09) 56px 59px);clip-path:polygon(0 15%,100% 0,100% 100%,0 92%)}.context-archon_fight::after{content:'CLOSED';position:absolute;right:9%;top:17%;padding:8px 12px;border:3px double rgba(239,68,68,.45);color:rgba(254,202,202,.42);font:900 16px var(--font-sans);transform:rotate(-9deg)}
+.context-censor_enc::before{content:'';position:absolute;inset:6%;background:repeating-linear-gradient(90deg,transparent 0 47px,rgba(56,189,248,.13) 48px 50px),repeating-linear-gradient(0deg,transparent 0 47px,rgba(56,189,248,.11) 48px 50px);border:2px solid rgba(125,211,252,.18);box-shadow:inset 0 0 35px rgba(14,165,233,.12)}
+.reduced-motion .battle-context{opacity:.4}
+.battle-encounter-banner,.turn-pill{font-family:var(--font-kessler)}
+.enemy-ar .ar-tag,.enemy-ar .ar-stat,.enemy-ar .ar-lock,.enemy-ar .ar-hint,.enemy-ar .ar-conf,.furnace-sat-row,.ally-support-tag,.mixed-crossfeed-tag{font-family:var(--font-mono)}

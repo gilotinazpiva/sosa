@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "currentSceneKey": "act4_joint_after",
+  "screen": "story",
+  "player": {
+    "hp": 64,
+    "maxHp": 100,
+    "debt": 60,
+    "poise": 5,
+    "armorShell": 1,
+    "unlocked": {
+      "refuse": true,
+      "battleContinuation": true,
+      "trace": true,
+      "dismantle": true,
+      "dismantleNamed": true,
+      "cleave": false,
+      "hellstep": false,
+      "stin": false,
+      "severTrue": false,
+      "patchJob": true,
+      "blackFlash": true,
+      "web": true,
+      "furnace": true,
+      "graveframe": false
+    },
+    "coffinPilot": false
+  },
+  "worldFlags": {
+    "atlasFurnaceUsed": true,
+    "furnaceUses": 1
+  },
+  "settings": {
+    "muted": false,
+    "reducedMotion": false
+  },
+  "veilHudLevel": 2,
+  "veilLearnedCensor": true,
+  "somnusNamed": true
+}

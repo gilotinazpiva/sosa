@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "currentSceneKey": "act1_s1",
+  "screen": "story",
+  "player": {
+    "hp": 72,
+    "maxHp": 100,
+    "debt": 41,
+    "poise": 3,
+    "armorShell": 1,
+    "unlocked": {
+      "scarMend": true,
+      "endure": true,
+      "trace": false,
+      "dismantle": false
+    }
+  },
+  "worldFlags": {
+    "legacyFixture": true
+  },
+  "settings": {
+    "muted": true,
+    "reducedMotion": true
+  },
+  "veilHudLevel": 0,
+  "veilLearnedCensor": false
+}

@@ -1,0 +1,179 @@
+/* =========================================================
+   SOSA: THE GRAVE THAT WOULDN'T TAKE ME
+   accessibility.css — Mobile Breakpoints, Reduced Motion & Settings UI
+   2026-07-18: Safe-area insets + larger log on tall phones
+   ========================================================= */
+
+/* Safe area for iPhone notch etc */
+#app {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+/* Mobile Breakpoints & Responsive Tweaks */
+@media (max-width: 480px) {
+    .title-main { font-size: 26px; }
+    .story-text { font-size: 15.5px; line-height: 1.5; }
+    .actions button { min-height: 44px; font-size: 10px; }
+    .log { height: 88px; } /* bigger log per user request */
+}
+
+@media (max-width: 430px) {
+    .party-side { width: 48%; }
+    .enemy-side { width: 50%; }
+    .actions button { min-height: 44px; padding: 4px; }
+    .title-main { font-size: 24px; letter-spacing: 4px; }
+    .party-char-row { height: 142px; }
+    .sosa-wrap { width: 76px; height: 112px; }
+    .somnus-wrap { width: 114px; height: 160px; left: 58px; }
+}
+
+@media (max-width: 390px) {
+    .field { padding: 8px 8px calc(8px + env(safe-area-inset-bottom)); }
+    .party-bars { padding: 6px; }
+    .enemy-name { font-size: 9px; }
+    .actions button { font-size: 10px; }
+}
+
+@media (max-width: 360px) {
+    .title-main { font-size: 20px; }
+    .party-char-row { height: 130px; }
+    .sosa-wrap { width: 70px; height: 104px; }
+    .somnus-wrap { width: 104px; height: 146px; left: 53px; }
+    .actions { gap: 6px; }
+    .actions button { min-height: 44px; font-size: 10px; }
+}
+
+/* Tall phones — give log more room, not cramped */
+@media (min-height: 700px) {
+    .log { height: 96px; }
+    .story-box { max-height: 56%; }
+}
+
+@media (min-height: 800px) {
+    .log { height: 104px; }
+    .story-box { max-height: 58%; }
+}
+
+/* OS / User Reduced Motion Overrides */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+    }
+    .shattering-prompt {
+        animation: none !important;
+    }
+    .void-particle {
+        animation: none !important;
+    }
+}
+
+.reduced-motion * {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Accessibility Settings Modal UI */
+.settings-card {
+    width: 100%;
+    max-width: 380px;
+    background: #0f0a1d;
+    border: 1px solid var(--accent-purple);
+    border-radius: 8px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: #f1f5f9;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(176, 96, 255, 0.3);
+    padding-bottom: 8px;
+}
+
+.settings-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #e9d5ff;
+}
+
+.settings-close-btn {
+    background: none;
+    border: none;
+    color: #a78bfa;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.settings-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #c4b5fd;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+}
+
+.settings-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-purple);
+    cursor: pointer;
+}
+
+
+.settings-slider-row { flex-direction: column; align-items: stretch; gap: 5px; }
+.settings-slider-row > span { display: flex; justify-content: space-between; }
+.settings-slider-row input[type="range"] { width: 100%; accent-color: var(--accent-purple); }
+.settings-row:focus-within { outline: 2px solid #c4b5fd; outline-offset: 3px; border-radius: 4px; }
+button:focus-visible, [role="button"]:focus-visible, select:focus-visible, input:focus-visible {
+    outline: 2px solid #e9d5ff;
+    outline-offset: 2px;
+}
+
+/* High Contrast mode */
+.high-contrast {
+    --bg-dark: #000000;
+    --text-primary: #ffffff;
+    --text-muted: #e2e8f0;
+}
+.high-contrast .panel,
+.high-contrast .story-box,
+.high-contrast .phone-container {
+    background: #000000 !important;
+    border-color: #ffffff !important;
+}
+.high-contrast button {
+    border-width: 2px !important;
+    color: #ffffff !important;
+}
+/* Universal phone touch floor for interactive battle/title controls. */
+.btn-audio-toggle{min-width:44px;min-height:44px}
+.utility-btn{min-height:44px!important}
+.battle-cutin-continue{min-height:44px!important}
+.action-help-close{min-height:44px!important}
+
+/* Cinematic cut-in/Somnus phone fit, loaded after battle.css. */
+@media(max-width:390px){.battle-cutin{min-height:88px;padding:9px 11px 9px 8px}.battle-cutin-portrait{flex-basis:58px;width:58px;height:64px}.battle-cutin-text{font-size:12px}.battle-cutin.somnus .battle-cutin-portrait{flex-basis:70px;width:70px;height:76px}.somnus-wrap{width:116px;height:160px;left:47px}}
+@media(max-width:360px){.somnus-wrap{width:112px;height:156px;left:45px}.battle-cutin{left:6px;right:6px}.battle-cutin-text{font-size:11.5px}}

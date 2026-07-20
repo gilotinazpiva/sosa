@@ -1,0 +1,346 @@
+/* =========================================================
+   SOSA: THE GRAVE THAT WOULDN'T TAKE ME
+   story.css — Visual Novel Dialogue Box, Character Avatars & Full CG Displays
+   2026-07-18: Hybrid serif VN — user asked split_and_serif + less text per screen
+   ========================================================= */
+
+.story-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #05030a;
+    overflow: hidden;
+}
+
+.story-bg-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.story-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) contrast(1.08);
+    transition: filter 0.3s ease;
+}
+
+.story-bg-cg {
+    filter: brightness(0.68) contrast(1.12);
+}
+
+.story-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5,3,10,0.92) 0%, rgba(5,3,10,0.55) 42%, rgba(5,3,10,0.15) 72%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.story-header {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    z-index: 20;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2.2px;
+    color: #c4b5fd;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: rgba(10, 8, 18, 0.78);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(176, 96, 255, 0.28);
+    backdrop-filter: blur(6px);
+}
+
+.story-content {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px 16px 14px;
+    cursor: pointer;
+}
+
+.story-cg-frame {
+    width: 100%;
+    max-height: 260px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    border: 1px solid rgba(176,96,255,0.35);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+}
+
+.story-cg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Glass dialogue box — now serif readable, partially translucent per user request */
+.story-box {
+    width: 100%;
+    background: rgba(14, 11, 26, 0.55);
+    border: 1px solid rgba(176, 96, 255, 0.38);
+    border-radius: 14px;
+    padding: 16px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.88), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px) saturate(1.15);
+    max-height: 58%;
+    overflow-y: auto;
+}
+
+.story-box.narration {
+    background: rgba(10, 8, 20, 0.84);
+    border-color: rgba(147, 51, 234, 0.38);
+}
+
+.story-avatar-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    border: 1px solid var(--accent-purple);
+    overflow: hidden;
+    background: #0f0a1d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    margin-right: 12px;
+    margin-bottom: 2px;
+    flex-shrink: 0;
+}
+
+.story-avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story-speaker {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: #e9d5ff;
+    margin-bottom: 2px;
+}
+
+/* MAIN VN TEXT — now serif readable per user request split_and_serif */
+.story-text {
+    font-family: 'Trebuchet MS', var(--font-sans);
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: #e8e6f0;
+    white-space: pre-wrap;
+    min-height: 52px;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+}
+
+.story-text .narration-text {
+    font-family: 'Trebuchet MS', var(--font-sans);
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: #e9e7f1;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.story-text .thought-text {
+    font-family: 'Trebuchet MS', var(--font-sans);
+    font-style: italic;
+    color: #cbb8ff;
+    opacity: 0.97;
+    text-shadow: 0 0 10px rgba(176, 96, 255, 0.28);
+    font-weight: 400;
+}
+
+.story-hint {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.6px;
+    color: rgba(167, 139, 250, 0.68);
+    margin-top: 6px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Split indicator — show progress when scene was auto-split */
+.story-box[data-split="true"]::after {
+    content: '— continued —';
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: rgba(167,139,250,0.45);
+    text-align: center;
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+/* Distinct VN language channels */
+.story-box.speaker-sosa { border-left:3px solid #a855f7;background:linear-gradient(110deg,rgba(20,10,34,.91),rgba(10,7,19,.82)); }
+.story-box.speaker-sosa .story-text .narration-text { font-family:'Trebuchet MS',var(--font-sans);color:#f3f0fa; }
+.story-box.speaker-sosa .thought-text { color:#d8b4fe;font-style:italic;text-shadow:0 0 10px rgba(168,85,247,.3); }
+.story-box.speaker-other { border-left:3px solid #38bdf8;background:linear-gradient(110deg,rgba(8,20,30,.92),rgba(8,10,18,.84)); }
+.story-box.speaker-other .story-text .narration-text { font-family:var(--font-sans);color:#e0f2fe; }
+.story-box.speaker-entity { border-left:3px solid #f0abfc;background:linear-gradient(110deg,rgba(16,5,25,.96),rgba(3,10,16,.92));box-shadow:0 16px 40px rgba(0,0,0,.9),inset 0 0 24px rgba(168,85,247,.09); }
+.story-box.speaker-entity .story-text .narration-text { font-family:var(--font-serif);font-style:italic;color:#f5f3ff;letter-spacing:.25px;text-shadow:1px 0 rgba(34,211,238,.2),-1px 0 rgba(244,63,94,.18),0 0 10px rgba(192,132,252,.32); }
+.story-box.speaker-entity .story-speaker { letter-spacing:2.8px;text-shadow:0 0 10px currentColor; }
+.story-box.speaker-narrator .story-text .narration-text,.story-box.narration .story-text .narration-text { font-family:var(--font-serif);color:#e5e7eb; }
+.story-avatar-box:has(.entity-avatar-img) { width:58px;height:58px;background:radial-gradient(circle,rgba(88,28,135,.34),rgba(0,0,0,.8)); }
+.entity-avatar-img { object-fit:contain!important;padding:2px; }
+.vn-entity-placeholder.hound { width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;color:#fbbf24;font:700 7px var(--font-mono);background:repeating-linear-gradient(110deg,#09090b 0 7px,#431407 8px 9px); }
+
+/* Asset-free speaker placeholder: human silhouette behind unstable CRT identity noise. */
+.vn-avatar-silhouette{position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 31%,color-mix(in srgb,var(--avatar-accent,#64748b) 28%,#080a11) 0 18%,transparent 19%),linear-gradient(145deg,#10131d,#030407 72%);box-shadow:inset 0 0 16px #000;border:1px solid var(--avatar-accent,#64748b)}
+.vn-avatar-silhouette::before{content:'';position:absolute;left:19%;right:19%;bottom:-12%;height:60%;border-radius:48% 48% 8% 8%;background:linear-gradient(100deg,#05060a,#202434 52%,#06070b);box-shadow:0 0 13px color-mix(in srgb,var(--avatar-accent,#64748b) 22%,transparent)}
+.vn-avatar-silhouette::after{content:'';position:absolute;inset:-20%;background:repeating-linear-gradient(0deg,transparent 0 3px,color-mix(in srgb,var(--avatar-accent,#64748b) 14%,transparent) 4px 5px),linear-gradient(90deg,transparent 0 42%,color-mix(in srgb,var(--avatar-accent,#64748b) 22%,transparent) 47% 50%,transparent 55%);mix-blend-mode:screen;animation:avatar-static 1.7s steps(7,end) infinite}
+.vn-avatar-silhouette span{position:absolute;z-index:2;left:29%;top:19%;width:42%;height:38%;border-radius:48% 48% 44% 44%;background:#08090d;box-shadow:inset 5px 0 0 rgba(255,255,255,.035)}
+.vn-avatar-silhouette i{position:absolute;z-index:3;left:20%;right:20%;top:48%;height:1px;background:var(--avatar-accent,#64748b);box-shadow:0 0 7px var(--avatar-accent,#64748b);opacity:.65}
+@keyframes avatar-static{0%{transform:translate(0,0)}25%{transform:translate(-3px,2px)}50%{transform:translate(2px,-1px)}75%{transform:translate(1px,3px)}100%{transform:translate(0,0)}}
+.reduced-motion .vn-avatar-silhouette::after{animation:none!important}
+
+/* 2026-07-19 channel typography pass: prose, spoken lines, thoughts, humans, entities. */
+.story-box{position:relative;border-left:3px solid var(--speaker-color,#a855f7)}
+.story-box::before{content:'';position:absolute;left:10px;right:10px;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--speaker-color,#a855f7),transparent);opacity:.55}
+.story-speaker{color:var(--speaker-color,#e9d5ff)!important;text-shadow:0 0 11px color-mix(in srgb,var(--speaker-color,#a855f7) 48%,transparent)}
+.story-text .prose-text{font-family:var(--font-serif);color:#d7d9e1;font-size:15.7px;line-height:1.56;letter-spacing:.012em}
+.story-text .speech-text{display:inline;color:#f8fafc;font-family:'Trebuchet MS',Arial,sans-serif;font-size:16px;line-height:1.5;font-weight:550;text-shadow:0 0 10px color-mix(in srgb,var(--speaker-color,#a855f7) 22%,transparent)}
+.story-text .speech-text::before,.story-text .speech-text::after{content:''}
+.story-box.speaker-sosa .speech-text{color:#f4e8ff;font-weight:600}
+.story-box.speaker-sosa .prose-text{color:#ddd7e7}
+.story-box.speaker-other .speech-text{color:color-mix(in srgb,var(--speaker-color,#38bdf8) 38%,#fff);font-weight:600}
+.story-box.speaker-other .prose-text{color:#cbd9e2}
+.story-box.speaker-entity .speech-text{font-family:var(--font-serif);color:#f5e8ff;font-style:italic;letter-spacing:.025em;text-shadow:1px 0 rgba(34,211,238,.28),-1px 0 rgba(244,63,94,.24),0 0 12px rgba(192,132,252,.42)}
+.story-box.speaker-entity .prose-text{color:#c9bdd6;font-style:italic}
+.story-box.speaker-narrator{border-left-color:#64748b;background:linear-gradient(110deg,rgba(8,10,17,.94),rgba(16,12,27,.86))}
+.story-box.speaker-narrator::before{background:linear-gradient(90deg,transparent,#94a3b8,transparent)}
+.story-box.speaker-narrator .story-speaker{font-family:var(--font-serif);color:#aab4c3!important;letter-spacing:3px}
+.story-box.speaker-narrator .prose-text{color:#e1e3e8;font-size:16px;line-height:1.58}
+.story-text .thought-text{display:inline;color:#d8b4fe;font-family:var(--font-serif);font-size:15.6px;line-height:1.55;font-style:italic;text-shadow:0 0 12px rgba(168,85,247,.34)}
+@media(max-width:390px){.story-text .prose-text{font-size:15.2px}.story-text .speech-text{font-size:15.6px}.story-text .thought-text{font-size:15.2px}}
+.high-contrast .story-text .prose-text,.high-contrast .story-text .speech-text{color:#fff!important;text-shadow:none}
+
+/* Retrospective Sosa: future knowledge, visually separate from present speech and thought. */
+.story-box.speaker-retrospective{border-left-color:#f59e0b;background:linear-gradient(110deg,rgba(31,20,8,.94),rgba(10,8,18,.9));box-shadow:0 16px 40px rgba(0,0,0,.9),inset 0 0 28px rgba(245,158,11,.06)}
+.story-box.speaker-retrospective::before{background:linear-gradient(90deg,transparent,#f59e0b,transparent)}
+.story-box.speaker-retrospective .story-speaker{color:#fbbf24!important;font-family:var(--font-mono);letter-spacing:2.6px;text-shadow:0 0 10px rgba(245,158,11,.4)}
+.story-box.speaker-retrospective .prose-text{font-family:var(--font-serif);color:#f1e7d0;font-style:italic}
+.story-box.speaker-retrospective .speech-text{color:#fff7ed}
+.story-box.speaker-retrospective::after{content:'MEMORY // LATER UNDERSTANDING';display:block;margin-top:8px;color:rgba(251,191,36,.62);font:700 7px var(--font-mono);letter-spacing:1.5px;text-align:right}
+.high-contrast .story-box.speaker-retrospective{border-left-color:#fff}.high-contrast .story-box.speaker-retrospective::after{color:#fff}
+
+/* Physical-device VN typography: literary prose, readable UI labels. */
+.story-header{font-family:var(--font-sans);font-size:10px;letter-spacing:1.5px;font-weight:800}
+.story-speaker,.story-box.speaker-narrator .story-speaker{font-family:var(--font-sans);font-size:11px;letter-spacing:1.6px;font-weight:800}
+.story-text .prose-text,.story-box.speaker-narrator .prose-text{font-family:var(--font-serif);font-size:16px;line-height:1.55;letter-spacing:0}
+.story-text .speech-text{font-family:var(--font-sans);font-size:16px;line-height:1.5;letter-spacing:0}
+.story-text .thought-text{font-family:var(--font-serif);letter-spacing:0}
+.story-hint{font-family:var(--font-sans);font-size:8.5px;letter-spacing:1.1px;color:rgba(196,181,253,.78)}
+@media(max-width:390px){.story-text .prose-text,.story-box.speaker-narrator .prose-text{font-size:15.6px}.story-text .speech-text{font-size:15.6px}}
+
+/* Ypsilon Gloss: authored first-read highlights and held-focus definitions. */
+.gloss-term{position:relative;display:inline;padding:0 .08em;border-radius:3px;cursor:help;-webkit-box-decoration-break:clone;box-decoration-break:clone;touch-action:manipulation}
+.gloss-term.known-read{color:inherit;border-bottom:1px dotted rgba(192,132,252,.62);text-shadow:0 0 7px rgba(168,85,247,.12)}
+.gloss-term.first-read{color:#fff7ed;background:linear-gradient(180deg,transparent 12%,rgba(126,34,206,.34) 13% 88%,transparent 89%);border-bottom:2px solid #f59e0b;box-shadow:0 2px 0 rgba(126,34,206,.4);text-shadow:0 0 7px rgba(245,158,11,.42),0 0 12px rgba(168,85,247,.3);animation:gloss-first-read 1.2s ease-in-out infinite alternate}
+@keyframes gloss-first-read{to{filter:brightness(1.18);border-bottom-color:#f5d0fe}}
+.term-help-overlay{position:fixed;inset:0;z-index:150;display:flex;align-items:flex-end;justify-content:center;padding:12px calc(10px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));background:rgba(0,0,0,.74);backdrop-filter:blur(5px);animation:term-help-in .18s ease-out}
+.term-help-sheet{position:relative;width:min(100%,460px);padding:16px 16px 14px;border:1px solid rgba(245,158,11,.65);border-top:3px solid #f59e0b;border-radius:14px 14px 7px 7px;background:linear-gradient(155deg,rgba(24,13,9,.99),rgba(12,8,22,.99) 55%,rgba(3,6,12,.99));box-shadow:0 -16px 48px rgba(0,0,0,.8),0 0 28px rgba(168,85,247,.2)}
+.term-help-sheet::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(117deg,transparent 0 36px,rgba(245,158,11,.035) 37px 38px,transparent 39px 74px)}
+.term-help-kicker{position:relative;color:#fbbf24;font:800 8px var(--font-sans);letter-spacing:1.3px;margin-bottom:7px}.term-help-title{position:relative;color:#fff;font:900 20px/1.15 var(--font-sans);letter-spacing:.1px}.term-help-rank{position:relative;margin-top:5px;padding-bottom:9px;border-bottom:1px solid rgba(245,158,11,.22);color:#d8b4fe;font:800 9px var(--font-sans);letter-spacing:.8px}.term-help-body{position:relative;margin:11px 0 14px;color:#e8e7ed;font:400 15px/1.52 var(--font-serif)}.term-help-close{position:relative;width:100%;min-height:44px;border:1px solid rgba(245,158,11,.4);border-radius:8px;background:rgba(69,26,3,.45);color:#fff7ed;font:800 10px var(--font-sans);letter-spacing:1px}
+@keyframes term-help-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.reduced-motion .gloss-term.first-read,.reduced-motion .term-help-overlay{animation:none!important}
+.high-contrast .gloss-term{color:#fff!important;border-bottom-color:#fff!important;text-shadow:none}.high-contrast .term-help-sheet{border-color:#fff}
+
+/* Specificity correction: prose is literary serif; only direct speech is sans. */
+.story-box.speaker-sosa .story-text .prose-text.narration-text,
+.story-box.speaker-other .story-text .prose-text.narration-text,
+.story-box.speaker-narrator .story-text .prose-text.narration-text,
+.story-box.narration .story-text .prose-text.narration-text,
+.story-box.speaker-retrospective .story-text .prose-text.narration-text{
+    font-family:var(--font-serif);
+    font-size:16.5px;
+    line-height:1.58;
+    letter-spacing:0;
+    font-weight:400;
+    color:#eeeaf1;
+}
+.story-box.speaker-sosa .story-text .speech-text,
+.story-box.speaker-other .story-text .speech-text{
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    letter-spacing:0;
+    font-weight:600;
+}
+.story-box.speaker-sosa .story-text .thought-text{
+    font-family:var(--font-serif);
+    font-size:16px;
+    line-height:1.56;
+    letter-spacing:0;
+    font-style:italic;
+}
+@media(max-width:390px){
+    .story-box.speaker-sosa .story-text .prose-text.narration-text,
+    .story-box.speaker-other .story-text .prose-text.narration-text,
+    .story-box.speaker-narrator .story-text .prose-text.narration-text,
+    .story-box.narration .story-text .prose-text.narration-text,
+    .story-box.speaker-retrospective .story-text .prose-text.narration-text{font-size:16px;line-height:1.56}
+}
+
+/* Speaker-specific VN voices: typography follows the speaker, not one generic entity style. */
+.story-box.speaker-profile-utica{border-left-color:#a78bfa;background:linear-gradient(110deg,rgba(24,18,38,.94),rgba(8,13,24,.9))}
+.story-box.speaker-profile-utica .story-text .speech-text{font-family:var(--font-serif);font-weight:600;color:#ede9fe}
+.story-box.speaker-profile-goth{border-left-color:#fb7185;background:linear-gradient(110deg,rgba(45,8,24,.93),rgba(13,7,19,.9))}
+.story-box.speaker-profile-goth .story-text .speech-text{font-family:'Trebuchet MS',system-ui,sans-serif;font-weight:700;color:#fff1f2}
+.story-box.speaker-profile-kessler{border-left-color:#38bdf8;background:linear-gradient(110deg,rgba(3,20,32,.96),rgba(5,8,16,.92))}
+.story-box.speaker-profile-kessler .story-text .speech-text,.story-box.speaker-profile-kessler .story-text .prose-text.narration-text{font-family:var(--font-kessler);font-style:normal;font-weight:600;color:#e0f2fe;letter-spacing:.01em}
+.story-box.speaker-profile-civic .story-text .speech-text{font-family:system-ui,sans-serif;font-weight:600;color:#f1f5f9}
+.story-box.speaker-profile-street-human{border-left-color:#f59e0b;background:linear-gradient(110deg,rgba(42,19,4,.93),rgba(12,7,8,.92))}
+.story-box.speaker-profile-street-human .story-text .speech-text{font-family:'Arial Narrow',system-ui,sans-serif;font-weight:800;color:#ffedd5;letter-spacing:.01em}
+.story-box.speaker-profile-pall{border-left-color:#a5f3fc;background:linear-gradient(110deg,rgba(3,26,38,.96),rgba(4,7,15,.94));box-shadow:0 16px 40px rgba(0,0,0,.9),inset 0 0 28px rgba(103,232,249,.08)}
+.story-box.speaker-profile-pall .story-text .prose-text.narration-text,.story-box.speaker-profile-pall .story-text .speech-text{font-family:var(--font-serif);font-style:normal;font-variant:small-caps;font-weight:500;color:#ecfeff;letter-spacing:.055em;text-shadow:0 0 9px rgba(103,232,249,.38)}
+.story-box.speaker-profile-knell{border-left-color:#34d399;background:linear-gradient(110deg,rgba(2,28,27,.96),rgba(2,6,16,.95))}
+.story-box.speaker-profile-knell .story-text .prose-text.narration-text,.story-box.speaker-profile-knell .story-text .speech-text{font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;font-style:normal;font-size:14.5px;font-weight:650;color:#d1fae5;letter-spacing:.025em;text-shadow:1px 0 rgba(45,212,191,.55),-1px 0 rgba(192,132,252,.24)}
+.story-box.speaker-profile-spall{border-left-color:#fbbf24;background:linear-gradient(110deg,rgba(41,31,20,.96),rgba(9,8,11,.95))}
+.story-box.speaker-profile-spall .story-text .prose-text.narration-text,.story-box.speaker-profile-spall .story-text .speech-text{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-style:normal;font-size:16px;font-weight:850;color:#fff7ed;letter-spacing:-.015em;line-height:1.42;text-shadow:2px 2px 0 rgba(69,26,3,.7)}
+.story-box.speaker-profile-slag{border-left-color:#fb923c;background:linear-gradient(110deg,rgba(51,20,6,.96),rgba(12,9,8,.95))}
+.story-box.speaker-profile-slag .story-text .prose-text.narration-text,.story-box.speaker-profile-slag .story-text .speech-text{font-family:'Arial Narrow',system-ui,sans-serif;font-style:normal;font-size:15.5px;font-weight:800;color:#ffedd5;letter-spacing:.035em;text-transform:uppercase;line-height:1.45}
+.story-box.speaker-profile-archon{border-left-color:#f59e0b;background:linear-gradient(110deg,rgba(36,24,8,.97),rgba(5,5,8,.97));box-shadow:0 16px 42px #000,inset 0 0 30px rgba(245,158,11,.08)}
+.story-box.speaker-profile-archon .story-text .prose-text.narration-text,.story-box.speaker-profile-archon .story-text .speech-text{font-family:var(--font-serif);font-style:normal;font-variant:small-caps;font-size:16.5px;font-weight:700;color:#fef3c7;letter-spacing:.065em;line-height:1.5;text-shadow:0 0 10px rgba(245,158,11,.35)}
+.story-box.speaker-profile-egregore{border-left-color:#38bdf8;background:linear-gradient(110deg,rgba(3,15,28,.98),rgba(2,4,8,.97))}
+.story-box.speaker-profile-egregore .story-text .prose-text.narration-text,.story-box.speaker-profile-egregore .story-text .speech-text{font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;font-style:normal;font-size:14px;font-weight:800;color:#dbeafe;letter-spacing:.04em;text-transform:uppercase}
+.story-box.speaker-profile-grief{border-left-color:#818cf8;background:linear-gradient(110deg,rgba(21,20,55,.96),rgba(7,5,16,.96))}
+.story-box.speaker-profile-grief .story-text .prose-text.narration-text,.story-box.speaker-profile-grief .story-text .speech-text{font-family:var(--font-serif);font-style:normal;font-size:16px;font-weight:500;color:#e0e7ff;letter-spacing:.01em;text-shadow:0 0 12px rgba(129,140,248,.36)}
+
+/* Locally bundled Google Fonts: final role casting. */
+.story-box.speaker-profile-sosa .story-text .prose-text.narration-text,
+.story-box.speaker-profile-narrator .story-text .prose-text.narration-text,
+.story-box.speaker-profile-retrospective .story-text .prose-text.narration-text{font-family:var(--font-serif)}
+.story-box.speaker-profile-sosa .story-text .speech-text,.story-box.speaker-profile-goth .story-text .speech-text{font-family:var(--font-sans)}
+.story-box.speaker-profile-utica .story-text .speech-text{font-family:var(--font-serif);font-weight:600}
+.story-box.speaker-profile-kessler .story-text .speech-text,.story-box.speaker-profile-kessler .story-text .prose-text.narration-text{font-family:var(--font-kessler);font-weight:600}
+.story-box.speaker-profile-pall .story-text .prose-text.narration-text,.story-box.speaker-profile-pall .story-text .speech-text{font-family:var(--font-cold);font-size:17px;font-weight:600;letter-spacing:.045em}
+.story-box.speaker-profile-knell .story-text .prose-text.narration-text,.story-box.speaker-profile-knell .story-text .speech-text{font-family:var(--font-mono);font-size:14.5px;font-weight:500}
+.story-box.speaker-profile-spall .story-text .prose-text.narration-text,.story-box.speaker-profile-spall .story-text .speech-text{font-family:var(--font-condensed);font-size:17px;font-weight:800;letter-spacing:.005em}
+.story-box.speaker-profile-slag .story-text .prose-text.narration-text,.story-box.speaker-profile-slag .story-text .speech-text{font-family:var(--font-condensed);font-size:16.5px;font-weight:800;letter-spacing:.035em}
+.story-box.speaker-profile-archon .story-text .prose-text.narration-text,.story-box.speaker-profile-archon .story-text .speech-text{font-family:var(--font-formal);font-size:14.5px;font-weight:700;letter-spacing:.045em;line-height:1.62}
+.story-box.speaker-profile-egregore .story-text .prose-text.narration-text,.story-box.speaker-profile-egregore .story-text .speech-text{font-family:var(--font-mono);font-size:14px;font-weight:700}
+.story-header{font-family:var(--font-kessler)}
+.term-help-title{font-family:var(--font-formal)}

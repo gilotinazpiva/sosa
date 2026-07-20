@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "currentSceneKey": "act5_s3_text__p2",
+  "screen": "story",
+  "player": {
+    "hp": 64,
+    "maxHp": 100,
+    "debt": 99,
+    "poise": 5,
+    "armorShell": 1,
+    "unlocked": {
+      "refuse": true,
+      "battleContinuation": true,
+      "trace": true,
+      "dismantle": true,
+      "dismantleNamed": true,
+      "cleave": true,
+      "hellstep": true,
+      "stin": true,
+      "severTrue": false,
+      "patchJob": true,
+      "blackFlash": true,
+      "web": true,
+      "furnace": true,
+      "graveframe": true
+    },
+    "coffinPilot": false
+  },
+  "worldFlags": {
+    "preGraveframeFixture": true
+  },
+  "settings": {
+    "muted": false,
+    "reducedMotion": false
+  },
+  "veilHudLevel": 2,
+  "veilLearnedCensor": true,
+  "somnusNamed": true
+}
