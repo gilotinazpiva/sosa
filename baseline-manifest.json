@@ -1,0 +1,245 @@
+{
+  "schema": 1,
+  "baselineDate": "2026-07-18",
+  "source": "/home/user/uploads (immutable)",
+  "duplicateOmitted": {
+    "avatar_sosa_head.png": "byte-identical to assets/sosa_dialogue.png"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5115,
+      "sha256": "880efc6871e659aed14920b14c2a5d9030fe3d8afef8a6e8d7d674e717cde3f5"
+    },
+    {
+      "path": "assets/archon.png",
+      "bytes": 182896,
+      "sha256": "7f395ff554cf6685b4673d529f66d149bf9cc1a084d86c5aafb553e4b6fbdf40"
+    },
+    {
+      "path": "assets/bg_dart_station.jpg",
+      "bytes": 282963,
+      "sha256": "5cfdd179a552c2fba11bc03b084946532652fb44c7e7e47e514036c4372697a1"
+    },
+    {
+      "path": "assets/bg_ditch_predawn.jpg",
+      "bytes": 351507,
+      "sha256": "b413f02913ba213b8bb60c3ed1c63386eed08cad2d2400cf6255e6a060751e09"
+    },
+    {
+      "path": "assets/bg_dropin_center.jpg",
+      "bytes": 110841,
+      "sha256": "290eae9eb8d92711bdcdc901ab7b57b8633f868ec2c0ee2c2c18749991f9f1e5"
+    },
+    {
+      "path": "assets/bg_laundromat_dawn.jpg",
+      "bytes": 263081,
+      "sha256": "d24075311d056fe7bd559693d832c9da3ee78618a0acccff847582ba0c6ed8f3"
+    },
+    {
+      "path": "assets/bg_library_corner.jpg",
+      "bytes": 312595,
+      "sha256": "a00c8f1f5753c795f8f769b59e3498deff9152eb8414fe79bd2ecc70de28d40a"
+    },
+    {
+      "path": "assets/bg_tomra.png",
+      "bytes": 136688,
+      "sha256": "a68df241937167d245a081b983640a5261753d44dd2999e4add3059103f1eee3"
+    },
+    {
+      "path": "assets/bg_utica_alley.jpg",
+      "bytes": 164728,
+      "sha256": "4287198f4a7132958575a5887a78710f6d0c3d4b914abe2b6cb880409aca8dca"
+    },
+    {
+      "path": "assets/bg_wendys_midnight.jpg",
+      "bytes": 206392,
+      "sha256": "42fac6045883ad94d3249715763ffcf40ad2de2672f9f35eba2ddb1d30cb0303"
+    },
+    {
+      "path": "assets/censor_scout.png",
+      "bytes": 55846,
+      "sha256": "c723f6f041b9af0c725881f06c8c2cd1f5d43124ea52d1f0ff388fc43e1c3c4c"
+    },
+    {
+      "path": "assets/cg_coffin_pilot.jpg",
+      "bytes": 170696,
+      "sha256": "a95025b3be2c917711bd97d3185b5836cb502d889b59789f08ba459ae31a1e65"
+    },
+    {
+      "path": "assets/cg_mask_laundromat.jpg",
+      "bytes": 248095,
+      "sha256": "764b34cc8c4e22727d0f74cac51371f21d934243853ad9ae25c39782e3e4328f"
+    },
+    {
+      "path": "assets/cg_reality_marble.jpg",
+      "bytes": 99724,
+      "sha256": "71477c1b8215cf727402d1f59f62d107ad1dba4d8f22280c648acfd56cd4ef04"
+    },
+    {
+      "path": "assets/cg_somnus_manifestation.jpg",
+      "bytes": 192965,
+      "sha256": "942b8237b92143c2d4bd673a8fae6a41b9b76bb006a8941d1ec5a5e7c0323e48"
+    },
+    {
+      "path": "assets/chime.png",
+      "bytes": 75160,
+      "sha256": "997a419bdddc87bdbeb44c308fd1b96770af7aca29e550c8aa327f0de60e7b46"
+    },
+    {
+      "path": "assets/pfp_sosa.jpg",
+      "bytes": 70174,
+      "sha256": "79f010a94c5118399c7501f1254fc9b72665227f3754d0f7079299bb1f4691b0"
+    },
+    {
+      "path": "assets/rime.png",
+      "bytes": 54236,
+      "sha256": "eeeb59c7e3efcf671e82f355263956892be282574be645b0d1edac9abe302249"
+    },
+    {
+      "path": "assets/slag.png",
+      "bytes": 40544,
+      "sha256": "1ba7f3eee5c4112bd87117097b9815f1c9f3c8cc491d7f18c5132d9abeae5db5"
+    },
+    {
+      "path": "assets/somnus.png",
+      "bytes": 829367,
+      "sha256": "48b1919e2e487d4edfa2f03c2cab4a2cdead9f126e5e4dac5bc585f01c38137f"
+    },
+    {
+      "path": "assets/sosa.png",
+      "bytes": 218743,
+      "sha256": "69a2af17da59e02d9c190a237a0153fe8ff0fa42973c9b96c8184de1fa59234c"
+    },
+    {
+      "path": "assets/sosa_dialogue.png",
+      "bytes": 51106,
+      "sha256": "cc39ed292f09881584512421fa0661ce6ec3576609d5d13edcf0b7b8c21ea240"
+    },
+    {
+      "path": "assets/spall.png",
+      "bytes": 57545,
+      "sha256": "6869479db767eafd3d5cd5f69403a6518709b5793fb1de37954c3f327ee1052d"
+    },
+    {
+      "path": "assets/street_predator.png",
+      "bytes": 324204,
+      "sha256": "c38170c278140a958274da2560a4b1c7e53d757db34e1d57ced586abeb1a483b"
+    },
+    {
+      "path": "assets/titlescreen.png",
+      "bytes": 167212,
+      "sha256": "f592a35e38c281b1063073b2349100d3861230b1bd20fab328cad9186e1f50cf"
+    },
+    {
+      "path": "assets/transit_security.png",
+      "bytes": 1369823,
+      "sha256": "3fc752f30c42294e54a5e66545889e6238b0cac12057f290f571f00dce9fe073"
+    },
+    {
+      "path": "cg_stats_scan.html",
+      "bytes": 12034,
+      "sha256": "6e3950f75d0368b78cf18d8eb8a8d605ac8d6ae942f32d83e1d1dd950d3ba110"
+    },
+    {
+      "path": "css/accessibility.css",
+      "bytes": 3771,
+      "sha256": "d83c4cc72d17dc2f5cfa7b88547d53897f169ef1b2cfa7b64a4c3500e7a7818f"
+    },
+    {
+      "path": "css/base.css",
+      "bytes": 3086,
+      "sha256": "9c29a5948b05bd4e79843c74e07ce6a67cf69cfac3c5f0c256993cb34f724f6d"
+    },
+    {
+      "path": "css/battle.css",
+      "bytes": 15852,
+      "sha256": "f09b69c112704e15f6dfba84ffffd19d06789720786cb2298c8df5dfe9aea955"
+    },
+    {
+      "path": "css/discord.css",
+      "bytes": 5468,
+      "sha256": "959146dc4b7fe2e8bb53d87046ece0dc8ccf22260b8b5db2d2e4a885023e3773"
+    },
+    {
+      "path": "css/effects.css",
+      "bytes": 13842,
+      "sha256": "071ae96b828105e3be1388bc0f43d385dfdafc8c0b5ef8c646d386a38077b149"
+    },
+    {
+      "path": "css/story.css",
+      "bytes": 4457,
+      "sha256": "51fb46386fa99e79bd9b0d1ae6e84bd9619fdd3a63e20b1486c7bb19961e6f49"
+    },
+    {
+      "path": "css/title.css",
+      "bytes": 3178,
+      "sha256": "e7aee9dcbc0ded8175c3cc037382a3114d77bd4d49527c26c519887a794983d1"
+    },
+    {
+      "path": "docs/MASTER_GDD_HANDOFF.md",
+      "bytes": 16216,
+      "sha256": "db984da4f3f5f5efacb2027bcb4b857f8dfcdfee896e56496e11b8e5700e7c1e"
+    },
+    {
+      "path": "docs/SOSA_DEFINITIVE_DOSSIER.md",
+      "bytes": 113873,
+      "sha256": "6e4eefa058002f8da50b73b817754a7fb34bc8406e52b8c1536f81f7aee61c51"
+    },
+    {
+      "path": "docs/WORLD_TAXONOMY_ECOLOGY.md",
+      "bytes": 107247,
+      "sha256": "a39395d22869d3460af6cbc1c46aef91f705064a2eeb026a4a8aeecf2b145558"
+    },
+    {
+      "path": "index.html",
+      "bytes": 3871,
+      "sha256": "7ba85f43a84efadf4e293e32986b8cdc942fe00f2f5b46493aa84ac8a56f67b2"
+    },
+    {
+      "path": "js/audio.js",
+      "bytes": 26484,
+      "sha256": "28caaf3265ea801c55eb3710ae2944bf8a8c2759baec882ef8a09d2e5c41ec9a"
+    },
+    {
+      "path": "js/data.js",
+      "bytes": 203230,
+      "sha256": "cf12e0327786e79f52970847e1262a9ffe43325f8647a8e07a2b245f4cfcd8fd"
+    },
+    {
+      "path": "js/fx.js",
+      "bytes": 8420,
+      "sha256": "8924970bdef8f3a649fd1625546174ce4a0885efc61830c96c7154e60023aae0"
+    },
+    {
+      "path": "js/game-battle.js",
+      "bytes": 45735,
+      "sha256": "10de3cea699499ba543cab8f61439baf8acbe1bb321691434366c826b1d7a679"
+    },
+    {
+      "path": "js/game-bosses.js",
+      "bytes": 1018,
+      "sha256": "1a8217509c40f5d6c6786dd42d5f851ac4219121be821cb4082dfedb83e40e41"
+    },
+    {
+      "path": "js/game-core.js",
+      "bytes": 13733,
+      "sha256": "87b3f2aedd806cbd2a17ead6a0d249d9e308aba47558c587dd2b4edd9f779f26"
+    },
+    {
+      "path": "js/game-enemies.js",
+      "bytes": 11900,
+      "sha256": "8c1f6bee834c92ab2da5489b0f76ded056e0e0fcb271e73702d8881d54dd51b0"
+    },
+    {
+      "path": "js/game-states.js",
+      "bytes": 15724,
+      "sha256": "6b8dc86f9eee557406a9f0bd22fd43ebb70fb6482f19848d956a867a275408dd"
+    },
+    {
+      "path": "js/render.js",
+      "bytes": 59224,
+      "sha256": "3847a12e66bb9197aaecb792e48dab1ef3e51c341a29ac36807138b241656565"
+    }
+  ]
+}

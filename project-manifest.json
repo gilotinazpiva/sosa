@@ -1,0 +1,1260 @@
+{
+  "schema": 2,
+  "updated": "2026-07-20",
+  "canonicalRoot": "/home/user/game",
+  "sourceUploads": "/home/user/uploads (immutable)",
+  "build": {
+    "playableActs": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "routedScenes": 589,
+    "mainPathBattles": 22,
+    "encounterDefinitions": 25,
+    "playableChapters": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "playableChapter6Opening": true,
+    "playableChapter6FirstConflict": true
+  },
+  "qa": {
+    "javascriptParse": "pass",
+    "sceneRenderSmoke": "589/589",
+    "encounterRenderSmoke": "25/25",
+    "fullPathWithRetry": "historical 500/500; current permanent seeded gate 200/200",
+    "houndStrategies": "historical 12000/12000; current main-path balance gate pass",
+    "blackFlashReactiveTest": "pass",
+    "cssBraceValidation": "pass",
+    "duplicateContentGroups": 0,
+    "battleDialogueCoverage": "22/22",
+    "smokeCommand": "node tests/smoke.js",
+    "archonWitnessGate": "pass",
+    "fullPathSeeded": "200/200",
+    "softlocks": 0,
+    "maxVnCharacters": 340,
+    "psychedelicBattleFields": "17/17",
+    "omnisInlineScript": "pass",
+    "grammarStructural": "pass",
+    "contentGuardrails": "pass",
+    "endureTechniqueRemoved": true,
+    "discordFullChats": 3,
+    "audioVolumeProfiles": "pass",
+    "mobileHudReadabilityPass": "pass",
+    "screenshotMobilePass": "not run: no browser engine available; physical-device gate remains open",
+    "discordRoleLeak": "pass",
+    "groupPreviewSingleMessage": "pass",
+    "housingCanon": "pass",
+    "victoryComposition": "pass",
+    "somnusNamingOrder": "pass",
+    "act1InterBattleNarrative": "pass",
+    "vnEnvironmentalSfx": "pass",
+    "techniqueCallouts": "pass",
+    "drossDialogueExtended": "pass",
+    "persistentBattleStory": "pass",
+    "nonRepeatingCutIns": "implemented",
+    "veilLogGate": "pass",
+    "fullScreenDiscordAdvance": "pass",
+    "speakerLanguageSystem": "pass",
+    "somnusMovementPresentation": "pass",
+    "act1RefuseNarrative": "pass",
+    "continuityDestinationOrder": "pass",
+    "vegasJobOneBed": "pass",
+    "mailedKeyRemoved": "pass",
+    "mysticCodeRevealOrder": "pass",
+    "inPersonSpeakerSplit": "pass",
+    "act2HallwayRime": "pass",
+    "battlePatternFamilies": 11,
+    "formalTaxonomyRevealOrder": "pass",
+    "partialVeilNonnumeric": "pass",
+    "gothReturnDate": "2025-12-28",
+    "gothArrestExplanationDeduplicated": "pass",
+    "preBattleExchange": "enemy then Sosa; both acknowledged",
+    "balanceSeeded": "200/200",
+    "duplicateTraced": "removed",
+    "censorAnchorOntology": "Formalcraft Grid Integrity; no selectable anchor",
+    "graveframePublicName": "pass",
+    "drossKillTrail": "pass",
+    "inPersonDialogueSplitAllActs": "pass",
+    "debtStoryVents": "pass",
+    "drossEpisodeOrder": "pass",
+    "spallAftermath": "pass",
+    "slagTomraPlacement": "pass",
+    "chimeRelayFinale": "pass",
+    "graveframeTerminology": "pass",
+    "kesslerGridNoAnchor": "pass",
+    "formalTermOrderExpanded": "pass",
+    "tomraStart": "2026-03-17",
+    "februaryHuntingBridge": "pass",
+    "kesslerRelationshipSpan": "2026-04-06 through 2026-05-06",
+    "secondHunt": "pass",
+    "relayBeforeArchon": "pass; Relay February, Archon April 30 after Slag and Kessler partnership",
+    "firstResonanceForced": "pass",
+    "blackFlashPassiveUnlock": "pass",
+    "webMechanics": "implemented",
+    "utilityRailSeparation": "pass",
+    "graveframeDistinctUi": "pass",
+    "omnisExConflictAudit": "pass",
+    "kesslerSpriteAppearance": "pass",
+    "kesslerJointCleanup": "pass",
+    "matureDrossTaxonomy": "pass",
+    "cleaveRecalibration": "pass",
+    "furnaceAoE": "pass",
+    "kesslerRescueSwarm": "pass",
+    "kesslerJointArchon": "pass",
+    "archonAfterDrossEpisodes": "pass",
+    "archonOmnisFracture": "pass",
+    "canonicalDocsIntegrated": "pass",
+    "obsoleteRevisionDebrisRemoved": "pass",
+    "duplicateSceneLiteralKeys": 0,
+    "obsoleteEarlyArchonDefinitionsRemoved": "pass",
+    "alliedSupportMetadata": "pass",
+    "productionBootLogsRemoved": "pass",
+    "roadmapCurrent": "pass",
+    "legacySaveFixture": "pass",
+    "legacySaveRoundTrip": "pass",
+    "packageRootVerification": "pass",
+    "packageRuntimeOnlyVerification": "pass",
+    "uticaGirlIndependentTrajectory": "pass",
+    "apt3Geometry": "one bedroom + living room + bathroom + kitchen; shared bed/couch/chair; pass",
+    "uticaCurbMeeting": "pass",
+    "tomraAprilShiftTiming": "pass",
+    "firstHuntQuietAftermath": "pass",
+    "gzVoiceDifferentiation": "first pass",
+    "kesslerMundaneCare": "pass",
+    "graveframeDynamicCollateral": "pass",
+    "dynamicSceneSaveMaterialization": "pass",
+    "dossierRevisionDebris": "removed",
+    "apt3SecondFloorAccess": "street door -> interior stairs -> second locked apartment door; pass",
+    "tomraDayShift": "9 AM-5 PM; pass",
+    "omnisClassTypeSplit": "Caster? / TYPE-0 IRREGULAR; pass",
+    "omnisExGlow": "pass",
+    "egregoreTypeLadder": "pass",
+    "matureDrossRename": "pass",
+    "omnisSkillRankProximity": "two-column flex; pass",
+    "typeTerminologyDeGenericized": "pass",
+    "moltFieldNames": "Nifl / Atlas / Relay / Overtime; pass",
+    "gothVoiceFingerprint": "March shift DM; pass",
+    "dossierDormantSomnusMaterial": "liquid-black; no breathing sand; pass",
+    "proseAudit": "pass",
+    "vnGrammarScreens": "466/466",
+    "discordGrammarEntries": "216/216",
+    "battleLanguageLines": "199/199",
+    "knownTypos": "pass",
+    "articleHeuristics": "pass",
+    "duplicateWords": "pass",
+    "danglingScreenEndings": "pass",
+    "relayQuietAftermath": "pass",
+    "combatMechanicsDeterministic": "pass",
+    "cleaveRecalibrationTest": "pass",
+    "webControlTest": "pass",
+    "furnaceAoETest": "pass",
+    "allyCadenceTest": "pass",
+    "gothSexualBeatArc": "pass",
+    "sosaNoCarContinuity": "pass",
+    "postArchonQuiet": "pass",
+    "postEliasQuiet": "pass",
+    "may7to18Bridge": "pass",
+    "gothOneWordAbsencePayoff": "pass",
+    "gzBoundaryStakes": "pass",
+    "gothArchonAnswer": "voice-specific ally cut-in; pass",
+    "gothReceivingSilence": "pass",
+    "uticaPostHospitalBoundary": "pass",
+    "chapter6CivicCollateral": "dynamic; pass",
+    "dynamicCivicCollateralSaveMaterialization": "pass",
+    "gzNoHierarchy": "pass",
+    "chapter6OpeningNotCredits": "pass",
+    "validationHighCardinality": "pass",
+    "omnisDynamicAttentionGraph": "pass",
+    "fixedTributaryCountRemoved": "pass",
+    "rosterReciprocityCanon": "pass",
+    "drugDiscordOrigin": "pass",
+    "niflMoltEpisode": "pass",
+    "webPreKesslerUnlock": "pass",
+    "allBaseDrossBeforeMolt": "pass",
+    "dedicatedBaseChime": "pass",
+    "frostGroupChatHumanName": "pass",
+    "slagTypeIDistinction": "pass",
+    "kesslerDateShift": "pass",
+    "sosaTechniqueNaming": "Dismantle/Web/Hellstep/Cleave/Furnace/System Call/Black Flash/Graveframe; pass",
+    "spriteSemanticAudit": "pass",
+    "provisionalSpriteRemap": "pass",
+    "ecologyCssOverlays": "pass",
+    "signalCssBackground": "pass",
+    "depotCssBackground": "pass",
+    "finalArtBacklog": "MASTER_GDD priority 6",
+    "knellRename": "pass",
+    "rimeKnellDistinct": "pass",
+    "atlasRecurrenceSeed": "pass",
+    "techniqueNamingNarrative": "pass",
+    "provisionalAssetSemanticRemap": "pass",
+    "cssEcologyPlaceholders": "pass",
+    "knellPublicRename": "pass",
+    "atlasSeed": "pass",
+    "atlasMoltBattle": "pass",
+    "atlasLoadTransfer": "pass",
+    "atlasWebPin": "pass",
+    "atlasFurnaceCollateral": "pass",
+    "atlasDynamicAftermath": "pass",
+    "overtimeMoltBattle": "pass",
+    "overtimeCadence": "pass",
+    "overtimeRefuse": "pass",
+    "overtimePolicyAftermath": "pass",
+    "somnusFixationTelegraph": "pass",
+    "fixationRefuseCounter": "pass",
+    "fixationLock": "pass",
+    "earlyRefuseOnly": "pass",
+    "lateUtilityRefuseRemoved": "pass",
+    "overtimeWebInterrupt": "pass",
+    "fixationWebCounter": "pass",
+    "graveRejectLabel": "pass",
+    "battleEmojiBan": "pass",
+    "eyeEmojiBan": "pass",
+    "fixationCssEye": "pass",
+    "discordPinCssIcon": "pass",
+    "combatCodex": "pass",
+    "holdInspect520ms": "pass",
+    "cooldownInspectAria": "pass",
+    "holdClickSuppression": "pass",
+    "kesslerFormalcraftLaneFX": "pass",
+    "kesslerTargetBracketFX": "pass",
+    "reducedMotionAllyFX": "pass",
+    "sourceContaminationAudit": "pass",
+    "manifestJsonParse": "pass",
+    "allJsParse": "pass",
+    "furnaceGlobalTracking": "pass",
+    "furnaceOvertimeAftermath": "pass",
+    "furnaceArchonAftermath": "pass",
+    "furnaceCensorAftermath": "pass",
+    "blackFlashNoFishingPolicy": "pass",
+    "blackFlashBaseChance4": "pass",
+    "blackFlashZoneChance10": "pass",
+    "blackFlashConsecutive24_38_52": "pass",
+    "blackFlashZone120Percent": "pass",
+    "blackFlashZoneThreeRounds": "pass",
+    "blackFlashStreakBreak": "pass",
+    "firstResonanceGuaranteed": "pass",
+    "lckExBlackFlashCausality": "pass",
+    "omnisLckConvergenceNote": "pass",
+    "roadmapConsolidated": "pass",
+    "staleRoadmapTermsRemoved": "pass",
+    "saveFixtures": "6/6 round trips including partial-corruption recovery",
+    "saveRoundTrips": "6/6",
+    "atlasDynamicSave": "pass",
+    "overtimeDynamicSave": "pass",
+    "preGraveframeSave": "pass",
+    "chapter6CollateralSave": "pass",
+    "startBattleDecomposition": "pass",
+    "startBattleBalanceEquivalence": "200/200",
+    "mobileContractWidths": "360/390/430/480 pass",
+    "mobileResponsiveContracts": "pass",
+    "mobileSafeAreas": "pass",
+    "mobileTouchTargets44px": "pass",
+    "mobileBlackFlashRingZone": "pass",
+    "mobileGraveframeStructure": "pass",
+    "mobileOmnisFitContracts": "pass",
+    "firstInteractionAudioUnlock": "pass",
+    "combatCodexHoldSimulation": "pass",
+    "physicalDeviceVerification": "still required",
+    "enemyEffectHandlers": "13/13 referenced effects registered and deterministic",
+    "enemyIntentPipeline": "normalization/control/announcement/guard/damage-effect/type/finalization pass",
+    "htmlCssStructuralAudit": "2 HTML entry points; 7 stylesheets; 40 static IDs; local refs/tags/delimiters/offline policy pass",
+    "omnisDocumentTitle": "pass",
+    "chapter6FirstConflict": "pass: claim reopened; Egregore trail restored; Sever: True remains locked",
+    "chapter6Payoffs": "mirrored Omnis/cat sticker, civic Collateral, Utica boundary, Gz ask-not-summon, Goth direct account",
+    "packageVerify": "pass: exact 94-file source-complete project set, source-byte match, root index, docs/tests/manifests included, safe paths, integrity",
+    "legacyMutedMigration": "muted → audioMuted pass",
+    "battleTimerCancellation": "10/10 tracked callback classes",
+    "chapter6FormalBackground": "css_bg_formal → void-formal pass",
+    "runtimeIframeIntegrity": "single on-demand titled Omnis iframe",
+    "phoneKeyboardAccess": "VN/phone/DM/voice Enter/Space pass",
+    "wholeProjectAudit": "inventory, schemas, routes, effects, offline runtime, emoji policy, asset signatures pass",
+    "assetSignatures": "25/25 pass; JPEG/PNG extensions match binary encoding",
+    "sosaDialoguePortrait": "assets/sosa_dialogue.jpg (JPEG encoding corrected from .png filename)",
+    "battleCutInStability": "one entrance per line; settled across damage rerenders",
+    "vnLanguageChannels": "narration, prose, quoted speech, Sosa thought, humans, entities pass",
+    "battleMusicForms": "8.0–9.6 second original four-part procedural forms",
+    "vnMusicPresence": "story/cold/Discord profile gains raised; user volume remains independent",
+    "placeholderEnvironmentReadability": "city/transit/room/grief/Formalcraft/underpass silhouettes implemented",
+    "heldFocusLanguage": "Ypsilon Veil/seam/residue wording; hold-inspect/AoE helper language removed",
+    "somnusPresentation": "aura, CSS memory-eyes, larger field silhouette, manifestation reaction",
+    "battleTransitionHandoff": "opaque midpoint; battle mounts at 560ms; Reduced Motion 40ms",
+    "victoryBanterCoverage": "22/22 encounters; 2 Sosa + 2 Somnus reactions each",
+    "battleLinesAudited": 331,
+    "vnScreens": 563,
+    "skillExpression": "7/7 dossier Class/Personal skills expressed",
+    "retrospectiveSosaChannel": "2/2 explicit future-knowledge scenes marked; accidental future clauses rewritten",
+    "lexicalCounts": {
+      "hum": 0,
+      "static": 0,
+      "noStrings": 1,
+      "seam": 1,
+      "chuuni": 0,
+      "holdTheLine": 0,
+      "geometry": 0
+    },
+    "imperialPrivilegeFalse": "narratively expressed; generic damage prototype removed; contextual mechanic deferred",
+    "preDecemberArrestKnowledge": "blocked: no Ohio/Columbus/arrest details before 2025-12-28 reveal",
+    "greyhoundBridge": "hour 0 → 10 → 25 → 39 → 48 → Utica",
+    "gothReturnTone": "relief-led; missed-you/are-you-safe before complication; grammar pass",
+    "blackFlashStoryGate": "unlock + blackFlashAwakened world flag required; forced First Resonance sets both",
+    "blackFlashWindows": "2800/2400/2000 ms; Reduced Motion 3400 ms; forced window non-expiring",
+    "blackFlashPresentation": "dedicated time stop/cross-cut/rings/Zone/music duck; generic Shattering suppressed",
+    "severFx": "target-indexed Shrine auto-cut and Dismantle travel/mark sequences",
+    "vnCueFx": "cold/phone/motion/impact/heartbeat/rain/interference/Formalcraft/manifest overlays",
+    "gothFelonyOhio": "December 28 reveal explicit; remains in Ohio after felony; post-release scenes 3/3 Ohio",
+    "falseEyesPerceptualGate": "living + nonliving loaded faults; passive pressure; Veil resolves one; Trace commits one; overflow only at threshold states",
+    "ordinaryGlasses": "mundane correction only; no supernatural suppression",
+    "earlyCleanupLanguage": "0 player-facing uses in Chapters 1–3",
+    "earlyTaxonomyBanners": "COLD PACK / COLD PRESSURE / COLD // WIRE // CONCRETE",
+    "drossNaming": "Pall/Spall/Knell/Slag official; field names remain contextual",
+    "mixedDrossMechanics": "Ice Mortar + Cue Trade + Crossfeed pass",
+    "drossSpriteSemantics": "Pall→rime.png, Spall→spall.png, Knell→chime.png, Slag→slag.png",
+    "sameFamilyVariants": "3 deterministic visual treatments",
+    "sosaBattleVoice": "context matrix; desire/false confidence/self-deprecation checks pass",
+    "firstResonanceCascade": "forced hit + 2 missable windows + Pall/Spall reinforcements + dynamic aftermath",
+    "dismantleDepth": "1/3 read; +20% second; +50% third/reset",
+    "partialVeilAr": "reachable; qualitative HP/Presence/Focus/Trace Read + visible Interception pips",
+    "furnaceNarrativeGate": "pre-unlock Cut Ash/APERTURE UNCLAIMED; April 20 three-layer explanation and unlock",
+    "debtTimeSkipCheckpoints": "15–35 on long safe gaps; close fights retain Debt",
+    "enemyPhaseWatchdog": "6500ms + per-intent exception recovery",
+    "persistentKessler": "party-side sprite faces enemies; persistent brackets; compact cadence tag",
+    "structuralPlaceholderPolicy": "Molts/anchors/load-bearers never reuse base raster art",
+    "structuralPlaceholders": "Nifl/Relay/Atlas/Overtime/Red-Tag Core/Atlas load-bearer pass",
+    "moltCutInVictoryConsistency": "same CSS identity used in battle, cut-ins, and victory",
+    "furnacePipIdentity": "3 dedicated CSS aperture pips; no generic diamonds",
+    "furnaceOpenButton": "sealed slot transforms at 3/3 into glowing OPEN / FURNACE READY",
+    "screenshotPhysicalPass": "manifestation split, stairwell plate, Kessler composition, persistent applied brackets, dead-card collapse, Discord hint clearance",
+    "fontReadability": "offline system-ui/Georgia/ui-monospace; larger battle chips/subtext; reduced tracking",
+    "slashTargetMeasurement": "getBoundingClientRect enemy-center placement; global off-target layers removed",
+    "somnusCutInLabel": "SOMNUS // MOVEMENT; no ENEMY fallback",
+    "gothShiftDialogue": "mundane work intimacy; no duplicate camera/control sequence",
+    "inlineSvgEnemies": "Nifl/Relay/Atlas/Overtime/anchor/load-bearer detailed SVG pass",
+    "detachedSomnusEyes": "removed; integrated sprite eyes retained",
+    "firstReadGlossary": "25 term definitions; authored intro scenes; 520ms hold; known-term styling",
+    "glossarySavePersistence": "version-1 persisted; legacy progression inference pass",
+    "glossaryNarrativeGate": "scene mapping prevents pre-introduction highlight",
+    "vnFontCascade": "Sosa/narrator/retrospective prose Georgia; thought Georgia italic; direct speech system sans",
+    "sosaProseSpecificity": "physical screenshot regression fixed and statically gated",
+    "speakerProfiles": "Pall/Knell/Spall/Slag/Archon/Egregore/Kessler/Utica/Goth/Sosa/narrator",
+    "privateDmExpansion": "7-thread list + Mochaviolet/Honeyvenom/Cloudnymph + reciprocal aftermath",
+    "privateDmResourceLanguage": "0 donor/battery/path-count/mana framing",
+    "narrativeStructure": "10 alternating-speaker contracts; retrospective/quote/CG/formal-order pass",
+    "speakerOwnership": "one in-person speaker per card; narrator movement cards; same-speaker multi-line allowed",
+    "straightQuoteChannel": "straight and curly quoted speech both parsed as direct speech",
+    "chapterAudit": "Ch1–Ch6 sectioned audit integrated in MASTER_GDD_HANDOFF",
+    "reinforcementWaves": "Texas Pall, Utica Pall, Nifl accounts, First Resonance, Overtime replacement",
+    "earlyUnnamedCut": "First Refusal only Refuse; post-manifest grid Refuse + Unnamed Cut",
+    "breachLeakage": "35% armored / 55% unarmored / 100% open",
+    "enemyFamilyFx": "Pall/Knell/Spall/Slag/Archon-human attack and death families",
+    "fieldExpRewards": "22/22 encounter rewards; contextual recovery/lesson; first-clear only",
+    "vnEnvironmentExpansion": "void-bus + void-bedroom-frost + encounter battle contexts",
+    "preNamingBattleLanguage": "THE SHADOW only; Somnus label unlocked by naming chronology",
+    "localFontFamilies": "7 Google Fonts families / 12 Latin WOFF2 files / OFL licenses",
+    "fontRuntimeNetwork": "0 external requests",
+    "fontRoleCasting": "Newsreader/Plex Sans/Plex Condensed/Plex Mono/Barlow Condensed/Cormorant Garamond/Cinzel",
+    "fontAssetSignatures": "12/12 WOFF2",
+    "releaseCandidateAudit": "2026-07-20: all permanent source gates passed; exact-runtime ZIP verifier strengthened",
+    "sourceCompleteArchive": true
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 17310,
+      "sha256": "8934772f3ae225c36cde3ea8c264c14558d8805e32099997af161637828db072"
+    },
+    {
+      "path": "assets/archon.png",
+      "bytes": 182896,
+      "sha256": "7f395ff554cf6685b4673d529f66d149bf9cc1a084d86c5aafb553e4b6fbdf40"
+    },
+    {
+      "path": "assets/bg_dart_station.jpg",
+      "bytes": 282963,
+      "sha256": "5cfdd179a552c2fba11bc03b084946532652fb44c7e7e47e514036c4372697a1"
+    },
+    {
+      "path": "assets/bg_ditch_predawn.jpg",
+      "bytes": 351507,
+      "sha256": "b413f02913ba213b8bb60c3ed1c63386eed08cad2d2400cf6255e6a060751e09"
+    },
+    {
+      "path": "assets/bg_dropin_center.jpg",
+      "bytes": 110841,
+      "sha256": "290eae9eb8d92711bdcdc901ab7b57b8633f868ec2c0ee2c2c18749991f9f1e5"
+    },
+    {
+      "path": "assets/bg_laundromat_dawn.jpg",
+      "bytes": 263081,
+      "sha256": "d24075311d056fe7bd559693d832c9da3ee78618a0acccff847582ba0c6ed8f3"
+    },
+    {
+      "path": "assets/bg_library_corner.jpg",
+      "bytes": 312595,
+      "sha256": "a00c8f1f5753c795f8f769b59e3498deff9152eb8414fe79bd2ecc70de28d40a"
+    },
+    {
+      "path": "assets/bg_tomra.png",
+      "bytes": 136688,
+      "sha256": "a68df241937167d245a081b983640a5261753d44dd2999e4add3059103f1eee3"
+    },
+    {
+      "path": "assets/bg_utica_alley.jpg",
+      "bytes": 164728,
+      "sha256": "4287198f4a7132958575a5887a78710f6d0c3d4b914abe2b6cb880409aca8dca"
+    },
+    {
+      "path": "assets/bg_wendys_midnight.jpg",
+      "bytes": 206392,
+      "sha256": "42fac6045883ad94d3249715763ffcf40ad2de2672f9f35eba2ddb1d30cb0303"
+    },
+    {
+      "path": "assets/censor_scout.png",
+      "bytes": 55846,
+      "sha256": "c723f6f041b9af0c725881f06c8c2cd1f5d43124ea52d1f0ff388fc43e1c3c4c"
+    },
+    {
+      "path": "assets/cg_coffin_pilot.jpg",
+      "bytes": 170696,
+      "sha256": "a95025b3be2c917711bd97d3185b5836cb502d889b59789f08ba459ae31a1e65"
+    },
+    {
+      "path": "assets/cg_mask_laundromat.jpg",
+      "bytes": 248095,
+      "sha256": "764b34cc8c4e22727d0f74cac51371f21d934243853ad9ae25c39782e3e4328f"
+    },
+    {
+      "path": "assets/cg_reality_marble.jpg",
+      "bytes": 99724,
+      "sha256": "71477c1b8215cf727402d1f59f62d107ad1dba4d8f22280c648acfd56cd4ef04"
+    },
+    {
+      "path": "assets/cg_somnus_manifestation.jpg",
+      "bytes": 192965,
+      "sha256": "942b8237b92143c2d4bd673a8fae6a41b9b76bb006a8941d1ec5a5e7c0323e48"
+    },
+    {
+      "path": "assets/chime.png",
+      "bytes": 75160,
+      "sha256": "997a419bdddc87bdbeb44c308fd1b96770af7aca29e550c8aa327f0de60e7b46"
+    },
+    {
+      "path": "assets/fonts/FONT_SOURCES.txt",
+      "bytes": 826,
+      "sha256": "103db8b8cbceb5a8e8e50b991b3697184b6b1d3d6b105642628113551cd27f75"
+    },
+    {
+      "path": "assets/fonts/barlow-condensed-600.woff2",
+      "bytes": 22308,
+      "sha256": "215a93c696f442034a46fbb382958f753fda60e30490683aeea6b235fcbb2b66"
+    },
+    {
+      "path": "assets/fonts/barlow-condensed-800.woff2",
+      "bytes": 22464,
+      "sha256": "2515494e8cc2ca07c86ea78766cfa104b796aa6ed5d66821c01d51dbb0b52bce"
+    },
+    {
+      "path": "assets/fonts/barlow-condensed-OFL.txt",
+      "bytes": 4377,
+      "sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f"
+    },
+    {
+      "path": "assets/fonts/cinzel-OFL.txt",
+      "bytes": 4383,
+      "sha256": "f2b3029aba64c378bf0963b62945eee15e564fe4330b934c8f2eb058282b5e83"
+    },
+    {
+      "path": "assets/fonts/cinzel-variable.woff2",
+      "bytes": 25904,
+      "sha256": "09941fb1c169c38fd414536b37690057fc01b3117a5c63dd6571186540c8f370"
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-500.woff2",
+      "bytes": 37640,
+      "sha256": "d80df8ff5aecd299a61549f9e29ab1ed0b9b05f4ea71d50fe978e07d5240b235"
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-600.woff2",
+      "bytes": 37640,
+      "sha256": "d80df8ff5aecd299a61549f9e29ab1ed0b9b05f4ea71d50fe978e07d5240b235"
+    },
+    {
+      "path": "assets/fonts/cormorant-garamond-OFL.txt",
+      "bytes": 4387,
+      "sha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-mono-500.woff2",
+      "bytes": 14888,
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-mono-700.woff2",
+      "bytes": 14908,
+      "sha256": "4f84d86cfd060f4ded334358ff8a4c81d4db2ed5addd568359d693f44a87765a"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-mono-OFL.txt",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-OFL.txt",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-condensed-500.woff2",
+      "bytes": 19952,
+      "sha256": "e3b4fd97fd20bc70fda66d8d5f0745d8d6958068a024cb4724bbc1ffb6cbc183"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-condensed-600.woff2",
+      "bytes": 19816,
+      "sha256": "3d72a0923c5830358b0a8e25b258aecadbecbf542b6ee9a25f387803e37d56b9"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-condensed-OFL.txt",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-normal.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470"
+    },
+    {
+      "path": "assets/fonts/newsreader-OFL.txt",
+      "bytes": 4394,
+      "sha256": "fdfad38143ec470553cae82a1e45320bdd1b9ec70415d37bd0171051d8a4ded8"
+    },
+    {
+      "path": "assets/fonts/newsreader-italic.woff2",
+      "bytes": 64520,
+      "sha256": "48bc8861b9b2ca9300747cad4fd6a3b4ac3028d364df00bd1b72097baa75e509"
+    },
+    {
+      "path": "assets/fonts/newsreader-normal.woff2",
+      "bytes": 58084,
+      "sha256": "62981321d9a3cc7a61a73792729043703fd6112da86e8ec848bb57f088578757"
+    },
+    {
+      "path": "assets/pfp_sosa.jpg",
+      "bytes": 70174,
+      "sha256": "79f010a94c5118399c7501f1254fc9b72665227f3754d0f7079299bb1f4691b0"
+    },
+    {
+      "path": "assets/rime.png",
+      "bytes": 54236,
+      "sha256": "eeeb59c7e3efcf671e82f355263956892be282574be645b0d1edac9abe302249"
+    },
+    {
+      "path": "assets/slag.png",
+      "bytes": 40544,
+      "sha256": "1ba7f3eee5c4112bd87117097b9815f1c9f3c8cc491d7f18c5132d9abeae5db5"
+    },
+    {
+      "path": "assets/somnus.png",
+      "bytes": 829367,
+      "sha256": "48b1919e2e487d4edfa2f03c2cab4a2cdead9f126e5e4dac5bc585f01c38137f"
+    },
+    {
+      "path": "assets/sosa.png",
+      "bytes": 218743,
+      "sha256": "69a2af17da59e02d9c190a237a0153fe8ff0fa42973c9b96c8184de1fa59234c"
+    },
+    {
+      "path": "assets/sosa_dialogue.jpg",
+      "bytes": 51106,
+      "sha256": "cc39ed292f09881584512421fa0661ce6ec3576609d5d13edcf0b7b8c21ea240"
+    },
+    {
+      "path": "assets/spall.png",
+      "bytes": 57545,
+      "sha256": "6869479db767eafd3d5cd5f69403a6518709b5793fb1de37954c3f327ee1052d"
+    },
+    {
+      "path": "assets/street_predator.png",
+      "bytes": 324204,
+      "sha256": "c38170c278140a958274da2560a4b1c7e53d757db34e1d57ced586abeb1a483b"
+    },
+    {
+      "path": "assets/titlescreen.png",
+      "bytes": 167212,
+      "sha256": "f592a35e38c281b1063073b2349100d3861230b1bd20fab328cad9186e1f50cf"
+    },
+    {
+      "path": "assets/transit_security.png",
+      "bytes": 1369823,
+      "sha256": "3fc752f30c42294e54a5e66545889e6238b0cac12057f290f571f00dce9fe073"
+    },
+    {
+      "path": "cg_stats_scan.html",
+      "bytes": 20369,
+      "sha256": "9cb02cca468e0aac41c5895928be28ac02ab21ef57dc2e59a2e80e588f2dc425"
+    },
+    {
+      "path": "css/accessibility.css",
+      "bytes": 5237,
+      "sha256": "4fa6db8fb35a8526e22763ff29a9e9bf970b62b1d4ffedd8d17038fa4e0d62a9"
+    },
+    {
+      "path": "css/base.css",
+      "bytes": 5388,
+      "sha256": "c640eb57463fe27bd09180aa9a91d2d59f0ac299bad7c18f71586d404b282f6e"
+    },
+    {
+      "path": "css/battle.css",
+      "bytes": 84040,
+      "sha256": "aea8da833eb5d9dc0859c2e71ff709e30d075afb9219fe7c8084bd49faafd8be"
+    },
+    {
+      "path": "css/discord.css",
+      "bytes": 7084,
+      "sha256": "165a336eccf23f0af1b11246e346948d4e564ea9fcbfe2777cf40e544cea18f9"
+    },
+    {
+      "path": "css/effects.css",
+      "bytes": 52573,
+      "sha256": "59e2390627f8fc7ce7da48a1e771eacedfcd53a86bfda292846479d32bccbe58"
+    },
+    {
+      "path": "css/story.css",
+      "bytes": 23357,
+      "sha256": "d8014195b8e3078ec2508df7058ed9720e20f1f20994fc6b9daa0ac32889300f"
+    },
+    {
+      "path": "css/title.css",
+      "bytes": 9094,
+      "sha256": "05af0b6ab3fcffda20887db24453eb37dc301e78cba366507ae06187f02266b3"
+    },
+    {
+      "path": "docs/MASTER_GDD_HANDOFF.md",
+      "bytes": 55957,
+      "sha256": "f2c46b252e5576efb9f0649693afe94ce7a67d84707147ce5b652dee2ac778c9"
+    },
+    {
+      "path": "docs/SOSA_DEFINITIVE_DOSSIER.md",
+      "bytes": 154183,
+      "sha256": "82ab53180cd1bf7fd436853a9f63ef35e99b6c62ed53f0852a87173dfc891676"
+    },
+    {
+      "path": "docs/WORLD_TAXONOMY_ECOLOGY.md",
+      "bytes": 137204,
+      "sha256": "617bc99290360a0d30c3d380445833c0a81cb2be99b25365ae72d8818859a590"
+    },
+    {
+      "path": "index.html",
+      "bytes": 4377,
+      "sha256": "d945722974fec847790361a4c73fb5e68a925b03d44eabcf9ea037218e9303cf"
+    },
+    {
+      "path": "js/audio.js",
+      "bytes": 34271,
+      "sha256": "c289cf7cd015bd2dfce2ada1823b5a57440f3742688bf195e49159cfe3f23328"
+    },
+    {
+      "path": "js/data/act1.js",
+      "bytes": 47455,
+      "sha256": "43fcf7dba0e7da72f26b522db373edf577c773b96b985070fd556549848dd1b8"
+    },
+    {
+      "path": "js/data/act2.js",
+      "bytes": 85034,
+      "sha256": "43f39e7401276803408624d08f9764ec031f4edff1400254942ffc96ba092b6e"
+    },
+    {
+      "path": "js/data/act3.js",
+      "bytes": 41827,
+      "sha256": "5f957f47c9d07a280df8ba11603e432d1f0dfa4792037e23ea941532da9b4ba3"
+    },
+    {
+      "path": "js/data/act4.js",
+      "bytes": 105339,
+      "sha256": "e2d363df986b133a52dbd3d1833e6e017e240274b156716e6bb863947b7fb430"
+    },
+    {
+      "path": "js/data/act5.js",
+      "bytes": 17498,
+      "sha256": "d418554dcc7ed7c62b972ac89d409f386cecbb333eca0e41b06a8d95a308405c"
+    },
+    {
+      "path": "js/data/act6.js",
+      "bytes": 14958,
+      "sha256": "df8a11a47f171243ed2065565bc9d1186f9a4b83d7615e68a40cd12ea6ede993"
+    },
+    {
+      "path": "js/data/battle-dialogue.js",
+      "bytes": 22530,
+      "sha256": "6a12dd0d3dfeef36b3897d6ec9a22de2c6d4a854bbfd6647cae5e4beb83fc0d7"
+    },
+    {
+      "path": "js/data/core.js",
+      "bytes": 36230,
+      "sha256": "458598ef7859f15cacce6b58de918a5ef803b2c19a9d353a07275ddc88561c37"
+    },
+    {
+      "path": "js/fx.js",
+      "bytes": 13494,
+      "sha256": "dc3995839fb98d7ae9821b95e0493e51962a4d8b2676775af888050a3865709c"
+    },
+    {
+      "path": "js/game-battle.js",
+      "bytes": 73832,
+      "sha256": "a17a3a672a58b8c1a76a4318f11ada9ad132f209f3ea0d2de6ece4e8d5c90366"
+    },
+    {
+      "path": "js/game-bosses.js",
+      "bytes": 1051,
+      "sha256": "f7ca65bab7084195162dfe91ddf28b5c09da8c2769d8a9729dc24f8ddefdae9c"
+    },
+    {
+      "path": "js/game-core.js",
+      "bytes": 22406,
+      "sha256": "dde978b51ee7e1f124bd0c1f4b8057782ff029cfddbd49046c2e05311f369b5d"
+    },
+    {
+      "path": "js/game-enemies.js",
+      "bytes": 20592,
+      "sha256": "204c548da5e328b25aa540da9110a3fbdd17a2bf243c8c08e38ea5b7a138bb31"
+    },
+    {
+      "path": "js/game-states.js",
+      "bytes": 18375,
+      "sha256": "ba718986929be0b321d2828ec1058aff0f0d446a2099e6ae31b76e7d7a2abd17"
+    },
+    {
+      "path": "js/render.js",
+      "bytes": 99027,
+      "sha256": "c8609d793982cc020697db1dc653cff8a341bbc5411576f1bb656f5144633836"
+    },
+    {
+      "path": "tests/balance-sim.js",
+      "bytes": 4930,
+      "sha256": "1c0ca275f3ad86450f3ee48a027ae80cb112abe5076c9777b8382bd5ad06a1b1"
+    },
+    {
+      "path": "tests/combat-mechanics.js",
+      "bytes": 12861,
+      "sha256": "1903bfcea404b9b18f346c456b9d46eb24a17068c53b11f5adc7b2ba0480f7e5"
+    },
+    {
+      "path": "tests/enemy-intents.js",
+      "bytes": 8035,
+      "sha256": "ac5ea3101d6caa345da3e22b1fe00e642cfdc49f6926bc3e29a45d4920e02f99"
+    },
+    {
+      "path": "tests/fixtures/save-v1-atlas-furnace.json",
+      "bytes": 795,
+      "sha256": "44984d3289903dbd3850edc10dffe2da6404cf37ab9f4c75d4ce87b4ed830ea3"
+    },
+    {
+      "path": "tests/fixtures/save-v1-chapter6-collateral.json",
+      "bytes": 882,
+      "sha256": "59dc1726b1e09e8c9b769a1352d03ead068319d819613b4d118ad58dac6a9147"
+    },
+    {
+      "path": "tests/fixtures/save-v1-legacy-fields.json",
+      "bytes": 459,
+      "sha256": "be3e2a8a84d4263aae40f3e626869209429352e6db76abc7a91832349f5ce0bf"
+    },
+    {
+      "path": "tests/fixtures/save-v1-overtime-furnace.json",
+      "bytes": 801,
+      "sha256": "0cf6ef6d1fa2078aa9d41e6ea756fffca0b0f2206a5f7992189f7c55dd5eebb8"
+    },
+    {
+      "path": "tests/fixtures/save-v1-partial-corrupt.json",
+      "bytes": 346,
+      "sha256": "849b126c905b1d00d0374e99223c52f1a2402139fc0060d5bcb330103b157eff"
+    },
+    {
+      "path": "tests/fixtures/save-v1-pre-graveframe.json",
+      "bytes": 773,
+      "sha256": "33c9dbacb67fd1ddcea80525b47787e6b68074c2d52cdfe34b456ae09ed7887c"
+    },
+    {
+      "path": "tests/markup-css-audit.js",
+      "bytes": 5441,
+      "sha256": "50d16d55e7bf7783f74cfd6c1e10c97a6dc5cdaaadf62891a2272cd38a5b749d"
+    },
+    {
+      "path": "tests/mobile-sim.js",
+      "bytes": 15357,
+      "sha256": "150272f037a15f3af3f3e42438cdbe8e6b8020ad482006b03789729555bb6e04"
+    },
+    {
+      "path": "tests/narrative-structure.js",
+      "bytes": 3882,
+      "sha256": "95e7870b5443c5a990205369c7a02125718205896951fb16e54d52a88f6aa5bc"
+    },
+    {
+      "path": "tests/package-verify.js",
+      "bytes": 3048,
+      "sha256": "6937862304ec238defcfd4da3a7d0193de83e6e5af991c23202be2d9d09325ce"
+    },
+    {
+      "path": "tests/project-audit.js",
+      "bytes": 9866,
+      "sha256": "a32a8e5ed9b4f4c7519fd73ad67dc64acce7f679adb0a3c4a7cf68f859191e22"
+    },
+    {
+      "path": "tests/prose-audit.js",
+      "bytes": 5575,
+      "sha256": "0cd99a6ca74cc1b5493ed8f8811d3a6a452752f1db5bdae3cff959fb739b401f"
+    },
+    {
+      "path": "tests/save-migration.js",
+      "bytes": 5505,
+      "sha256": "6c97d2a31fbca292b1e65565d4b4acaaf1a0dca43da0ac2af00d63ea41f57611"
+    },
+    {
+      "path": "tests/skill-expression.js",
+      "bytes": 3304,
+      "sha256": "cacadd629ce6dc7776308a2106b4418f04f2dfba7b86a4be3ec1cbe34e597d2e"
+    },
+    {
+      "path": "tests/smoke.js",
+      "bytes": 40862,
+      "sha256": "1999fa87a1a06b53f935c3d91f6de51b325c6b61415766e3d0a682795747e2f0"
+    }
+  ],
+  "delivery": {
+    "platform": "itch.io HTML5 browser iframe",
+    "orientation": "portrait",
+    "input": "touch-first",
+    "validatedWidths": [
+      360,
+      390,
+      430,
+      480
+    ]
+  },
+  "narrative": {
+    "MassachusettsTripDays": 3,
+    "MassachusettsReason": "unspecified",
+    "methContinuityActs": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "playerFacingUnits": "Chapters; internal act* IDs retained for compatibility",
+    "uticaGirlTrajectory": "peer-support application -> library paperwork -> February orientation -> drop-in shadowing -> OUT housing fund -> interrupted by May crisis",
+    "apt3": "second floor; street door -> one interior flight -> second locked apartment door; one bedroom, one living room, one bathroom, one kitchen; shared bed/couch/chair",
+    "firstHuntAftermath": "power pleasure -> couch/sitting-up distance -> ordinary water -> differentiated Gz check-in",
+    "gzVoices": "Bender jokes then calls; Meki logistics; YSL rank/team language",
+    "kesslerCare": "April 18 ride, sandwich, electrolyte water, gauze, waits for Apt 3 light",
+    "gothVoice": "sensual future-tense + dark jokes + sudden fear + one-word anti-disappearance rules",
+    "relayAftermath": "phantom vibration -> messy real Goth voice note -> copied voice distinction -> admitted desire for another Molt",
+    "gothSexualBeats": {
+      "lateDecember": "desire resumes before trust repair; bathroom video call; possession and concealment",
+      "firstResonance": "consensual instruction lowers post-violence pulse; control parallel made explicit",
+      "march": "work-uniform teasing and future-ticket desire",
+      "lateApril": "half-naked flirtation exposes bruising; concern breaks the bit; Sosa lies"
+    },
+    "transport": "Sosa owns no car; primarily walks and sometimes takes public bus; private rides belong to others",
+    "postArchon": "resident survival -> useful power pleasure -> desire for Elias recognition -> saved resident-accounting text",
+    "postElias": "walk to bus -> busy/alive check-in -> bus home -> erased lot -> twelve workdays -> Utica copied-voice warning",
+    "gothAct5Absence": "dead phone prevents one-word alive message; silence repeats Columbus/Halloween from her side",
+    "gzBoundaries": "Bender work discipline; Meki rent/money limit; YSL rank-not-contract; ask, not summon",
+    "gothArchonAnswer": "camera black; breathe where she can hear; territory watches voluntary choice; Red-Tag exposed",
+    "uticaPostHospital": "will not return to Apt 3; next peer cohort seat retained; module finished; no cohabitation promise",
+    "femaleNetwork": "immense reciprocal high-cardinality network; friendly, sexual, romantic, and intimate; Sosa gives genuine care and loves sexual attention; overlap/concealment are the flaw",
+    "gothPriority": "primary romantic focus; Sosa believes he would close wider sexual/romantic connections for a real exclusive life with her",
+    "chapter6Opening": "active chapter opening, not credits/epilogue and not necessarily final chapter",
+    "femaleNetworkOrigin": "primarily drug communities on Discord and private DMs branching from them; gaming is platform texture, not primary source",
+    "atlasSeed": "repaired Apt 3 tread transfers impact into kitchen/couch wall/bathroom; Sosa calls it a trauma load balancer",
+    "atlasClosure": "April 20 joint Kessler battle at Apt 3; safe Web route vs fast Furnace structural damage",
+    "privateDmDemonstration": "memory, logistics, reciprocal care, flirting, challenged overlap, concealed shared room",
+    "speakerOwnership": "alternating in-person cards; no reply under wrong portrait/name",
+    "temporalChannels": "present Sosa, retrospective Sosa, narrator, thought explicitly separated",
+    "familiarNaming": "battle/cut-in/victory copy uses the shadow before act1 naming scene"
+  },
+  "canonLocks": {
+    "power": "Sosa personal mana absolute zero; attention opens negligible borrowed-mana tributaries; Somnus converts mana to Anti-Magic",
+    "gz": [
+      "Sosa",
+      "Bender",
+      "Meki",
+      "YSL"
+    ],
+    "act3Archon": "The Condemned Witness",
+    "act3WorldLaw": "YOU WERE SEEN. THAT WAS THE HELP.",
+    "vegas": "Bartender job lined up; job-provided room; one shared bed",
+    "uticaOffer": "After transit incident only",
+    "uticaArrival": "Met in person; no mailed key",
+    "veilTerminology": "Ypsilon name in Act 2; Mystic Code classification by Kessler in Act 4",
+    "topRankedGz": "silly private group-chat name; Sosa, Bender, Meki, YSL are equal friends; no numerical ranks",
+    "gothPostReleaseLocation": "Ohio; no return to West Virginia after felony"
+  },
+  "systems": {
+    "debt": "No passive HP erosion; power/Guard/timing/Autonomy/Coffin tradeoff",
+    "censor": "Elias Kessler; friendly-first; Closure Attribution override",
+    "archon": "April 30 Condemned Witness co-op; Kessler Exclusion Bracket every second action; System Call gates Red-Tag Core",
+    "somnus": "Unvoiced action-based personality cut-ins",
+    "battlePresentation": "Encounter-specific psychedelic CSS fields and procedural audio profiles",
+    "defense": "Origin: To Endure; command: Refuse; event: Battle Continuation; defense: Interception Guard",
+    "discord": "Top Ranked Gz full chats in Acts 2–4; intentional silence in Act 5",
+    "act2Structure": "hallway cold -> frost episode -> Dec. 30 human violence -> Spall finale; impossible-call seeds continue",
+    "drossKill": "body suppressed; substrate persists; Egregore cleanup trail increments",
+    "censorDefense": "3-point Formalcraft Grid Integrity damaged by Cleave; no Archon anchor",
+    "thresholdState": "Graveframe",
+    "debtVenting": "authored co-regulation, safety, rest, and System Call beats",
+    "drossEpisodes": {
+      "rime": "Texas/Utica base Pall -> April 6-8 Frost Group Chat/Nifl Molt",
+      "spall": "painted stair -> impact seed -> Concrete Thing -> aftermath",
+      "slag": "April Work Heap is one Type-I body; future Overtime requires distributed workplace coordination",
+      "knell": "Act 2 call seeds -> February dedicated base Wire-Jaw -> April 9 Relay Molt; internal key chime"
+    },
+    "kesslerDefense": "3-point Formalcraft Grid Integrity; Omnis is not anchor",
+    "thresholdPublicName": "Graveframe",
+    "knowledgeOrder": "sensory nicknames Acts 1–3; Kessler introduces Egregore taxonomy across April; Omnis names receiver architecture and Debt May 6",
+    "act3Escalation": "grief surge -> hunt 1 -> hunt 2 -> dedicated base Chime -> March job call",
+    "severGrid": [
+      "Dismantle",
+      "Cleave",
+      "Web",
+      "Furnace"
+    ],
+    "utilityRail": [
+      "Hellstep",
+      "System Call",
+      "Sever: True when unlocked"
+    ],
+    "blackFlash": {
+      "awakening": "mandatory non-expiring First Resonance",
+      "baseChance": 0.04,
+      "zone": "3 rounds; 120% direct Sever; Shrine/saturation boost",
+      "zoneNoStreakChance": 0.1,
+      "consecutiveChances": [
+        0.24,
+        0.38,
+        0.52
+      ],
+      "streakBreaks": [
+        "normal eligible Sever",
+        "missed window",
+        "Web",
+        "Furnace",
+        "Hellstep",
+        "System Call"
+      ],
+      "damage": "base^2.5",
+      "bossPolicy": "never required to win",
+      "lckRelationship": "4% baseline already represents rare LCK EX-biased alignment; Zone/control raises consecutive odds",
+      "storyGate": "player unlock AND worldFlags.blackFlashAwakened; legacy unlocked saves infer flag",
+      "timingMs": {
+        "stableBalanced": 2800,
+        "carried": 2400,
+        "overload": 2000,
+        "reducedMotion": 3400,
+        "firstResonance": "non-expiring"
+      }
+    },
+    "web": "unlocks during March Nifl episode; 2-turn control, -20% damage, barrage -1, field grounding, sat+2, cooldown3",
+    "cleave": "+7 Debt; adaptive armor/mass bypass and strip; one-round recalibration; no Cleave-specific Autonomy gain",
+    "furnace": "requires 3 severance saturation; true thermobaric AoE; first ready state pauses for explanation",
+    "graveframeUi": "monochrome angular Control/Collateral interface",
+    "drossMaturation": {
+      "stage": "TYPE-II // MOLT; ecology begins acting in plural",
+      "rime": "Nifl; first Type-II Molt fought April 7 as Frost Group Chat; formal name introduced April 13 by Kessler",
+      "spall": "Atlas; seeded April 10, full Molt fought jointly April 20",
+      "slag": "Overtime; Type-I Work Heap early April, Type-II Molt fought April 24",
+      "namingRule": "field codenames are provisional until episodes earn or replace them",
+      "archonCrossing": "not automatic; requires territory + material anchor + social surrender + coherent voice + world-law",
+      "knell": "Relay"
+    },
+    "threatComparison": "Archon exceeds Scout in territory/ontology/civilian danger; Scout threat derives from training, counters, preparation, and institutional equipment",
+    "kesslerJointCleanup": "April 18 mixed nest; Web/Furnace + Blue Bracket cooperation",
+    "act4Escalation": "base Slag -> Nifl Molt -> Relay Molt -> April 10 Kessler rescue -> partnership -> Archon -> audit/betrayal",
+    "kesslerRescue": "April 6 mixed Pall/Spall/Chime convergence; Blue Bracket every second action",
+    "betrayalFracture": "Sosa saves Elias by crossing Anti-Magic through Formalcraft; Omnis mirrors impossible architecture and Closure Attribution to headquarters",
+    "allySupport": "DATA.alliedSupport metadata; Kessler cadence 2 in rescue, joint cleanup, and Archon",
+    "sourceCanonicalization": "obsolete act3 Archon literals removed; canonical April versions live once in act4 data",
+    "graveframeCollateral": "act5_s5 dynamic aftermath reflects stored Collateral; scene materialization also runs on save load",
+    "egregoreTypes": {
+      "TYPE-0": "IRREGULAR",
+      "TYPE-I": "DROSS",
+      "TYPE-II": "MOLT",
+      "TYPE-III": "ARCHON",
+      "TYPE-IV": "DEMIURGE"
+    },
+    "omnisSubject": "Class Caster?; separate Type TYPE-0 IRREGULAR; LCK/NP EX values glow; skill ranks adjacent in two-column layout",
+    "chapter6CivicCollateral": "low record: scored wall/no injuries; high record: water main, sedan, windows, tenant stitches, stored count",
+    "validationEngine": "immense fluctuating attention graph; no stable donor count; active routes are a momentary subset of real reciprocal relationships plus public/hostile attention",
+    "omnisAttention": "MANY / DYNAMIC; dense animated paths; roster extent unresolved",
+    "baseBeforeMolt": [
+      "Pall",
+      "Spall",
+      "Knell",
+      "Slag"
+    ],
+    "moltOrder": [
+      "Nifl",
+      "Relay"
+    ],
+    "techniqueNaming": "Sosa consciously names repeatable behaviors, acknowledges anime borrowing/plagiarism, then UI unlocks; future techniques follow same rule",
+    "publicDrossTaxonomy": {
+      "rime": "Pall",
+      "spall": "Spall",
+      "knell": "Knell",
+      "slag": "Slag",
+      "internalCompatibility": "chime* identifiers and chime.png remain internal only"
+    },
+    "atlasMechanics": "unwebbed damage transfers 50% into healthiest base Spall carrier; Web pins; Furnace records structural collateral; Kessler brackets occupied rooms",
+    "overtimeMechanics": "three uninterrupted enemy exchanges trigger Mandatory Overtime; Web cuts schedule/resets cadence; Refuse unavailable",
+    "somnusFixation": "high-Debt hits stack target-specific Fixation; Web broadens priority/removes one pre-lock stack; 3/3 locks target until death",
+    "refuse": "early-only command before Trace/Dismantle naming; disappears permanently once Sosa can direct Somnus; Interception Guard remains automatic",
+    "combatCodex": "press/hold action 520ms; bottom sheet explains role/cost/consequence; aria-disabled actions inspectable; held release suppressed",
+    "furnaceConsequences": "all uses tracked; Atlas structural housing, Overtime machinery/wages, Archon condemned apartments, Censor scorched evidence",
+    "lckEx": "impossible convergence bias across Trace, target motion, borrowed-mana arrival, Somnus inversion, body/environment; explains recurring Black Flash proximity but never grants command",
+    "startBattleStages": [
+      "buildBossState",
+      "resetBattleRuntimeState",
+      "spawnEnemies",
+      "configureEncounterSupport",
+      "applyEncounterStartRules",
+      "resetBattlePresentationState",
+      "beginBattlePresentation"
+    ],
+    "audioUnlock": "one-time capture pointerdown/keydown listener globally resumes Web Audio; title buttons retain explicit resume",
+    "saveVersion": 1,
+    "saveHardening": "canonical default merge; numeric bounds; missing-scene fallback; legacy muted migration",
+    "battleTimerReset": "tracked timers cancelled before battle reset and new-game initialization",
+    "enemyPhaseRecovery": "intent try/catch + 6.5s watchdog + forced unlock fallback",
+    "ypsilonGloss": "first-read highlight + held definition + later dotted underline; no visible glossary button"
+  },
+  "package": {
+    "path": "/home/user/sosa_game.zip",
+    "bytes": null,
+    "sha256": null,
+    "hashReporting": "external after final packaging; archive contains this manifest, so self-hash metadata cannot be embedded",
+    "archiveRoot": "index.html",
+    "sourceComplete": true,
+    "projectFiles": 94,
+    "entries": 102,
+    "exactProjectSet": true,
+    "includes": [
+      "runtime",
+      "README.md",
+      "docs",
+      "tests/fixtures",
+      "project-manifest.json",
+      "baseline-manifest.json"
+    ]
+  },
+  "mobile": {
+    "vnCharacterBudget": 340,
+    "discordBottomSafeArea": true,
+    "simulatedWidths": [
+      360,
+      390,
+      430,
+      480
+    ],
+    "simulation": "deterministic DOM/CSS contract harness; no browser engine available",
+    "touchFloorPx": 44,
+    "safeAreaCoverage": [
+      "app",
+      "battle panel",
+      "cut-ins",
+      "Combat Codex",
+      "Discord",
+      "title/end"
+    ],
+    "physicalCaveat": "Brave/Safari/Chrome physical rendering and real touch latency remain external gate"
+  },
+  "audiovisual": {
+    "victory": "full-screen psychedelic result card with stats and extended resolve",
+    "cutInDurationMs": 4200,
+    "playerTurnImpactDelayMs": 620,
+    "enemyIntentCadenceMs": 650,
+    "vnFont": "Newsreader for prose/thought; IBM Plex Sans for humans/UI; source-specific local role cast",
+    "sceneCues": [
+      "footsteps",
+      "impact-heavy",
+      "cold-wind",
+      "phone-buzz",
+      "door",
+      "rain",
+      "collapse",
+      "heartbeat",
+      "static-burst",
+      "cuffs",
+      "gun-charge",
+      "manifest"
+    ],
+    "persistentOpeners": true,
+    "ambientSosaMax": 2,
+    "ambientSomnusMax": 1,
+    "drossVnPortraits": true,
+    "battleLogUnlock": "Ypsilon Veil level 1",
+    "discordAdvance": "full-screen",
+    "battleTransitionMs": 1050,
+    "battlePatternFamilies": 15,
+    "secondaryImpactLayers": [
+      "cut-vignette",
+      "shrine-cross",
+      "obsidian-spray",
+      "cleave-rift",
+      "shard-rain",
+      "damage-vignette",
+      "glass-fragments"
+    ],
+    "victoryEnemyPortrait": true,
+    "provisionalSpriteMap": {
+      "basePall": "rime.png",
+      "baseSpall": "spall.png",
+      "baseKnell": "chime.png",
+      "baseSlag": "slag.png",
+      "nifl": "bespoke CSS shared cold-route body",
+      "relay": "bespoke CSS speaker/device routing core",
+      "atlas": "bespoke CSS occupied building/load diagram",
+      "overtime": "bespoke CSS clock/belt/worker system",
+      "atlasLoadbearer": "bespoke CSS cracked carrier",
+      "materialAnchor": "bespoke CSS Red-Tag document core",
+      "archon": "archon.png retained"
+    },
+    "cssBackgroundPlaceholders": {
+      "baseChime": "void-signal",
+      "relayDepot": "void-depot",
+      "apt3": "void-room",
+      "formalcraft": "void-formal",
+      "graveframe": "void-coffin",
+      "atlasSeed": "void-load"
+    },
+    "finalArtPriority": "Priority 6, intentionally last; explicit sprite/background backlog in MASTER_GDD_HANDOFF",
+    "battleIconPolicy": "no emoji or pictorial font glyphs; use CSS geometry or embedded SVG; Fixation eye uses clip-path/iris/pupil DOM",
+    "fixationEye": "CSS polygon sclera + gradient iris + separate pupil; static under Reduced Motion",
+    "kesslerSupportFX": "dedicated blue Formalcraft travel lane + angular target bracket positioned by enemy index; no emoji; static bracket under Reduced Motion",
+    "cutInRerenderPolicy": "entrance animation once; settled state survives DOM rerenders",
+    "battleMusicFormSeconds": "8.0–9.6",
+    "vnTypography": "Newsreader prose/thought; IBM Plex Sans human speech/UI; Plex Mono machine data; source-specific Cormorant/Barlow/Cinzel/Plex Condensed roles",
+    "placeholderDepth": "architectural silhouettes and occult overlays, not empty black plates",
+    "battleTransition": "fault-line curtain closes VN, opaque state swap, retracts over prepared battle",
+    "victoryExchange": "encounter-aware rotating Sosa quip + nonverbal Somnus movement",
+    "retrospectiveSosa": "2 explicit amber LOOKING BACK memory cards; future-aware heuristic gate",
+    "blackFlashFx": "black-violet freeze, spatial cross-cut, resonance rings, Zone ignition, BGM vacuum, layered impact",
+    "severTravelFx": "Dismantle 1.25s target travel/mark; Shrine auto-cut 0.9–1.05s",
+    "vnCueFx": "paired procedural scene audio and atmospheric overlay",
+    "sameFamilyVariants": "slot index 0/1/2 changes scale, saturation, brightness, and slight hue; Molts receive distinct overlay/scale",
+    "kesslerBattle": "enlarged party-side sprite; support sets persistent bracket on actual target only",
+    "structuralArtPolicy": "Molts, anchors, and role-bearing carriers cannot use enlarged/recolored base-family raster art",
+    "furnaceReady": "orange-violet aperture pip linkage + luminous OPEN button pulse; static under Reduced Motion",
+    "fontStack": "system-ui for UI, Georgia for prose/entity movement, ui-monospace for limited system data",
+    "slashPlacement": "measured target card center via data-enemy-index + getBoundingClientRect",
+    "stairwellPlate": "perspective flight, railing, damaged third tread, locked brass-3 door",
+    "structuralEnemyRendering": "inline SVG paths animated/styled inside CSS entity frames",
+    "somnusPresentation": "violet CSS aura/shadow pressure + integrated sprite eyes; no detached white overlay",
+    "termHighlight": "amber-violet first-read glow; quiet known-term underline; Reduced Motion static",
+    "speakerTypography": "source-specific offline font profiles; no generic entity italics",
+    "enemyAttackDeathFx": "family-specific measured telegraphs and dissolves",
+    "battleContext": "encounter-specific environmental silhouettes layered over psychedelic fields",
+    "vnVoidExpansion": "bus interior/highway and frost-bedroom door/bed plates",
+    "fontCasting": {
+      "proseThought": "Newsreader",
+      "humansUi": "IBM Plex Sans",
+      "kessler": "IBM Plex Sans Condensed",
+      "machineKnellEgregore": "IBM Plex Mono",
+      "spallSlag": "Barlow Condensed",
+      "pall": "Cormorant Garamond",
+      "archonDisplay": "Cinzel"
+    },
+    "fontHosting": "self-hosted Latin WOFF2 under assets/fonts; SIL OFL; no CDN"
+  },
+  "balance": {
+    "introAcknowledgementsPerBattle": 2,
+    "tutorial_1": 6.04,
+    "act1_battle1": 6.59,
+    "act1_battle2": 7.31,
+    "act2_alone_dross": 4.84,
+    "chime": 5.63,
+    "spall": 5.04,
+    "witness": 14.85,
+    "kessler": 6.91,
+    "hound": 5.67
+  },
+  "timeline": {
+    "FebruaryToMidMarch": "unemployed; meth/Discord routine; deliberate monster hunting",
+    "TOMRAStart": "2026-03-17",
+    "SlagIncident": "early April after roughly three weeks",
+    "KesslerFirstContact": "2026-04-10",
+    "KesslerTerminologyMeeting": "2026-04-13",
+    "KesslerSiteWalk": "2026-04-18",
+    "FullOmnisAudit": "2026-05-06",
+    "LockoutArrest": "2026-05-19",
+    "KesslerRescueSwarm": "2026-04-06",
+    "KesslerJointCleanup": "2026-04-20",
+    "MinorJointFieldwork": "2026-04-23 through 2026-04-27",
+    "JointArchonClosure": "2026-04-30",
+    "UticaGirlPeerApplication": "December 2025",
+    "UticaGirlOrientation": "February 2026",
+    "UticaGirlDropInShadowing": "March 2026",
+    "TOMRADayShiftWindow": "9:00 AM start; Work Heap near 4:07 PM; Kessler arrives April 10 after later Molt signatures",
+    "May7Through18": "Egregore erases TOMRA lot; Sosa works 9-5, ignores blocked calls; Utica Girl misses shadow shifts and reports copied voices",
+    "NiflMolt": "2026-04-06 through 2026-04-08, after base Slag and before Relay/Kessler",
+    "RelayMolt": "2026-04-09, after all four dedicated base Dross",
+    "OvertimeMolt": "2026-04-24 after Atlas and before Archon",
+    "Chapter6OpenFile": "2026-06-21",
+    "DallasToUticaGreyhound": "early November 2025; exactly 48 hours / two days",
+    "GothArrestKnowledge": "Sosa learns Columbus arrest and no-phone explanation only on 2025-12-28",
+    "GothReturn": "2025-12-28; released after Columbus case; felony; remains in Ohio",
+    "OhioPlan": "Sosa eventually joining Goth Baddie in Ohio"
+  },
+  "documentation": {
+    "core": [
+      "docs/SOSA_DEFINITIVE_DOSSIER.md",
+      "docs/MASTER_GDD_HANDOFF.md",
+      "docs/WORLD_TAXONOMY_ECOLOGY.md"
+    ],
+    "status": "integrated current canon",
+    "roadmap": "Release-candidate source/package audit complete. Continue physical-device typography, timing, safe-area, and touch verification before Chapter 6 expansion.",
+    "contaminationAudit": "clean; all JS/tests parse; route/balance/prose/save/mechanics/intents/mobile/markup/project audits pass",
+    "blackFlashReference": "https://jujutsu-kaisen.fandom.com/wiki/Black_Flash",
+    "imperialPrivilegeReference": "https://typemoon.fandom.com/wiki/Imperial_Privilege",
+    "secondarySkillReference": "https://fateot.jcink.net/index.php?showtopic=7682 (fan-system comparison, not primary canon)",
+    "fontResearch": "Google Fonts readability/accessibility/self-hosting guidance; IBM Plex human-machine/mobile rationale"
+  },
+  "mechanics": {
+    "enemyIntentStages": [
+      "normalizeEnemyIntent",
+      "applyEnemyIntentControl",
+      "announceEnemyIntent",
+      "resolveEnemyIntentGuard",
+      "applyResolvedEnemyIntent",
+      "type-specific resolver",
+      "finalizeEnemyIntent"
+    ],
+    "enemyEffectRegistry": "all 13 data-referenced effects covered; unknown effects safe no-op; blocked and Web-grounded intents do not leak attached effects",
+    "severTrueProgression": "first judgment attempt aborted before unlock; indiscriminate cut would erase tenant evidence with mirrored Egregore record",
+    "imperialPrivilegeFalse": "C rank narrative capability; no current battle buff/button/HUD; future contextual claim must support contradiction and failure",
+    "somnusThreading": "retired No Strings Attached supernatural label; coordination correction and Full Puppet",
+    "falseEyes": "healthy structure invisible; candidate pressure broad; resolved lines narrow; living/nonliving; ~20m LoS; Veil filter + Trace priority",
+    "mixedDross": {
+      "iceMortar": "Pall lends Spall +1 armor until Pall dies",
+      "cueTrade": "Pall+Spall+Knell extend barrages/damage while all three live",
+      "crossfeed": "2 exchanges; heal 8 each; Debt +5; Web or family death breaks"
+    },
+    "dismantleTraceDepth": "target-specific 3-step read: base, +20%, +50% Breakpoint/reset",
+    "firstResonanceCascade": "first forced Black Flash breaks Ice Mortar; spawn Pall+Spall; 2 additional missable guaranteed windows in awakening encounter only",
+    "furnaceUnlock": "Cut Ash visible after Web; no Furnace name/button before April 20 Kessler explanation + Sosa naming",
+    "debtContinuity": "authored setDebt checkpoints at long recovery/time gaps; no automatic per-victory vent",
+    "furnaceUi": "Cut Ash aperture pips; pre-name APERTURE UNCLAIMED; post-unlock 3/3 transforms action to OPEN",
+    "reinforcementWaves": "finite authored in-battle spawns for Pall packs, Nifl, First Resonance, Overtime",
+    "earlyAgency": "Refuse only at First Refusal; Refuse+Unnamed Cut post-manifest; named Dismantle removes Refuse",
+    "breachDamage": {
+      "armored": 0.35,
+      "unarmored": 0.55,
+      "open": 1
+    },
+    "fieldExp": "first-clear contextual EXP; level every 5; no passive stat inflation"
+  }
+}

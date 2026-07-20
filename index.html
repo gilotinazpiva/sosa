@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>The Grave That Wouldn't Take Me</title>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/title.css">
+    <link rel="stylesheet" href="css/story.css">
+    <link rel="stylesheet" href="css/discord.css">
+    <link rel="stylesheet" href="css/battle.css">
+    <link rel="stylesheet" href="css/effects.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+
+    <script>
+        window.addEventListener('error', function(e) {
+            var state = (typeof GAME !== 'undefined' && GAME && GAME.currentScene) ? GAME.currentScene.key : "boot";
+            var debt = (typeof GAME !== 'undefined' && GAME && GAME.player) ? GAME.player.debt : 0;
+            var rawCode = (e.message || "Unknown") + "|" + state + "|" + debt;
+            var code = btoa(unescape(encodeURIComponent(rawCode))).replace(/=/g, '').substring(0, 256);
+            
+            var errHtml = '<div role="alertdialog" aria-modal="true" aria-label="System failure" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,8,18,0.98);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#ef4444;font-family:\'Courier New\',monospace;padding:20px;text-align:center;">' +
+                '<h2 style="margin-bottom:10px;font-size:24px;letter-spacing:2px;">SYSTEM FAILURE</h2>' +
+                '<p style="color:#d0d0d0;margin-bottom:20px;font-size:12px;">A critical anomaly occurred in the Saint Graph.</p>' +
+                '<div style="background:#050508;padding:15px;border:1px solid #ef4444;color:#ff9a9a;word-break:break-all;max-width:90%;">' +
+                '<strong style="color:#ef4444;">ERROR CODE:</strong><br><br>' + code + '<br><br>' +
+                '<span style="font-size:10px;color:#777;">Provide this code to Gz Technical Support.</span>' +
+                '</div>' +
+                '<button onclick="location.reload()" style="margin-top:30px;padding:12px 24px;background:transparent;color:#ef4444;border:1px solid #ef4444;cursor:pointer;font-family:inherit;font-weight:bold;border-radius:4px;">REBOOT SYSTEM</button>' +
+                '</div>';
+            
+            if (window.__sosaFailureShown) return false;
+            window.__sosaFailureShown = true;
+            var app = document.getElementById('app') || document.body;
+            app.insertAdjacentHTML('beforeend', errHtml);
+            return false;
+        });
+    </script>
+</head>
+<body>
+    <div id="fx-layer" aria-hidden="true"></div>
+    <div id="app"></div>
+
+    <script src="js/data/core.js"></script>
+    <script src="js/data/act1.js"></script>
+    <script src="js/data/act2.js"></script>
+    <script src="js/data/act3.js"></script>
+    <script src="js/data/act4.js"></script>
+    <script src="js/data/act5.js"></script>
+    <script src="js/data/act6.js"></script>
+    <script src="js/data/battle-dialogue.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/fx.js"></script>
+    <script src="js/game-core.js"></script>
+    <script src="js/game-battle.js"></script>
+    <script src="js/game-enemies.js"></script>
+    <script src="js/game-bosses.js"></script>
+    <script src="js/game-states.js"></script>
+    <script src="js/render.js"></script>
+
+    <script>
+        function unlockSosaAudioOnce() {
+            if (typeof AUDIO !== 'undefined' && AUDIO && typeof AUDIO.resume === 'function') AUDIO.resume();
+            document.removeEventListener('pointerdown', unlockSosaAudioOnce, true);
+            document.removeEventListener('keydown', unlockSosaAudioOnce, true);
+        }
+        document.addEventListener('pointerdown', unlockSosaAudioOnce, {capture:true, once:true});
+        document.addEventListener('keydown', unlockSosaAudioOnce, {capture:true, once:true});
+
+        window.onload = function() {
+            try {
+                GAME.initGame();
+                render();
+            } catch (e) {
+                console.error("Fatal boot error:", e);
+                document.getElementById('app').innerHTML = '<div role="alert" style="color:white;padding:20px;text-align:center;">Critical System Failure.<br>Please reboot or refresh.</div>';
+            }
+        };
+    </script>
+</body>
+</html>
